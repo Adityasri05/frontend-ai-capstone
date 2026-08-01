@@ -123,7 +123,7 @@ export default function FilterPanel({ onFilterChange, initialFilters = {} }: Fil
                     isChecked 
                       ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' 
                       : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}>
+
                   <input
                     id={inputId}
                     type="checkbox"
