@@ -4,33 +4,37 @@ Welcome to the **FlyRank AI Frontend Engineering Capstone Project**. This reposi
 
 ---
 
-## 1. Project Description
+## 1. Project Description & Overview
 This repository serves as the core workspace for the capstone project. By integrating state-of-the-art developer tooling and modern React capabilities, the application delivers a premium, highly responsive user interface. This phase establishes our structural foundations, configuration settings, and AI alignment protocols.
 
-## 2. Objectives
+## 2. Internship Context
+This capstone is developed as part of the **FlyRank AI Frontend Engineering Internship**. The project serves as an evaluation benchmark for autonomous frontend development, showcasing advanced integration of AI-assisted coding assistants (like Claude Code and Cursor) in constructing a React 19 and Next.js 15 frontend application.
+
+## 3. Objectives
 - Establish a clean, well-configured codebase tailored for **AI-assisted development**.
 - Set up strict linting, styling, and structural patterns.
 - Align code guidelines with modern React 19 standards and Next.js 15 App Router architecture.
 - Build a structure ready for scalable component development.
 
-## 3. Tech Stack
+## 4. Tech Stack
 - **Runtime**: Node.js (LTS)
 - **Framework**: Next.js 15 (App Router)
 - **Library**: React 19
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Command Line**: Claude Code / git
+- **Command Line / AI Assistants**: Claude Code & Cursor
 - **Editor**: VS Code
 
 ---
 
-## 4. Project Structure
+## 5. Project Structure
 The repository is laid out according to professional standards:
 
 ```text
 frontend-ai-capstone/
 ├── .vscode/               # Editor configurations
-├── public/                # Static assets
+├── public/                # Static assets (images, icons, favicons)
+│   └── .gitkeep           # Git placeholder file
 ├── src/
 │   ├── app/               # App Router pages and CSS
 │   │   ├── globals.css    # Global Tailwind styling
@@ -44,13 +48,13 @@ frontend-ai-capstone/
 
 ---
 
-## 5. Getting Started
+## 6. Getting Started
 
 ### Installation
 Clone the repository and install the dependencies:
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/frontend-ai-capstone.git
+git clone https://github.com/Adityasri05/frontend-ai-capstone.git
 
 # Navigate to the workspace
 cd frontend-ai-capstone
@@ -69,10 +73,10 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to inspect t
 
 ---
 
-## 6. Development & AI-Assisted Workflow
+## 7. Development & AI-Assisted Workflow
 
 ### AI-Assisted Development
-This repository is pre-aligned with AI coding companions (such as Claude Code or Gemini). The development cycle follows a closed-loop system where AI agents work alongside engineers using the rules defined in [CLAUDE.md](file:///d:/Hackathon/frontend-ai-capstone/CLAUDE.md).
+This repository is pre-aligned with AI coding companions (such as Claude Code or Cursor). The development cycle follows a closed-loop system where AI agents work alongside engineers using the rules defined in [CLAUDE.md](file:///d:/Hackathon/frontend-ai-capstone/CLAUDE.md).
 
 #### The AI-Developer Interaction Loop
 ```mermaid
@@ -96,7 +100,6 @@ To assist AI models running commands directly, the following execution protocols
 | **Verification** | Run typescript and linter checks | `npm run lint` |
 | **Commit** | Stage & commit changes | `git add . && git commit -m "type(scope): message"` |
 
-
 ### Git Workflow
 We strictly adhere to the Conventional Commits specification to track progress and automate release cycles:
 - `feat:` for new UI features or components
@@ -107,12 +110,19 @@ We strictly adhere to the Conventional Commits specification to track progress a
 
 ---
 
-## 7. Future Roadmap
+## 8. Future Roadmap
 - **Phase 1 (Completed)**: Core repo architecture setup, AI workflow configuration, and basic page styling.
 - **Phase 2 (Planned)**: Integration of shared global state, layout components, and dark-mode themes.
 - **Phase 3 (Planned)**: High-fidelity dashboard views, external API integration, and performance benchmarking.
 
 ---
 
-## 8. License
+## 9. License
 This project is licensed under the permissive MIT License. See the [LICENSE](file:///d:/Hackathon/frontend-ai-capstone/LICENSE) file for details.
+
+---
+
+## 10. Author
+**Aditya Srivastav**  
+*FlyRank AI Frontend Engineering Intern*  
+GitHub: [@Adityasri05](https://github.com/Adityasri05)
