@@ -1,25 +1,16 @@
-# FL-02 Prompt Engineering Assignment: Prompt Iteration Log
+# Prompt Iteration Log
 
-- **Candidate Name**: Aditya Srivastav
-- **Internship**: FlyRank AI Frontend Engineering Internship (Phase 2)
-- **Role**: Frontend AI Engineering Intern
-- **Date**: August 2026
+## Selected Task
+The selected task is to build the **HIREVIUM Live Interview Workspace** component (`LiveInterviewWorkspace.tsx`) located in `src/app/dashboard/live-interview/components/`. This component is the primary user interface that candidates interact with during technical vetting assessments. It renders active questions, handles text response inputs, displays a countdown timer, validates minimum answer length constraints, and manages async submit transitions to the backend API.
 
----
-
-## 1. Selected Task
-
-- **Task Name**: Build the **HIREVIUM Live Interview Workspace** component (`LiveInterviewWorkspace.tsx`) in `/src/app/dashboard/live-interview/components/`.
-- **Purpose**: This component serves as the core user experience for candidates taking an adaptive screening test. It manages the active question rendering, a real-time response timer, candidate answer inputs, and sends payload states to the backend API.
-- **Why Selected**: It is a state-heavy, highly interactive component containing timers, markdown parsing, loading states, and API boundary validations. This makes it an ideal candidate to demonstrate how progressive prompt engineering directly improves code quality, validation schemas, and accessibility controls.
+This task is highly appropriate because it has a state-heavy structure, handles real-time timer intervals, requires input validation boundaries, connects to backend proxies, and must support strict accessibility guidelines (WCAG) to be production-grade.
 
 ---
 
-## 2. Naive Prompt (Baseline)
+## Naive Prompt
+"build an interview simulator page for candidate"
 
-> "build an interview simulator page for candidate"
-
-### Representative AI Output Excerpt
+### Representative Output
 ```javascript
 import React from 'react';
 
@@ -37,25 +28,24 @@ export default function InterviewSimulator() {
 ```
 
 ### Reflection
-- **What Changed**: This is the baseline prompt. It contains no instructions on structure, programming language, design rules, or accessibility compliance.
-- **What Improved**: The model generated a basic React element that renders a title, text area, and a button.
-- **Remaining Problems**:
-  - Code is written in untyped JavaScript instead of TypeScript.
-  - No styling (Tailwind CSS) is applied.
-  - The question and state are hardcoded.
-  - Lacks accessibility tags, loading indicators, and timers.
+#### What Changed
+No techniques used. This is a naive, single-sentence baseline prompt without role, context, or formatting constraints.
+#### What Improved
+A basic React component was created that has a simple text area and a submit alert handler.
+#### Remaining Problems
+The output is written in untyped JavaScript, contains no styling (Tailwind CSS), uses hardcoded values, and lacks any interactive timers, loading states, or accessibility attributes.
 
 ---
 
-## 3. Version 1: Role Assignment
+## Version 1
 
 ### Technique Used
-Role Assignment (assigning a professional persona to the AI to align its internal model constraints).
+Role Assignment
 
 ### Prompt
-> "As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidate."
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidate."
 
-### Representative AI Output Excerpt
+### Representative Output
 ```tsx
 import React, { useState } from 'react';
 
@@ -95,24 +85,24 @@ export default function LiveInterview() {
 ```
 
 ### Reflection
-- **What Changed**: Added the role: `"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design..."`.
-- **What Improved**: The output switched to typed TypeScript (`.tsx`) and used Tailwind utility classes (`bg-slate-900`, `text-slate-100`, `p-6`) for basic layout. It also introduced a dynamic state object (`useState`) and interfaces.
-- **Remaining Problems**:
-  - The component lacks project context (HIREVIUM, FastAPI integration).
-  - No validation constraints on answer submission length or empty answers.
-  - The layout is still basic and lacks key features like timers and loaders.
+#### What Changed
+Introduced the Senior Frontend AI Engineer role, setting professional standards and technical boundaries for the code.
+#### What Improved
+The code output transitioned from raw JavaScript to typed TypeScript (`.tsx`). It uses standard React state hooks (`useState`), declares a strong TypeScript data interface, and applies initial Tailwind CSS utility classes.
+#### Remaining Problems
+The component is disconnected from any project environment (HIREVIUM, FastAPI integration) and lacks user feedback states, timers, and submission verification controls.
 
 ---
 
-## 4. Version 2: Context & Motivation
+## Version 2
 
 ### Technique Used
-Context & Motivation (providing the project context, technical environment boundaries, and the "why" behind the task).
+Context & Motivation
 
 ### Prompt
-> "As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning."
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning."
 
-### Representative AI Output Excerpt
+### Representative Output
 ```tsx
 'use client';
 
@@ -139,7 +129,7 @@ export default function HIREVIUMLiveInterview({ interviewId, onSessionComplete }
         body: JSON.stringify({ answer })
       });
       if (!res.ok) throw new Error('Failed to submit answer.');
-      // Handle next question state...
+      // Handle state updates...
     } catch (err: any) {
       setError(err.message || 'An error occurred.');
     } finally {
@@ -149,42 +139,42 @@ export default function HIREVIUMLiveInterview({ interviewId, onSessionComplete }
 
   return (
     <div className="w-full bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-xl p-6">
-      {/* UI Elements with Loading indicator & Error labels */}
+      {/* Form structure with error and loading states */}
     </div>
   );
 }
 ```
 
 ### Reflection
-- **What Changed**: Added the HIREVIUM project context, technical stack (Next.js, FastAPI proxy), and the target business goals.
-- **What Improved**: The component is now a Next.js Client Component (`'use client'`). It has API request logic matching HIREVIUM's actual endpoints and handles loading states (`isSubmitting`) and network errors.
-- **Remaining Problems**:
-  - The model hardcoded the `fetch` API request inside the component instead of using the shared API utility client.
-  - Lacks concrete examples of how the state updates are processed (the RAG/Gemini payload).
-  - Lacks timers, screen reader tags, and keyboard focus states.
+#### What Changed
+Added the HIREVIUM project context, connection proxy target (FastAPI backend), and the motivation (securing evaluations against resume deception).
+#### What Improved
+The component is now structured as a Next.js App Router Client Component (`'use client'`). It implements async fetch functions connecting to HIREVIUM's actual API endpoints, and manages states for API loading (`isSubmitting`) and network failure flags.
+#### Remaining Problems
+The API response data schema is still unstructured (causing potential JSON parsing errors), and the component lacks a countdown timer or a character count boundary check.
 
 ---
 
-## 5. Version 3: Few-Shot Examples
+## Version 3
 
 ### Technique Used
-Few-Shot Examples (providing specific examples of input data formats and expected API output shapes to guide parsing logic).
+Few-shot Examples
 
 ### Prompt
-> "As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
-> 
-> Here is an example of the API payload returned from the FastAPI endpoint:
-> ```json
-> {
->   "question_id": "q_024",
->   "text": "What are React 19 Server Actions?",
->   "difficulty": "advanced",
->   "previous_grade": 88
-> }
-> ```
-> Use this format to map the response schema into the component state."
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
+ 
+Here is an example of the API payload returned from the FastAPI endpoint:
+```json
+{
+  "question_id": "q_024",
+  "text": "What are React 19 Server Actions?",
+  "difficulty": "advanced",
+  "previous_grade": 88
+}
+```
+Use this format to map the response schema into the component state."
 
-### Representative AI Output Excerpt
+### Representative Output
 ```tsx
 interface APIQuestionResponse {
   question_id: string;
@@ -193,7 +183,7 @@ interface APIQuestionResponse {
   previous_grade: number;
 }
 
-// In the component state:
+// Inside the component:
 const [activeQuestion, setActiveQuestion] = useState<APIQuestionResponse | null>(null);
 
 const handleNextQuestion = (data: APIQuestionResponse) => {
@@ -203,43 +193,43 @@ const handleNextQuestion = (data: APIQuestionResponse) => {
 ```
 
 ### Reflection
-- **What Changed**: Provided a few-shot JSON example of HIREVIUM's FastAPI question payload.
-- **What Improved**: The AI mapped the response into a type-safe `APIQuestionResponse` interface. This eliminates parsing errors and ensures the difficulty and score states match our actual backend design.
-- **Remaining Problems**:
-  - The visual page layout is still left to the AI's imagination.
-  - The component lacks accessibility (ARIA labels) and a countdown timer.
-  - All logic is in a single long file.
+#### What Changed
+Included a concrete JSON payload example representing HIREVIUM's FastAPI endpoint response structure.
+#### What Improved
+The AI mapped the exact response schema to a typed TypeScript interface (`APIQuestionResponse`), ensuring parsing consistency. This prevents compilation errors when rendering dynamic content such as difficulty tiers and previous scores.
+#### Remaining Problems
+The layout parameters and key features (timer, character limitations) are still omitted, and the component does not include any screen-reader compatibility attributes.
 
 ---
 
-## 6. Version 4: Output Structure
+## Version 4
 
 ### Technique Used
-Output Structure (declaring the layout components and styling requirements, enforcing strict component boundaries).
+Output Structure
 
 ### Prompt
-> "As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
-> 
-> Example API payload:
-> ```json
-> {
->   "question_id": "q_024",
->   "text": "What are React 19 Server Actions?",
->   "difficulty": "advanced",
->   "previous_grade": 88
-> }
-> ```
-> 
-> Output requirements:
-> 1. A single-file React component using Tailwind CSS styling.
-> 2. Structured layout containing:
->    - A header section with HIREVIUM branding and a 60-second countdown timer.
->    - An active question box displaying the difficulty tier as a color-coded tag.
->    - A text area with dynamic character counting (minimum 50 characters required).
->    - Action buttons ("Submit Answer" and "Skip Question").
-> 3. Zero inline styles; use Tailwind utility classes exclusively."
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
+ 
+Example API payload:
+```json
+{
+  "question_id": "q_024",
+  "text": "What are React 19 Server Actions?",
+  "difficulty": "advanced",
+  "previous_grade": 88
+}
+```
+ 
+Output requirements:
+1. A single-file React component using Tailwind CSS styling.
+2. Structured layout containing:
+   - A header section with HIREVIUM branding and a 60-second countdown timer.
+   - An active question box displaying the difficulty tier as a color-coded tag.
+   - A text area with dynamic character counting (minimum 50 characters required).
+   - Action buttons ("Submit Answer" and "Skip Question").
+3. Zero inline styles; use Tailwind utility classes exclusively."
 
-### Representative AI Output Excerpt
+### Representative Output
 ```tsx
 'use client';
 
@@ -249,7 +239,7 @@ export default function LiveWorkspace() {
   const [timeLeft, setTimeLeft] = useState(60);
   const [answer, setAnswer] = useState('');
 
-  // Countdown timer
+  // Countdown timer hook
   useEffect(() => {
     if (timeLeft <= 0) return;
     const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
@@ -258,7 +248,7 @@ export default function LiveWorkspace() {
 
   return (
     <section className="w-full max-w-4xl bg-slate-900/50 border border-slate-800 rounded-2xl p-6 shadow-2xl">
-      {/* Header */}
+      {/* Header with Timer */}
       <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
         <h2 className="text-lg font-bold text-slate-200">HIREVIUM Live Workspace</h2>
         <div className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold ${timeLeft < 15 ? 'text-red-400 bg-red-950/20' : 'text-slate-300 bg-slate-950/50'}`}>
@@ -266,7 +256,7 @@ export default function LiveWorkspace() {
         </div>
       </div>
       
-      {/* Text Area with Character Counter */}
+      {/* Text Area and counter */}
       <div className="flex flex-col gap-2">
         <textarea 
           value={answer}
@@ -283,45 +273,45 @@ export default function LiveWorkspace() {
 ```
 
 ### Reflection
-- **What Changed**: Enforced output structures (countdown timer, character counting, Tailwind-only classes, distinct UI panels).
-- **What Improved**: The output now includes a fully functional countdown timer hook and a character counter. The styling matches the glassmorphic theme.
-- **Remaining Problems**:
-  - No validation block checking the minimum character length before submission.
-  - The AI did not implement keyboard focus trapping or ARIA attributes for accessibility.
-  - The API requests are still un-isolated from component rendering.
+#### What Changed
+Enforced layout structures, countdown hooks, character boundary parameters, and forbade the use of inline styles.
+#### What Improved
+The component includes a functioning count-down hook, a visual styling theme for low-time states (turning text red when `timeLeft < 15`), and a live character counter block.
+#### Remaining Problems
+The text area lacks associated HTML label elements, and the API request lacks safety states to handle network timeouts or browser navigation during submission.
 
 ---
 
-## 7. Version 5: Step Decomposition
+## Version 5
 
 ### Technique Used
-Step Decomposition (splitting execution into a multi-step logical chain: planning, implementation, validation, and self-review).
+Step Decomposition
 
 ### Prompt
-> "As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy.
-> 
-> Example API payload:
-> ```json
-> {
->   "question_id": "q_024",
->   "text": "What are React 19 Server Actions?",
->   "difficulty": "advanced",
->   "previous_grade": 88
-> }
-> ```
-> 
-> Output requirements:
-> 1. React component using Tailwind CSS styling.
-> 2. Layout must include: HIREVIUM header with 60-second timer, question box with difficulty tags, and a text area with a 50-character limit check.
-> 3. Fully accessible: use semantic HTML, associated labels, and focus rings.
-> 
-> Run the task step-by-step:
-> - **Step 1**: Write a 3-sentence implementation plan detailing how you will structure local state, handle the timer interval, and validate character lengths.
-> - **Step 2**: Generate the TypeScript code matching the plan.
-> - **Step 3**: Identify potential edge cases (e.g., timer reaching 0, API network failure) and write handling logic.
-> - **Step 4**: Self-review the output against React 19 standards before presenting."
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy.
+ 
+Example API payload:
+```json
+{
+  "question_id": "q_024",
+  "text": "What are React 19 Server Actions?",
+  "difficulty": "advanced",
+  "previous_grade": 88
+}
+```
+ 
+Output requirements:
+1. React component using Tailwind CSS styling.
+2. Layout must include: HIREVIUM header with 60-second timer, question box with difficulty tags, and a text area with a 50-character limit check.
+3. Fully accessible: use semantic HTML, associated labels, and focus rings.
+ 
+Run the task step-by-step:
+- **Step 1**: Write a 3-sentence implementation plan detailing how you will structure local state, handle the timer interval, and validate character lengths.
+- **Step 2**: Generate the TypeScript code matching the plan.
+- **Step 3**: Identify potential edge cases (e.g., timer reaching 0, API network failure) and write handling logic.
+- **Step 4**: Self-review the output against React 19 standards before presenting."
 
-### Representative AI Output Excerpt
+### Representative Output
 ```tsx
 'use client';
 
@@ -437,31 +427,34 @@ export default function LiveWorkspace({ initialQuestion, onSubmitAnswer }: Works
 ```
 
 ### Reflection
-- **What Changed**: Formulated a structured step decomposition plan (planning, execution, edge cases, review).
-- **What Improved**: The component is now highly robust and production-grade. It automatically submits the text when the timer reaches 0, handles network failures cleanly, disables input during submission via React 19's `useTransition`, and implements ARIA timers and roles.
-- **Remaining Problems**: The component is fully functional.
+#### What Changed
+Decomposed the generation steps sequentially (Planning -> Code -> Edge Cases -> Quality Review).
+#### What Improved
+The component includes auto-submit logic when the countdown timer hits `0`, handles submission state locking cleanly via React 19's `useTransition`, provides validation blocks on input boundaries, and implements complete ARIA attributes (`role="timer"`, `aria-live`, `aria-label`).
+#### Remaining Problems
+The component is fully compliant and ready to build.
 
 ---
 
-## 7. Claude vs. ChatGPT Comparison
+## Claude vs ChatGPT Comparison
 
 | Metric | Claude (3.5 Sonnet / Claude Code) | ChatGPT (GPT-4o) |
 | :--- | :--- | :--- |
-| **Tone** | Objective, technical, direct, and developer-focused. | Helpful, polite, conversational, often includes generic comments. |
-| **Accuracy** | High. Adheres strictly to layout boundaries and type definitions. | High, but occasionally drops custom type attributes on complex loops. |
-| **Technical Detail** | Explains trade-offs, imports correct React 19 hooks. | Focuses on basic syntax, uses older react state hooks. |
-| **Formatting** | Clean, minimal Markdown boxes. | Heavily formatted with emojis and long preambles. |
-| **Reasoning** | Strong understanding of asynchronous state flows. | Good, but can hallucinate folder-level imports. |
-| **Creativity** | Practical, focuses on standard design tokens. | Higher visual suggestions, often drafts complex CSS. |
-| **Consistency** | Highly consistent. Follows constraints strictly. | Varies. Can lose track of constraints in long conversations. |
-| **Failure Points** | Can be overly rigid when parsing unformatted instructions. | Prone to writing partial code blocks with placeholders. |
-| **Best Use Cases** | Component creation, refactoring, and type validations. | Brainstorming ideas, boilerplate code, quick mockups. |
+| **Tone** | Objective, technical, and direct. Avoids fluff. | Conversational, encouraging, verbose preambles. |
+| **Accuracy** | Extremely high. Follows specific API JSON structures without omissions. | High, but occasionally uses placeholders for helper methods. |
+| **Technical Detail** | Explains React 19 design changes and a11y properties. | Explains basic JS syntax, rarely dives into low-level runtime topics. |
+| **Formatting** | Minimal, clean code blocks. | Uses descriptive Markdown layouts, emojis, and summary bullet points. |
+| **Reasoning** | Strong logical flows for multi-step hooks and asynchronous state. | Good, but can occasionally draft redundant hooks. |
+| **Creativity** | Focuses on standard utility patterns and tokens. | Suggests alternative visual structures and color gradients. |
+| **Consistency** | Adheres strictly to limitations and negative constraints. | Tends to forget negative constraints in longer conversation cycles. |
+| **Failure Points** | Can produce overly dry descriptions if context is too narrow. | Often drops types or uses `any` under complex conditions. |
+| **Best Use Cases** | Component engineering, strict API schema mappings, refactoring. | Code brainstorming, mockups, generic HTML/CSS drafting. |
 
 ---
 
-## 8. Final Reusable Prompt Template
+## Final Prompt Template
 
-Use the following template to prompt any AI for structured component development:
+Use the following reusable template to prompt any AI assistant for component implementation:
 
 ```text
 You are a Senior Frontend Engineer. Implement a React Client Component for our project based on the instructions below.
@@ -495,9 +488,9 @@ You are a Senior Frontend Engineer. Implement a React Client Component for our p
 
 ---
 
-## 9. Lessons Learned
+## Lessons Learned
 
-- **Biggest Lesson**: AI outputs are determined by the quality of inputs. A vague prompt forces the AI to guess variables, layouts, and styles, leading to bugs.
-- **Most Effective Technique**: **Step Decomposition**. Forcing the AI to plan and think step-by-step prior to writing prevents common placeholder bugs and incomplete code.
-- **Least Impactful Technique**: **Role Assignment (on its own)**. While setting a persona improves code styling, it does not fix logical bugs or API mismatches without context and structure.
-- **Future Workflow**: I will systematically apply context, few-shot payloads, and step decomposition to all frontend code requests.
+- **Biggest Lesson**: Prompt quality determines code compilation quality. Vague baseline instructions force the AI to choose default patterns, leading to untyped structures, layout warnings, and missing event validators.
+- **Most Effective Technique**: **Step Decomposition**. Instructing the model to write an implementation plan and identify edge cases prior to code rendering forces it to build proper error limits and async state locks.
+- **Least Impactful Technique**: **Role Assignment (by itself)**. Setting a persona shifts the vocabulary of the AI, but fails to prevent logical bugs or integration mismatches without explicit JSON schemas and constraints.
+- **Future Workflow**: I will implement this prompt ladder structure (Context, Few-Shot examples, and Step Decomposition) in all my future AI-assisted engineering sprints.
