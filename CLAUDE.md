@@ -146,3 +146,12 @@ All commits must adhere to the Conventional Commits specification:
 
 Format: `<type>(<optional scope>): <description>`  
 Example: `feat(ui): add accessible Modal component with focus-trap`
+
+---
+
+## 11. Custom Form & Input Rules (Workflow Experiment)
+
+- **Rule 1 (Form Validation)**: All interactive inputs must be controlled components using strict TypeScript state models. Numeric inputs must validate boundaries (e.g., min/max values) immediately on input change.
+- **Rule 2 (Accessibility Compliance)**: Every form control (input, select, checkbox) must be paired with a unique `<label>` tag using matching `htmlFor` and `id` properties. Icon-only buttons must carry explicit `aria-label` tags.
+- **Rule 3 (Component Size Boundaries)**: To maintain readability, UI components must be kept under 150 lines of code. If a component exceeds this, split it into smaller, presentation-only subcomponents.
+
