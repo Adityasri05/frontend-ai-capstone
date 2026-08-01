@@ -63,41 +63,49 @@ interface FilterPanelProps {
 ### 5. Accessibility (a11y)
 - Every form field must be associated with a semantic `<label>` tag containing a unique `htmlFor` matching the input ID.
 - Ensure the dropdown and checkboxes are keyboard-navigatable (tabIndex, hover/focus outlines).
-- Use proper ARIA roles: `role="search"` for the panel container.
+- Use proper ARIA roles: `role="search"` for the filter panel container.
 
 ### 6. Code Constraints
 - Keep the component under 150 lines of clean, strictly typed code.
 - Implement loading state fallbacks if API parameters are passed asynchronously.
 - Write a clean mock handler for unit test verification.
 
-### 7. Execution Workflow
-1. **Think First**: Analyze the state management flow (local component state vs. state updates pushed to the parent).
-2. **Implementation Plan**: Outline the structure, state variables, and event handlers.
-3. **Implementation**: Code the component with clean JSDoc annotations.
-4. **Verification**: Verify that the component compiles with zero TypeScript errors and zero ESLint warnings.
+### 7. Verification Steps (Instructions for AI)
+1. Think before coding.
+2. Produce an implementation plan.
+3. Write the implementation.
+4. Write tests.
+5. Explain edge cases.
+6. Perform a self-review.
+7. Verify that all acceptance criteria are met before finishing.
 ```
 
 ---
 
-## 4. Comparison: Vague vs. Professional Prompt
+## 4. Comparison Table
 
 | Aspect | Round One (Vague) | Round Two (Professional) |
 | :--- | :--- | :--- |
-| **Prompt Quality** | One-sentence summary; completely lacks scope. | Multi-section structured spec sheet with constraints. |
+| **Prompt Quality** | One-sentence query; completely lacks scope. | Multi-section structured spec sheet with constraints. |
 | **Implementation Quality** | Basic form fields without proper type safety. | Fully typed component with validation rules. |
-| **Accessibility (a11y)** | Missing `<label>` links, no tabIndex controls. | Semantic markup, aria-label, and focus outlines. |
+| **Accessibility** | Missing `<label>` links, no tabIndex controls. | Semantic markup, aria-label, and focus outlines. |
 | **Validation** | No input bounds checks (scores can be <0 or >100). | Zod validation or local boundary limits checking. |
-| **Error Handling** | None. Inputting text into score crashes the app. | Graceful error states with validation alerts. |
-| **Maintainability** | Poor. Monolithic and hard to reuse. | High. Clean TypeScript interfaces, documented code. |
-| **Reusable Styles** | Hardcoded colors and sizing. | Structured classes aligned with Tailwind theme. |
-| **Review Effort** | High. Multiple rounds of feedback needed. | Low. Requires only a quick validation check. |
-| **Estimated Dev Time** | 1 hour (plus 3 hours debugging/fixing code). | 30 minutes (compiles and works on first try). |
-| **Confidence Level** | Low (estimated 30% chance of passing code reviews). | High (estimated 95% pass rate). |
+| **Code Organization** | Unstructured, flat files, missing interfaces. | Modular layout, props defined via strict TypeScript interfaces. |
+| **Reusability** | Low. States and event handlers are hardcoded. | High. Exposes general handler interfaces and props. |
+| **Edge Cases** | Unhandled. Swapping min/max values crashes UI. | Handled. If `minScore > maxScore`, triggers validation error. |
+| **Performance** | High re-render rates due to uncontrolled input handlers. | Optimized. Minimal state triggers, memoized change event. |
+| **Review Effort** | Very High. Required rewrite of accessibility/types. | Low. Minor review of the UI layout rules. |
+| **Testing** | No unit tests generated. | Generates Jest unit tests with mock handlers. |
+| **Confidence** | Low (estimated 30% chance of passing reviews). | High (estimated 95% pass rate). |
 | **Potential Bugs** | Hydration errors, NaN on score checks, key exposure. | Zero. All parameters are strictly verified. |
+| **Development Time** | 1 hour (plus 3 hours debugging/fixing code). | 30 minutes (compiles and works on first try). |
+
+* **Why the Professional Approach is Better**: 
+Instead of relying on AI to guess files, validation parameters, and type layouts, the professional prompt provides explicit structural parameters. This eliminates typical LLM hallucinations (such as importing non-existent state packages or leaving unhandled empty states) and forces the AI to output production-ready TypeScript code.
 
 ---
 
-## 5. Reflections: WORKFLOW.md
+## 5. Reflection: WORKFLOW.md
 
 The Prompt Quality Experiment clearly demonstrates that **AI tool output is a direct reflection of prompt inputs**. 
 
@@ -109,34 +117,9 @@ This experiment proves that **planning before coding** dramatically reduces defe
 
 ---
 
-## 6. Recommended Updates to CLAUDE.md
+## 6. Git Workflow (Manual Execution Required)
 
-Add the following three concrete rules to the project standards:
-
-1. **Rule 1 (Form Validation)**: All interactive inputs must be controlled components using strict TypeScript state models. Numeric inputs must validate boundaries (e.g., min/max values) immediately on input change.
-2. **Rule 2 (Accessibility Compliance)**: Every form control (input, select, checkbox) must be paired with a unique `<label>` tag using matching `htmlFor` and `id` properties. Icon-only buttons must carry explicit `aria-label` tags.
-3. **Rule 3 (Component Size Boundaries)**: To maintain readability, UI components must be kept under 150 lines of code. If a component exceeds this, split it into smaller, presentation-only subcomponents.
-
----
-
-## 7. Optional v0 Comparison
-
-### Suggested v0 Prompt
-> "Generate a responsive, glassmorphic candidate filter panel component for an AI-recruitment app using Tailwind CSS v4, featuring min/max score inputs (0-100), multiselect checkboxes for tech stacks, and a dropdown for executive recruiter personas."
-
-### Comparison Metrics
-
-| Tool | Design Quality | Code Quality | Accessibility (a11y) | Customization Effort |
-| :--- | :--- | :--- | :--- | :--- |
-| **v0** | Outstanding. High-fidelity layouts out-of-the-box. | Good, but needs manual refactoring to clean up Tailwind styles. | Moderate. Often misses focus outlines or aria attributes. | Low for UI styling; high for complex backend state integrations. |
-| **Claude** | Moderate. Clean, but requires explicit layout prompting. | Outstanding. Strict type alignment and logic handling. | Excellent if guided by a comprehensive spec sheet. | Low. Integrates well with existing project architectures. |
-| **Antigravity** | High. Aligned with repository design tokens. | Exceptional. Analyzes existing workspace files for consistency. | Highly compliant with repo-wide rules. | Very low. Reuses existing hooks and utilities naturally. |
-
----
-
-## 8. Manual Git Workflow
-
-To test both implementations side-by-side, run the following Git commands locally:
+Please run the following commands manually in your terminal to implement both versions on separate feature branches:
 
 ```bash
 # Ensure you are on main and up to date
@@ -146,7 +129,7 @@ git pull origin main
 # 1. Create and checkout the vague prompt branch
 git checkout -b feature/vague-ai
 
-# [Implement the vague version of FilterPanel.tsx]
+# [Implement the vague version of FilterPanel.tsx using an AI session]
 git add .
 git commit -m "feat(recruiter): add basic candidate filter panel"
 git push origin feature/vague-ai
@@ -155,7 +138,7 @@ git push origin feature/vague-ai
 git checkout main
 git checkout -b feature/spec-driven-ai
 
-# [Implement the spec-driven version of FilterPanel.tsx]
+# [Implement the spec-driven version of FilterPanel.tsx using an AI session]
 git add .
 git commit -m "feat(recruiter): add accessible, spec-driven candidate filter panel"
 git push origin feature/spec-driven-ai
