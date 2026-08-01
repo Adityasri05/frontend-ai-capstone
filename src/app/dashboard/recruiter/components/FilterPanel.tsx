@@ -11,16 +11,16 @@ export interface FilterState {
 
 interface FilterPanelProps {
   onFilterChange: (filters: FilterState) => void;
-  initialFilters: FilterState;
+  initialFilters?: Partial<FilterState>;
 }
 
 const AVAILABLE_TECH = ['React', 'Next.js', 'Node.js', 'Python', 'PyTorch'];
 
-export default function FilterPanel({ onFilterChange, initialFilters }: FilterPanelProps) {
-  const [minScore, setMinScore] = useState<number>(initialFilters.minScore);
-  const [maxScore, setMaxScore] = useState<number>(initialFilters.maxScore);
-  const [selectedTech, setSelectedTech] = useState<string[]>(initialFilters.selectedTech);
-  const [persona, setPersona] = useState<FilterState['personaAlignment']>(initialFilters.personaAlignment);
+export default function FilterPanel({ onFilterChange, initialFilters = {} }: FilterPanelProps) {
+  const [minScore, setMinScore] = useState<number>(initialFilters.minScore ?? 0);
+  const [maxScore, setMaxScore] = useState<number>(initialFilters.maxScore ?? 100);
+  const [selectedTech, setSelectedTech] = useState<string[]>(initialFilters.selectedTech ?? []);
+  const [persona, setPersona] = useState<FilterState['personaAlignment']>(initialFilters.personaAlignment ?? 'All');
   const [validationError, setValidationError] = useState<string | null>(null);
 
   // Score Validation boundaries
@@ -35,7 +35,7 @@ export default function FilterPanel({ onFilterChange, initialFilters }: FilterPa
   }, [minScore, maxScore]);
 
   const handleTechChange = (tech: string) => {
-    setSelectedTech(prev => 
+    setSelectedTech(prev =>
       prev.includes(tech) ? prev.filter(t => t !== tech) : [...prev, tech]
     );
   };
@@ -123,8 +123,7 @@ export default function FilterPanel({ onFilterChange, initialFilters }: FilterPa
                     isChecked 
                       ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300' 
                       : 'bg-slate-950/50 border-slate-800 text-slate-400 hover:border-slate-700'
-                  }`}
-                >
+                  }`}>
                   <input
                     id={inputId}
                     type="checkbox"
