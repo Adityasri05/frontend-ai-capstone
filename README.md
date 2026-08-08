@@ -1,50 +1,92 @@
-# FlyRank AI Frontend Engineering Capstone — Phase 1
+# CineTrack — Movie Search & Catalog Application
 
-Welcome to the **FlyRank AI Frontend Engineering Capstone Project**. This repository forms the architectural foundation for an AI-assisted, high-performance web application designed to demonstrate modern, premium frontend engineering practices.
+CineTrack is an interactive movie discovery and cataloging platform built for the **FlyRank AI Frontend Engineering Capstone Assignment**. By integrating the real-world OMDb API and Firebase Auth & Realtime Database services, the application delivers a premium, highly responsive user interface to search, filter, inspect, and synchronize personal watchlist titles.
 
 ---
 
-## 1. Project Description
-This repository serves as the core workspace for the capstone project. By integrating state-of-the-art developer tooling and modern React capabilities, the application delivers a premium, highly responsive user interface. This phase establishes our structural foundations, configuration settings, and AI alignment protocols.
+## 1. Features
+- **Cinematic Search Panel**: Real-time lookup with validation guards (minimum 2 characters required).
+- **Type Filtering**: Instantly isolate searches by Movies, Series, or Episodes using custom pill controls.
+- **Popular Quick Search Tags**: Start queries with one-click popular keyword tags.
+- **High-Fidelity Detail View**: High-fidelity detail page highlighting director and cast lists, full plots, box office earnings, and critic scores (Metacritic, Rotten Tomatoes, IMDb).
+- **Favorites Watchlist**: Save titles locally or to the cloud, featuring instant counter badges in the navbar and clean watchlist grids.
+- **Firebase Auth & Database Cloud Sync**: Create an account to synchronize favorites lists to Firebase Realtime Database.
+- **Robust Local Fallback Layer**: If Firebase keys are not set, the app automatically enables Local Mode using `localStorage` and simulated auth profiles, allowing evaluation out-of-the-box.
 
-## 2. Objectives
-- Establish a clean, well-configured codebase tailored for **AI-assisted development**.
-- Set up strict linting, styling, and structural patterns.
-- Align code guidelines with modern React 19 standards and Next.js 15 App Router architecture.
-- Build a structure ready for scalable component development.
+---
 
-## 3. Tech Stack
+## 2. Tech Stack
 - **Runtime**: Node.js (LTS)
 - **Framework**: Next.js 15 (App Router)
-- **Library**: React 19
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Command Line**: Claude Code / git
-- **Editor**: VS Code
+- **Core Library**: React 19 (Concurrent features, Strict Mode)
+- **Language**: TypeScript (strict compilation settings)
+- **Styling**: Tailwind CSS v4 (responsive design, glassmorphism layouts)
+- **Services**: OMDb Movie API, Firebase Auth & Realtime Database
 
 ---
 
-## 4. Project Structure
-The repository is laid out according to professional standards:
+## 3. Application Structure (MVVM Pattern)
+
+The codebase is organized according to strict MVVM (Model-View-ViewModel) guidelines:
 
 ```text
-frontend-ai-capstone/
-├── .vscode/               # Editor configurations
-├── public/                # Static assets
-├── src/
-│   ├── app/               # App Router pages and CSS
-│   │   ├── globals.css    # Global Tailwind styling
-│   │   ├── layout.tsx     # Root layout wrapper
-│   │   └── page.tsx       # Landing page entry point
-├── .gitignore             # Git ignored files
-├── CLAUDE.md              # AI styling & instruction rules
-├── LICENSE                # MIT License
-└── package.json           # Dependencies and workspace scripts
+src/
+├── app/                        # App Router Pages (Next.js 15)
+│   ├── page.tsx                # Home Search Page Page Link
+│   ├── movies/[id]/page.tsx    # Movie Detail Page Link
+│   ├── favourites/page.tsx     # Favourites Page Link
+│   ├── login/page.tsx          # Login Page Link
+│   ├── register/page.tsx       # Register Page Link
+│   ├── globals.css            # Tailwind Imports & Colors
+│   └── layout.tsx             # Root layout with Header Navigation
+├── components/
+│   └── common/
+│       └── Header.tsx          # Responsive navbar with user profile & watchlist counters
+├── features/                   # Feature Folders (MVVM)
+│   ├── home/
+│   │   ├── HomeModel.ts        # Input validation logic
+│   │   ├── useHomeViewModel.ts # State, pagination, and filter actions hook
+│   │   └── HomeView.tsx        # Search interface view
+│   ├── details/
+│   │   ├── MovieDetailModel.ts # IMDb ID validation logic
+│   │   ├── useMovieDetailViewModel.ts # Details query loader hook
+│   │   └── MovieDetailView.tsx # Movie profile detail panel view
+│   ├── favourites/
+│   │   ├── FavoritesContext.tsx # Context Provider sharing favorites state
+│   │   └── FavouritesView.tsx  # Watchlist grid view
+│   └── auth/
+│       ├── AuthModel.ts        # Credentials check logic
+│       ├── useAuthViewModel.ts # Inputs and routing actions hook
+│       └── AuthView.tsx        # Login & Register forms view
+├── services/                   # Service Classes
+│   ├── omdbMovieService.ts     # Communicates with OMDb API
+│   └── firebaseService.ts      # Auth & Realtime Database communication
+└── types/
+    └── movie.ts                # TypeScript Interfaces
 ```
 
 ---
 
-## 5. Getting Started
+## 4. AI-Assisted Development & Manual Improvements
+
+This application was developed using a closed-loop **PLAN → IMPLEMENT → REVIEW → TEST → IMPROVE** AI-assisted developer lifecycle. 
+
+AI-generated code was critically reviewed and corrected manually to resolve bugs and compile warnings:
+1. **Next.js 15 Async Params**: Resolved Next.js compile errors by refactoring dynamic route parameters in `movies/[id]/page.tsx` from synchronous `params.id` lookups to asynchronous Promise resolutions.
+2. **Next.js API Prefixing**: Changed the OMDb API key prefix from Vite-centric `VITE_` to `NEXT_PUBLIC_` to satisfy Next.js client-side injection rules.
+3. **Unconditional Firebase Boot Crashes**: Guarded `initializeApp()` inside `firebaseService.ts` to prevent runtime crashes if configuration environment keys are missing, routing operations to `localStorage` fallbacks automatically.
+4. **Default OMDb Fallback Key**: Configured a default API key in the service file to allow search features to work out-of-the-box for anyone reviewing the repository.
+
+For complete development details, view:
+* [PROJECT_SPEC.md](PROJECT_SPEC.md)
+* [AI_DEVELOPMENT_LOG.md](AI_DEVELOPMENT_LOG.md)
+* [AI_MISTAKES.md](AI_MISTAKES.md)
+* [TESTING.md](TESTING.md)
+* [SUBMISSION.md](SUBMISSION.md)
+
+---
+
+## 5. Running Locally
 
 ### Installation
 Clone the repository and install the dependencies:
@@ -65,54 +107,13 @@ Launch the local development server:
 # Run local dev server
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to inspect the landing page.
+Open [http://localhost:3000](http://localhost:3000) in your browser to inspect the application.
 
 ---
 
-## 6. Development & AI-Assisted Workflow
-
-### AI-Assisted Development
-This repository is pre-aligned with AI coding companions (such as Claude Code or Gemini). The development cycle follows a closed-loop system where AI agents work alongside engineers using the rules defined in [CLAUDE.md](file:///d:/Hackathon/frontend-ai-capstone/CLAUDE.md).
-
-#### The AI-Developer Interaction Loop
-```mermaid
-graph TD
-    A[Developer Task/Prompt] --> B[AI Assistant reads CLAUDE.md]
-    B --> C[AI Proposes Plan/Changes]
-    C --> D[Sandbox Run & Validation]
-    D --> E{Compilation & Linting Pass?}
-    E -- No --> C
-    E -- Yes --> F[AI Generates Conventional Commit]
-    F --> G[Developer Review & Merge]
+## 6. Build
+Verify the production build:
+```bash
+# Build production bundle
+npm run build
 ```
-
-#### AI Agent Command Cookbook
-To assist AI models running commands directly, the following execution protocols are established:
-
-| Phase | Goal | Command Pattern |
-|---|---|---|
-| **Inspection** | Inspect directory structure | `dir /s /b` (Windows CMD) or `Get-ChildItem -Recurse` (PowerShell) |
-| **Development** | Spin up dev server | `npm run dev` |
-| **Verification** | Run typescript and linter checks | `npm run lint` |
-| **Commit** | Stage & commit changes | `git add . && git commit -m "type(scope): message"` |
-
-
-### Git Workflow
-We strictly adhere to the Conventional Commits specification to track progress and automate release cycles:
-- `feat:` for new UI features or components
-- `fix:` for fixing rendering or state errors
-- `docs:` for modifying readmes, wikis, or inline documentation
-- `style:` for adjusting styling without logic changes
-- `chore:` for workspace maintenance or package upgrades
-
----
-
-## 7. Future Roadmap
-- **Phase 1 (Completed)**: Core repo architecture setup, AI workflow configuration, and basic page styling.
-- **Phase 2 (Planned)**: Integration of shared global state, layout components, and dark-mode themes.
-- **Phase 3 (Planned)**: High-fidelity dashboard views, external API integration, and performance benchmarking.
-
----
-
-## 8. License
-This project is licensed under the permissive MIT License. See the [LICENSE](file:///d:/Hackathon/frontend-ai-capstone/LICENSE) file for details.
