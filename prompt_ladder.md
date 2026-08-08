@@ -2,7 +2,7 @@
 
 - **Candidate Name**: Aditya Srivastav
 - **Internship**: FlyRank AI Frontend Engineering Internship (Phase 2)
-- **Project Name**: HIREVIUM
+- **Project Name**: FLYRANK
 - **Target Task**: Generate the Recruiter Candidate Dashboard View
 - **Date**: August 2026
 
@@ -87,9 +87,9 @@ export default function CandidateListing() {
 
 ## 3. Version 2: Adding Project Context
 
-- **Layer Added**: **Project Context** (Next.js, React 19, TypeScript, HIREVIUM tech stack).
+- **Layer Added**: **Project Context** (Next.js, React 19, TypeScript, FLYRANK tech stack).
 - **Prompt**: 
-  > "For our HIREVIUM AI hiring simulator using Next.js 15, React 19, and FastAPI, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard."
+  > "For our FLYRANK AI hiring simulator using Next.js 15, React 19, and FastAPI, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard."
 
 ### Representative Output Excerpt (AI Response)
 ```tsx
@@ -110,7 +110,7 @@ export default function RecruiterDashboard() {
 
   return (
     <main className="p-8 bg-slate-900 text-slate-100 min-h-screen">
-      <h1 className="text-2xl font-bold mb-4">HIREVIUM Recruiter War Room</h1>
+      <h1 className="text-2xl font-bold mb-4">FLYRANK Recruiter War Room</h1>
       <div className="border border-slate-800 rounded-lg p-4">
         {/* Component Table code here */}
       </div>
@@ -120,7 +120,7 @@ export default function RecruiterDashboard() {
 ```
 
 ### Analysis
-- **What Changed in the Prompt**: Introduced the HIREVIUM project name, Next.js 15, React 19, and FastAPI context.
+- **What Changed in the Prompt**: Introduced the FLYRANK project name, Next.js 15, React 19, and FastAPI context.
 - **What Improved in the Output**: The code is now written in TypeScript (`.tsx`) with a defined `Candidate` interface, and uses Tailwind CSS classes for background and headers instead of raw inline styles.
 - **What Still Failed**: The component structure remains basic and lacks styling polish (such as glassmorphism/Framer Motion animations). It lacks strict form inputs or accessibility properties.
 - **What I'd Try Next**: Add strict constraints regarding dependency limitations and styling rules.
@@ -131,7 +131,7 @@ export default function RecruiterDashboard() {
 
 - **Layer Added**: **Over-Restrictive Constraints** (Forcing the AI to not use any external dependencies, Tailwind classes, or layouts, requiring it to code every icon and border using inline SVGs and inline style math to reduce compilation overhead).
 - **Prompt**: 
-  > "For our HIREVIUM AI hiring simulator using Next.js 15 and React 19, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard. Do not use any external libraries, icons, or Tailwind utility classes; write every detail, grid border, and user score bar manually using inline SVGs and direct style parameters."
+  > "For our FLYRANK AI hiring simulator using Next.js 15 and React 19, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard. Do not use any external libraries, icons, or Tailwind utility classes; write every detail, grid border, and user score bar manually using inline SVGs and direct style parameters."
 
 ### Representative Output Excerpt (AI Response)
 ```tsx
@@ -155,7 +155,7 @@ export default function FailedDashboard() {
 ### Analysis
 - **What Changed in the Prompt**: Added an extreme constraint prohibiting Tailwind utility classes and external icons, forcing manual SVG and inline styling.
 - **What Improved in the Output**: None. The output quality degraded significantly.
-- **What Still Failed**: The code became unmaintainable, bloated, and filled with inline CSS parameters that violate HIREVIUM's design system and CLAUDE.md standards. It forced the AI to write manual layout coordinates which are prone to rendering bugs on different screens.
+- **What Still Failed**: The code became unmaintainable, bloated, and filled with inline CSS parameters that violate FLYRANK's design system and CLAUDE.md standards. It forced the AI to write manual layout coordinates which are prone to rendering bugs on different screens.
 - **What I'd Try Next**: Remove the restrictive inline styling rule, restore Tailwind CSS as the styling requirement, and define a clean output format with props interfaces.
 
 ---
@@ -164,7 +164,7 @@ export default function FailedDashboard() {
 
 - **Layer Added**: **Output Format** (Corrected constraints, specifying single-file output, TypeScript type schemas, and Tailwind utility classes).
 - **Prompt**: 
-  > "For our HIREVIUM AI hiring simulator using Next.js 15, React 19, and Tailwind CSS, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard. Output a single-file React client component in TypeScript. Use Tailwind CSS for all styling (no inline styles) and define clear TypeScript props interfaces for candidate parameters."
+  > "For our FLYRANK AI hiring simulator using Next.js 15, React 19, and Tailwind CSS, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard. Output a single-file React client component in TypeScript. Use Tailwind CSS for all styling (no inline styles) and define clear TypeScript props interfaces for candidate parameters."
 
 ### Representative Output Excerpt (AI Response)
 ```tsx
@@ -188,7 +188,7 @@ interface DashboardProps {
 export default function RecruiterDashboard({ candidates, onSelectCandidate }: DashboardProps) {
   return (
     <div className="w-full bg-slate-900/50 backdrop-blur-md border border-slate-800/80 rounded-xl p-6 shadow-xl">
-      <h2 className="text-xl font-bold text-slate-200 mb-6">HIREVIUM War Room</h2>
+      <h2 className="text-xl font-bold text-slate-200 mb-6">FLYRANK War Room</h2>
       {/* Dynamic candidate map with styled Tailwind borders */}
     </div>
   );
@@ -197,7 +197,7 @@ export default function RecruiterDashboard({ candidates, onSelectCandidate }: Da
 
 ### Analysis
 - **What Changed in the Prompt**: Replaced the bad constraint with clear formatting directives (single-file `.tsx`, props interfaces, Tailwind utility classes).
-- **What Improved in the Output**: The code returned to a modern, maintainable state. It successfully used HIREVIUM's glassmorphic UI classes and cleanly declared a type-safe `VettedCandidate` interface.
+- **What Improved in the Output**: The code returned to a modern, maintainable state. It successfully used FLYRANK's glassmorphic UI classes and cleanly declared a type-safe `VettedCandidate` interface.
 - **What Still Failed**: It lacks accessibility tags (aria-labels for lists, semantic sections), loading fallbacks (skeleton screens), and does not require the AI to review its work.
 - **What I'd Try Next**: Add quality criteria, accessibility requirements, and verification instructions.
 
@@ -207,7 +207,7 @@ export default function RecruiterDashboard({ candidates, onSelectCandidate }: Da
 
 - **Layer Added**: **Quality, Accessibility, & Self-Review** (Adding a11y, validation, loading fallbacks, and a multi-step execution loop).
 - **Prompt**: 
-  > "For our HIREVIUM AI hiring simulator using Next.js 15, React 19, and Tailwind CSS, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard. Output a single-file React client component in TypeScript. Use Tailwind CSS for all styling (no inline styles) and define clear TypeScript props interfaces. Ensure full accessibility (use semantic HTML, associated labels, and focus indicators). Add a loading fallback skeleton state. Finally, think step-by-step, create an implementation plan, write the component, and perform a self-review against React 19 standards before finishing."
+  > "For our FLYRANK AI hiring simulator using Next.js 15, React 19, and Tailwind CSS, build a candidate listing page with rankings and evaluation metrics for our recruiter dashboard. Output a single-file React client component in TypeScript. Use Tailwind CSS for all styling (no inline styles) and define clear TypeScript props interfaces. Ensure full accessibility (use semantic HTML, associated labels, and focus indicators). Add a loading fallback skeleton state. Finally, think step-by-step, create an implementation plan, write the component, and perform a self-review against React 19 standards before finishing."
 
 ### Representative Output Excerpt (AI Response)
 ```tsx
@@ -251,7 +251,7 @@ export default function RecruiterDashboard({ candidates, isLoading, onRefresh }:
 ### Analysis
 - **What Changed in the Prompt**: Added accessibility (semantic elements, roles, aria-labels), loading states (skeleton, `role="status"`), React 19 transitions, and self-review instructions.
 - **What Improved in the Output**: The code now handles the asynchronous loading phase with an accessible loading skeleton (`role="status"`). It uses modern React 19 hooks (`useTransition`) for refresh transitions, making the component production-ready.
-- **What Still Failed**: None. The generated code satisfies HIREVIUM's architectural goals and is ready to test.
+- **What Still Failed**: None. The generated code satisfies FLYRANK's architectural goals and is ready to test.
 
 ---
 

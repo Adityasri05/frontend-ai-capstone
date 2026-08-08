@@ -1,7 +1,7 @@
 # Prompt Iteration Log
 
 ## Selected Task
-The selected task is to build the **HIREVIUM Live Interview Workspace** component (`LiveInterviewWorkspace.tsx`) located in `src/app/dashboard/live-interview/components/`. This component is the primary user interface that candidates interact with during technical vetting assessments. It renders active questions, handles text response inputs, displays a countdown timer, validates minimum answer length constraints, and manages async submit transitions to the backend API.
+The selected task is to build the **FLYRANK Live Interview Workspace** component (`LiveInterviewWorkspace.tsx`) located in `src/app/dashboard/live-interview/components/`. This component is the primary user interface that candidates interact with during technical vetting assessments. It renders active questions, handles text response inputs, displays a countdown timer, validates minimum answer length constraints, and manages async submit transitions to the backend API.
 
 This task is highly appropriate because it has a state-heavy structure, handles real-time timer intervals, requires input validation boundaries, connects to backend proxies, and must support strict accessibility guidelines (WCAG) to be production-grade.
 
@@ -90,7 +90,7 @@ Introduced the Senior Frontend AI Engineer role, setting professional standards 
 #### What Improved
 The code output transitioned from raw JavaScript to typed TypeScript (`.tsx`). It uses standard React state hooks (`useState`), declares a strong TypeScript data interface, and applies initial Tailwind CSS utility classes.
 #### Remaining Problems
-The component is disconnected from any project environment (HIREVIUM, FastAPI integration) and lacks user feedback states, timers, and submission verification controls.
+The component is disconnected from any project environment (FLYRANK, FastAPI integration) and lacks user feedback states, timers, and submission verification controls.
 
 ---
 
@@ -100,7 +100,7 @@ The component is disconnected from any project environment (HIREVIUM, FastAPI in
 Context & Motivation
 
 ### Prompt
-"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning."
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in FLYRANK, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning."
 
 ### Representative Output
 ```tsx
@@ -113,7 +113,7 @@ interface LiveInterviewProps {
   onSessionComplete: (verdictId: string) => void;
 }
 
-export default function HIREVIUMLiveInterview({ interviewId, onSessionComplete }: LiveInterviewProps) {
+export default function FLYRANKLiveInterview({ interviewId, onSessionComplete }: LiveInterviewProps) {
   const [answer, setAnswer] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -147,9 +147,9 @@ export default function HIREVIUMLiveInterview({ interviewId, onSessionComplete }
 
 ### Reflection
 #### What Changed
-Added the HIREVIUM project context, connection proxy target (FastAPI backend), and the motivation (securing evaluations against resume deception).
+Added the FLYRANK project context, connection proxy target (FastAPI backend), and the motivation (securing evaluations against resume deception).
 #### What Improved
-The component is now structured as a Next.js App Router Client Component (`'use client'`). It implements async fetch functions connecting to HIREVIUM's actual API endpoints, and manages states for API loading (`isSubmitting`) and network failure flags.
+The component is now structured as a Next.js App Router Client Component (`'use client'`). It implements async fetch functions connecting to FLYRANK's actual API endpoints, and manages states for API loading (`isSubmitting`) and network failure flags.
 #### Remaining Problems
 The API response data schema is still unstructured (causing potential JSON parsing errors), and the component lacks a countdown timer or a character count boundary check.
 
@@ -161,7 +161,7 @@ The API response data schema is still unstructured (causing potential JSON parsi
 Few-shot Examples
 
 ### Prompt
-"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in FLYRANK, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
  
 Here is an example of the API payload returned from the FastAPI endpoint:
 ```json
@@ -194,7 +194,7 @@ const handleNextQuestion = (data: APIQuestionResponse) => {
 
 ### Reflection
 #### What Changed
-Included a concrete JSON payload example representing HIREVIUM's FastAPI endpoint response structure.
+Included a concrete JSON payload example representing FLYRANK's FastAPI endpoint response structure.
 #### What Improved
 The AI mapped the exact response schema to a typed TypeScript interface (`APIQuestionResponse`), ensuring parsing consistency. This prevents compilation errors when rendering dynamic content such as difficulty tiers and previous scores.
 #### Remaining Problems
@@ -208,7 +208,7 @@ The layout parameters and key features (timer, character limitations) are still 
 Output Structure
 
 ### Prompt
-"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in FLYRANK, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy. The goal is to create a secure, responsive workspace that eliminates resume deception through live, adaptive questioning.
  
 Example API payload:
 ```json
@@ -223,7 +223,7 @@ Example API payload:
 Output requirements:
 1. A single-file React component using Tailwind CSS styling.
 2. Structured layout containing:
-   - A header section with HIREVIUM branding and a 60-second countdown timer.
+   - A header section with FLYRANK branding and a 60-second countdown timer.
    - An active question box displaying the difficulty tier as a color-coded tag.
    - A text area with dynamic character counting (minimum 50 characters required).
    - Action buttons ("Submit Answer" and "Skip Question").
@@ -250,7 +250,7 @@ export default function LiveWorkspace() {
     <section className="w-full max-w-4xl bg-slate-900/50 border border-slate-800 rounded-2xl p-6 shadow-2xl">
       {/* Header with Timer */}
       <div className="flex justify-between items-center border-b border-slate-800 pb-4 mb-6">
-        <h2 className="text-lg font-bold text-slate-200">HIREVIUM Live Workspace</h2>
+        <h2 className="text-lg font-bold text-slate-200">FLYRANK Live Workspace</h2>
         <div className={`px-3 py-1.5 rounded-lg text-xs font-mono font-semibold ${timeLeft < 15 ? 'text-red-400 bg-red-950/20' : 'text-slate-300 bg-slate-950/50'}`}>
           Time Left: {timeLeft}s
         </div>
@@ -288,7 +288,7 @@ The text area lacks associated HTML label elements, and the API request lacks sa
 Step Decomposition
 
 ### Prompt
-"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in HIREVIUM, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy.
+"As a Senior Frontend AI Engineer specializing in React 19, TypeScript, and modern UX design, build an interview simulator page for candidates in FLYRANK, our AI-powered technical vetting platform. The frontend should connect to our FastAPI backend proxy.
  
 Example API payload:
 ```json
@@ -302,7 +302,7 @@ Example API payload:
  
 Output requirements:
 1. React component using Tailwind CSS styling.
-2. Layout must include: HIREVIUM header with 60-second timer, question box with difficulty tags, and a text area with a 50-character limit check.
+2. Layout must include: FLYRANK header with 60-second timer, question box with difficulty tags, and a text area with a 50-character limit check.
 3. Fully accessible: use semantic HTML, associated labels, and focus rings.
  
 Run the task step-by-step:

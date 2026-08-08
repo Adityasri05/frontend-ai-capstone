@@ -55,7 +55,7 @@ export default function SpecDashboard({
     >
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-xl font-bold text-slate-200">HIREVIUM War Room</h2>
+          <h2 className="text-xl font-bold text-slate-200">FlyRank War Room</h2>
           <p className="text-xs text-slate-400 mt-1">Real-time candidate vetting scores and automated verdicts</p>
         </div>
         <button

@@ -19,18 +19,18 @@ I am a B.Tech Computer Science student and Frontend AI Engineering Intern at Fly
 
 ---
 
-# Case Study 1: HIREVIUM (AI Hiring Operating System)
+# Case Study 1: FlyRank (AI Hiring Operating System)
 
 ### 1. The Problem
 Early-stage technical screening is highly inefficient. Recruiters spend hours scanning resumes that often exaggerate technical skills, while engineering managers waste valuable sprint time interviewing candidates who lack core competencies. Traditional online coding assessments fail to help: they are static, repetitive for strong candidates, and do not evaluate how a developer explains their reasoning, handles hints, or responds to technical pressure. 
 
 ### 2. What I Built & Why
-I built the user-facing experience and AI integration for HIREVIUM, a dual-sided technical screening workspace. In the live interview workspace, I designed a React Q&A interface that works with an **Adaptive Difficulty Controller** on the backend. Instead of using a fixed questionnaire, the difficulty scales up or down dynamically based on the candidate's response score. 
+I built the user-facing experience and AI integration for FlyRank, a dual-sided technical screening workspace. In the live interview workspace, I designed a React Q&A interface that works with an **Adaptive Difficulty Controller** on the backend. Instead of using a fixed questionnaire, the difficulty scales up or down dynamically based on the candidate's response score. 
 
 I chose to manage the interview state using standard React hooks (`useState` and `useEffect`) because the scope was focused on a single view, avoiding the unnecessary overhead of global state libraries. For security, I routed all Gemini 2.5 Flash Lite API calls through a FastAPI backend proxy to prevent exposing the Google API credentials in the browser, making the frontend purely responsible for capturing input, managing local timers, and displaying loading skeletons and validation errors.
 
 ### 3. Outcome & Reflection
-The adaptive interview flow worked as expected, clearly demonstrating how AI can simulate a real developer interview. However, waiting for the full response from the Gemini API sometimes caused latency in the UI. If I were rebuilding HIREVIUM today, I would implement **streaming AI responses** on the frontend to render tokens progressively. I would also migrate the interview state to Zustand to simplify state updates as we introduce collaborative multi-user recruiter panels.
+The adaptive interview flow worked as expected, clearly demonstrating how AI can simulate a real developer interview. However, waiting for the full response from the Gemini API sometimes caused latency in the UI. If I were rebuilding FlyRank today, I would implement **streaming AI responses** on the frontend to render tokens progressively. I would also migrate the interview state to Zustand to simplify state updates as we introduce collaborative multi-user recruiter panels.
 
 ---
 

@@ -2,7 +2,7 @@
 
 - **Candidate Name**: Aditya Srivastav
 - **Internship**: FlyRank AI Frontend Engineering Internship (Phase 1)
-- **Project Name**: HIREVIUM
+- **Project Name**: FLYRANK
 - **Target Feature**: Recruiter Candidate Filter Panel
 - **Date**: August 2026
 
@@ -11,7 +11,7 @@
 ## 1. Selected Feature: Recruiter Candidate Filter Panel
 
 ### Purpose & Relevancy
-The **Recruiter Candidate Filter Panel** fits inside the `/dashboard/recruiter` route of HIREVIUM. Its role is to allow recruiters to filter the candidate list by **Hirevium Score Range** (0 to 100), **Tech Stack** (checkboxes for React, Next.js, Node.js, Python, PyTorch), and **AI Committee Persona Alignment** (Technical Lead, Engineering Manager, Lead Recruiter, VP of Engineering).
+The **Recruiter Candidate Filter Panel** fits inside the `/dashboard/recruiter` route of FLYRANK. Its role is to allow recruiters to filter the candidate list by **FlyRank Score Range** (0 to 100), **Tech Stack** (checkboxes for React, Next.js, Node.js, Python, PyTorch), and **AI Committee Persona Alignment** (Technical Lead, Engineering Manager, Lead Recruiter, VP of Engineering).
 
 ### Why Selected
 It is a highly isolated, state-heavy interactive component that involves form input validation, dynamic filter state triggers, and styling. This makes it an ideal candidate to demonstrate the differences in code generation quality between vague and precise prompts.
@@ -19,18 +19,18 @@ It is a highly isolated, state-heavy interactive component that involves form in
 ---
 
 ## 2. Round One: Vague Prompt (Intentionally Weak)
-> "Create a react component that lets recruiters filter the candidate list by score, tech stack, and persona alignment in our Hirevium project."
+> "Create a react component that lets recruiters filter the candidate list by score, tech stack, and persona alignment in our FlyRank project."
 
 ---
 
 ## 3. Round Two: Professional Prompt (Engineering Specification)
 
 ```text
-Build a React 19 / Next.js 16 Client Component for the HIREVIUM project located at:
+Build a React 19 / Next.js 16 Client Component for the FLYRANK project located at:
 `src/app/dashboard/recruiter/components/FilterPanel.tsx`
 
 ### 1. Context & Folder Structure
-- HIREVIUM is a web application using React 19, TypeScript, and Tailwind CSS v4.
+- FLYRANK is a web application using React 19, TypeScript, and Tailwind CSS v4.
 - This component will be imported into `src/app/dashboard/recruiter/page.tsx` and must pass filter states upward.
 
 ### 2. State & Props Interface
