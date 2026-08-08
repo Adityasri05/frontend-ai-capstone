@@ -8,6 +8,7 @@ export interface VettedCandidate {
   score: number;
   personaAlignment: 'Tech Lead' | 'Engineering Manager' | 'Lead Recruiter' | 'VP of Engineering';
   status: 'hired' | 'rejected' | 'pending';
+  techStack: string[];
 }
 
 interface SpecDashboardProps {

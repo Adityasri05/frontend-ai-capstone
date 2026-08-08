@@ -1,118 +1,102 @@
-# FlyRank AI Frontend Engineering Capstone — Phase 1
+# HIREVIUM AI-Assisted React Portfolio
 
-Welcome to the **FlyRank AI Frontend Engineering Capstone Project**. This repository forms the architectural foundation for an AI-assisted, high-performance web application designed to demonstrate modern, premium frontend engineering practices.
+Welcome to the **HIREVIUM & Developer Portfolio** workspace. This repository contains the Next.js 15, React 19, and Tailwind CSS portfolio website for **Aditya Srivastav**, built as a capstone project for the FlyRank AI Frontend Engineering Internship.
 
----
-
-## 1. Project Description
-This repository serves as the core workspace for the capstone project. By integrating state-of-the-art developer tooling and modern React capabilities, the application delivers a premium, highly responsive user interface. This phase establishes our structural foundations, configuration settings, and AI alignment protocols.
-
-## 2. Objectives
-- Establish a clean, well-configured codebase tailored for **AI-assisted development**.
-- Set up strict linting, styling, and structural patterns.
-- Align code guidelines with modern React 19 standards and Next.js 15 App Router architecture.
-- Build a structure ready for scalable component development.
-
-## 3. Tech Stack
-- **Runtime**: Node.js (LTS)
-- **Framework**: Next.js 15 (App Router)
-- **Library**: React 19
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **Command Line**: Claude Code / git
-- **Editor**: VS Code
+Rather than just showing a list of skills, this portfolio provides interactive, high-fidelity proof of Aditya's ability to build secure, responsive React frontends that interface with AI agents.
 
 ---
 
-## 4. Project Structure
-The repository is laid out according to professional standards:
+## 1. Core Features
+
+* **Home Page (`/`)**: Introduces Aditya's positioning statement, custom technical skill tabs (Frontend vs. AI/ML), and an AI Hackathon achievement timeline.
+* **Terminal CLI Simulator (`TerminalView`)**: An interactive command-line simulator on the landing page that allows users to type commands (`help`, `about`, `skills`, `git`, `clear`) to inspect git logs and skill percentages.
+* **Hirevium Case Study (`/projects/hirevium`)**: The technical deep-dive. Features:
+  * A system architecture diagram mapping client -> FastAPI server proxy -> Gemini 2.5 Flash Lite workflow.
+  * A **Dashboard Code Compare** toggler showing the contrast between a broken, unstyled component and a modern accessible workspace.
+  * A **Live Vetting Simulator** integrating the `FilterPanel` and `SpecDashboard` with full filtering queries (Scores, Tech, and Personas).
+  * A **Sync Scores** button utilizing React 19 concurrent `useTransition` to animate sync states and render pulse loading skeletons.
+  * A **Candidate Twin Drawer** details panel with keyboard focus trapping, Esc key triggers, displaying simulated vector similarity matches and security proxy tokens.
+* **Resume Page (`/resume`)**: A clean, scannable resume highlighting education, internship experience, and projects. Optimized with custom Tailwind print styles to export a perfect single-page PDF.
+
+---
+
+## 2. Tech Stack
+
+* **Framework**: Next.js 15.1.0 (App Router)
+* **Core Library**: React 19.0.0 (Strict Mode, Concurrent Features)
+* **Language**: TypeScript 5.7.2 (Strict compilation)
+* **Styling**: Tailwind CSS 4.0.0 (Utility-first, CSS imports)
+* **Environment**: Node.js v20+
+
+---
+
+## 3. Project Structure
+
+The project directory structure is laid out as follows:
 
 ```text
-frontend-ai-capstone/
-├── .vscode/               # Editor configurations
-├── public/                # Static assets
-├── src/
-│   ├── app/               # App Router pages and CSS
-│   │   ├── globals.css    # Global Tailwind styling
-│   │   ├── layout.tsx     # Root layout wrapper
-│   │   └── page.tsx       # Landing page entry point
-├── .gitignore             # Git ignored files
-├── CLAUDE.md              # AI styling & instruction rules
-├── LICENSE                # MIT License
-└── package.json           # Dependencies and workspace scripts
+src/
+├── app/
+│   ├── globals.css                # Tailwind CSS global styles
+│   ├── layout.tsx                 # Root layout with Navbar and Footer
+│   ├── page.tsx                   # Interactive landing page with TerminalView
+│   ├── resume/
+│   │   └── page.tsx               # Print-ready scannable Resume page
+│   └── projects/
+│       └── hirevium/
+│           └── page.tsx           # Case study with filter-matching dashboard
+├── components/
+│   ├── common/
+│   │   ├── Navbar.tsx             # Responsive header menu with LinkedIn CTA
+│   │   └── Footer.tsx             # Anchor footer for professional CTA
+│   └── features/
+│       ├── TerminalView.tsx       # Interactive shell command CLI mockup
+│       └── TwinDrawer.tsx         # Slide-out candidate vetting report drawer
 ```
 
 ---
 
-## 5. Getting Started
+## 4. AI-Assisted Development & Manual Improvements
+
+This application was developed using an AI-assisted loop: **PLAN → IMPLEMENT → REVIEW → TEST → IMPROVE**. 
+
+AI-generated code was critically reviewed and corrected manually to resolve bugs:
+1. **Component Interface Parity**: Resolved a mismatch between `FilterPanel.tsx` (filtering by tech skills) and `SpecDashboard.tsx` (candidate schema lacked a skills array) by updating interfaces and writing matching checks.
+2. **Missing Component Instantiations**: Resolved layout bugs where the AI imported the Footer in `layout.tsx` but failed to instantiate it in the returned JSX tree.
+3. **Transition Skeletons**: Wrapped scoring synchronization in a 700ms `Promise` timeout to ensure loading skeletons and React 19 transition animations are visible to the user.
+4. **Keyboard Accessibility (a11y)**: Configured focus-restoration logic inside the slide drawer to prevent focus loss to the document body on dismissal.
+
+For complete logs, view:
+* [PROJECT_SPEC.md](file:///d:/Hackathon/frontend-ai-capstone/PROJECT_SPEC.md)
+* [AI_DEVELOPMENT_LOG.md](file:///d:/Hackathon/frontend-ai-capstone/AI_DEVELOPMENT_LOG.md)
+* [AI_MISTAKES.md](file:///d:/Hackathon/frontend-ai-capstone/AI_MISTAKES.md)
+* [TESTING.md](file:///d:/Hackathon/frontend-ai-capstone/TESTING.md)
+* [SUBMISSION.md](file:///d:/Hackathon/frontend-ai-capstone/SUBMISSION.md)
+
+---
+
+## 5. Running Locally
 
 ### Installation
-Clone the repository and install the dependencies:
+Install the dependencies:
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/frontend-ai-capstone.git
-
-# Navigate to the workspace
-cd frontend-ai-capstone
-
-# Install packages
 npm install
 ```
 
-### Running the Project
-Launch the local development server:
+### Development Server
+Run the local dev server:
 ```bash
-# Run local dev server
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to inspect the landing page.
+Navigate to [http://localhost:3000](http://localhost:3000) to inspect the interactive portfolio.
 
----
-
-## 6. Development & AI-Assisted Workflow
-
-### AI-Assisted Development
-This repository is pre-aligned with AI coding companions (such as Claude Code or Gemini). The development cycle follows a closed-loop system where AI agents work alongside engineers using the rules defined in [CLAUDE.md](file:///d:/Hackathon/frontend-ai-capstone/CLAUDE.md).
-
-#### The AI-Developer Interaction Loop
-```mermaid
-graph TD
-    A[Developer Task/Prompt] --> B[AI Assistant reads CLAUDE.md]
-    B --> C[AI Proposes Plan/Changes]
-    C --> D[Sandbox Run & Validation]
-    D --> E{Compilation & Linting Pass?}
-    E -- No --> C
-    E -- Yes --> F[AI Generates Conventional Commit]
-    F --> G[Developer Review & Merge]
+### Production Build
+Verify the production build:
+```bash
+npm run build
 ```
 
-#### AI Agent Command Cookbook
-To assist AI models running commands directly, the following execution protocols are established:
-
-| Phase | Goal | Command Pattern |
-|---|---|---|
-| **Inspection** | Inspect directory structure | `dir /s /b` (Windows CMD) or `Get-ChildItem -Recurse` (PowerShell) |
-| **Development** | Spin up dev server | `npm run dev` |
-| **Verification** | Run typescript and linter checks | `npm run lint` |
-| **Commit** | Stage & commit changes | `git add . && git commit -m "type(scope): message"` |
-
-
-### Git Workflow
-We strictly adhere to the Conventional Commits specification to track progress and automate release cycles:
-- `feat:` for new UI features or components
-- `fix:` for fixing rendering or state errors
-- `docs:` for modifying readmes, wikis, or inline documentation
-- `style:` for adjusting styling without logic changes
-- `chore:` for workspace maintenance or package upgrades
-
 ---
 
-## 7. Future Roadmap
-- **Phase 1 (Completed)**: Core repo architecture setup, AI workflow configuration, and basic page styling.
-- **Phase 2 (Planned)**: Integration of shared global state, layout components, and dark-mode themes.
-- **Phase 3 (Planned)**: High-fidelity dashboard views, external API integration, and performance benchmarking.
-
----
-
-## 8. License
-This project is licensed under the permissive MIT License. See the [LICENSE](file:///d:/Hackathon/frontend-ai-capstone/LICENSE) file for details.
+## 6. License
+This project is licensed under the MIT License. See [LICENSE](file:///d:/Hackathon/frontend-ai-capstone/LICENSE) for details.
