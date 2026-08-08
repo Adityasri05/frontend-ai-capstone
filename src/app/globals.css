@@ -1,14 +1,42 @@
 @import "tailwindcss";
 
+@theme {
+  /* Design Tokens — Base Colors */
+  --color-background: #020617; /* Slate-950 base */
+  --color-foreground: #f8fafc; /* Slate-50 text */
+  --color-muted: #94a3b8;      /* Slate-400 description text */
+  --color-primary: #4f46e5;    /* Indigo-600 action items */
+  --color-secondary: #7c3aed;  /* Violet-600 highlights */
+  --color-border: #1e293b;     /* Slate-800 borders */
+  --color-card: #0f172a;       /* Slate-900 boxes */
+
+  /* Typography Stacks */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Spacing Scale Tokens */
+  --spacing-custom-sm: 0.75rem;
+  --spacing-custom-md: 1.5rem;
+  --spacing-custom-lg: 3rem;
+
+  /* Uniform Radius */
+  --radius-custom: 0.75rem;
+
+  /* Elevation Levels (Shadows) */
+  --shadow-elevation-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-elevation-2: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-elevation-3: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+}
+
 :root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
