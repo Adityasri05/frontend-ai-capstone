@@ -26,15 +26,15 @@ export default function AuthView({ mode }: AuthViewProps) {
 
   return (
     <div className="w-full max-w-md mx-auto px-4 py-16">
-      <div className="bg-slate-950/60 border border-slate-900/85 rounded-3xl p-8 backdrop-blur-md shadow-2xl relative">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-900/5 via-transparent to-transparent -z-10" />
+      <div className="bg-brand-card/65 border border-brand-border rounded-3xl p-8 backdrop-blur-md shadow-brand-shadow-2xl relative">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-primary/5 via-transparent to-transparent -z-10" />
 
         {/* Heading */}
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-100 mb-2">
+          <h1 className="text-2xl font-extrabold tracking-tight text-brand-text mb-2">
             {mode === 'login' ? 'Welcome Back' : 'Create Account'}
           </h1>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-brand-muted">
             {mode === 'login'
               ? 'Access and sync your watchlist catalog across devices'
               : 'Save titles and synchronize your database to the cloud'}
@@ -43,7 +43,7 @@ export default function AuthView({ mode }: AuthViewProps) {
 
         {/* Firebase Warning Fallback Alert */}
         {submitError && (
-          <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl mb-6 text-xs font-medium text-center">
+          <div className="bg-red-500/10 border border-red-500/30 text-red-600 p-4 rounded-xl mb-6 text-xs font-medium text-center">
             ⚠️ {submitError}
           </div>
         )}
@@ -52,7 +52,7 @@ export default function AuthView({ mode }: AuthViewProps) {
         <form onSubmit={handleFormSubmit} className="space-y-5">
           {/* Email */}
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="email-input" className="text-xs text-slate-400 font-semibold tracking-wide">
+            <label htmlFor="email-input" className="text-xs text-brand-muted font-bold tracking-wide">
               Email Address
             </label>
             <input
@@ -62,10 +62,10 @@ export default function AuthView({ mode }: AuthViewProps) {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
               required
-              className="w-full px-4 py-3 bg-slate-950 border border-slate-900 focus:border-indigo-500/50 rounded-xl focus:outline-none text-sm text-slate-200 placeholder-slate-600 transition-colors"
+              className="w-full px-4 py-3 bg-brand-bg border border-brand-border focus:border-brand-primary/50 rounded-xl focus:outline-none text-sm text-brand-text placeholder-brand-muted transition-colors font-sans"
             />
             {emailError && (
-              <span className="text-[10px] text-red-400 font-medium" role="alert">
+              <span className="text-[10px] text-red-500 font-medium" role="alert">
                 {emailError}
               </span>
             )}
@@ -73,7 +73,7 @@ export default function AuthView({ mode }: AuthViewProps) {
 
           {/* Password */}
           <div className="flex flex-col gap-1.5">
-            <label htmlFor="password-input" className="text-xs text-slate-400 font-semibold tracking-wide">
+            <label htmlFor="password-input" className="text-xs text-brand-muted font-bold tracking-wide">
               Password
             </label>
             <input
@@ -83,10 +83,10 @@ export default function AuthView({ mode }: AuthViewProps) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
               required
-              className="w-full px-4 py-3 bg-slate-950 border border-slate-900 focus:border-indigo-500/50 rounded-xl focus:outline-none text-sm text-slate-200 placeholder-slate-600 transition-colors"
+              className="w-full px-4 py-3 bg-brand-bg border border-brand-border focus:border-brand-primary/50 rounded-xl focus:outline-none text-sm text-brand-text placeholder-brand-muted transition-colors font-sans"
             />
             {passwordError && (
-              <span className="text-[10px] text-red-400 font-medium" role="alert">
+              <span className="text-[10px] text-red-500 font-medium" role="alert">
                 {passwordError}
               </span>
             )}
@@ -95,7 +95,7 @@ export default function AuthView({ mode }: AuthViewProps) {
           {/* Confirm Password (Register Mode only) */}
           {mode === 'register' && (
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="confirm-password-input" className="text-xs text-slate-400 font-semibold tracking-wide">
+              <label htmlFor="confirm-password-input" className="text-xs text-brand-muted font-bold tracking-wide">
                 Confirm Password
               </label>
               <input
@@ -105,10 +105,10 @@ export default function AuthView({ mode }: AuthViewProps) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
                 required
-                className="w-full px-4 py-3 bg-slate-950 border border-slate-900 focus:border-indigo-500/50 rounded-xl focus:outline-none text-sm text-slate-200 placeholder-slate-600 transition-colors"
+                className="w-full px-4 py-3 bg-brand-bg border border-brand-border focus:border-brand-primary/50 rounded-xl focus:outline-none text-sm text-brand-text placeholder-brand-muted transition-colors font-sans"
               />
               {confirmPasswordError && (
-                <span className="text-[10px] text-red-400 font-medium" role="alert">
+                <span className="text-[10px] text-red-500 font-medium" role="alert">
                   {confirmPasswordError}
                 </span>
               )}
@@ -119,7 +119,7 @@ export default function AuthView({ mode }: AuthViewProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 disabled:text-slate-500 text-slate-100 font-bold text-sm rounded-xl transition-all duration-300 active:scale-95 cursor-pointer shadow-md mt-6"
+            className="w-full py-3 bg-brand-primary hover:bg-brand-primary-hover disabled:bg-brand-card disabled:text-brand-muted text-slate-100 font-bold text-sm rounded-xl transition-all duration-300 active:scale-95 cursor-pointer shadow-md mt-6"
           >
             {loading ? 'Processing...' : mode === 'login' ? 'Sign In' : 'Sign Up'}
           </button>
@@ -127,12 +127,12 @@ export default function AuthView({ mode }: AuthViewProps) {
 
         {/* Toggle Links */}
         <div className="text-center mt-6 text-xs">
-          <span className="text-slate-500">
+          <span className="text-brand-muted">
             {mode === 'login' ? "Don't have an account? " : 'Already have an account? '}
           </span>
           <Link
             href={mode === 'login' ? '/register' : '/login'}
-            className="text-indigo-400 hover:text-indigo-300 font-bold hover:underline"
+            className="text-brand-primary hover:text-brand-primary-hover font-bold hover:underline"
           >
             {mode === 'login' ? 'Sign Up' : 'Sign In'}
           </Link>

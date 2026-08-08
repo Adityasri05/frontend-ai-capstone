@@ -25,14 +25,16 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-slate-950/80 backdrop-blur-md border-b border-slate-900 sticky top-0 z-50">
+    <header className="w-full bg-brand-bg/80 backdrop-blur-md border-b border-brand-border sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo & Portfolio Mark */}
           <div className="flex-shrink-0">
-            <Link href="/" className="flex items-center gap-2 group">
-              <span className="text-2xl" aria-hidden="true">🎬</span>
-              <span className="text-lg font-black tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-300 group-hover:from-blue-300 group-hover:to-indigo-200 transition-all duration-300 uppercase">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-8 h-8 rounded-lg border-2 border-brand-primary flex items-center justify-center font-display font-bold text-sm text-brand-text group-hover:border-brand-primary/80 transition-colors">
+                AS
+              </div>
+              <span className="text-sm font-bold tracking-wider text-brand-text group-hover:text-brand-primary transition-colors uppercase">
                 CineTrack
               </span>
             </Link>
@@ -44,8 +46,8 @@ export default function Header() {
               href="/"
               className={`text-xs font-bold tracking-wide transition-colors duration-300 ${
                 isLinkActive('/') 
-                  ? 'text-indigo-400' 
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text'
               }`}
             >
               Browse
@@ -55,16 +57,27 @@ export default function Header() {
               href="/favourites"
               className={`text-xs font-bold tracking-wide transition-colors duration-300 flex items-center gap-2 ${
                 isLinkActive('/favourites') 
-                  ? 'text-indigo-400' 
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text'
               }`}
             >
               <span>Watchlist</span>
               {favorites.length > 0 && (
-                <span className="px-2 py-0.5 bg-indigo-600 text-slate-100 text-[10px] font-black rounded-full font-mono animate-pulse">
+                <span className="px-2 py-0.5 bg-brand-primary text-slate-100 text-[10px] font-black rounded-full font-mono">
                   {favorites.length}
                 </span>
               )}
+            </Link>
+            
+            <Link
+              href="/health"
+              className={`text-xs font-bold tracking-wide transition-colors duration-300 ${
+                isLinkActive('/health') 
+                  ? 'text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text'
+              }`}
+            >
+              Diagnostics
             </Link>
           </nav>
 
@@ -72,13 +85,13 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-4">
             {user ? (
               <div className="flex items-center gap-3">
-                <span className="text-xs text-slate-400 font-mono font-medium max-w-[150px] truncate" title={user.email || ''}>
+                <span className="text-xs text-brand-muted font-mono font-medium max-w-[150px] truncate" title={user.email || ''}>
                   👤 {user.email}
                 </span>
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="px-3.5 py-1.5 border border-slate-850 hover:border-slate-700 bg-slate-950/60 hover:bg-slate-900 text-slate-400 hover:text-slate-200 text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 cursor-pointer shadow-md"
+                  className="px-3.5 py-1.5 border border-brand-border bg-brand-card hover:bg-brand-border text-brand-muted hover:text-brand-text text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 cursor-pointer shadow-md"
                 >
                   Sign Out
                 </button>
@@ -87,13 +100,13 @@ export default function Header() {
               <div className="flex items-center gap-2">
                 <Link
                   href="/login"
-                  className="px-4 py-2 text-xs font-bold text-slate-400 hover:text-slate-200 transition-colors"
+                  className="px-4 py-2 text-xs font-bold text-brand-muted hover:text-brand-text transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-slate-100 text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 shadow-md"
+                  className="px-4 py-2 bg-brand-primary hover:bg-brand-primary-hover text-slate-100 text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 shadow-md"
                 >
                   Sign Up
                 </Link>
@@ -106,7 +119,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-900 focus:outline-none cursor-pointer"
+              className="p-2 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-card focus:outline-none cursor-pointer"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -124,15 +137,15 @@ export default function Header() {
 
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-950 border-b border-slate-900 py-4 px-4 space-y-4">
+        <div className="md:hidden bg-brand-bg border-b border-brand-border py-4 px-4 space-y-4">
           <nav className="flex flex-col gap-3" aria-label="Mobile Navigation">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
               className={`text-sm font-bold p-2 rounded-lg transition-colors ${
                 isLinkActive('/') 
-                  ? 'bg-slate-900 text-indigo-400' 
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                  ? 'bg-brand-card text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
               }`}
             >
               Browse
@@ -143,23 +156,35 @@ export default function Header() {
               onClick={() => setMobileMenuOpen(false)}
               className={`text-sm font-bold p-2 rounded-lg transition-colors flex items-center justify-between ${
                 isLinkActive('/favourites') 
-                  ? 'bg-slate-900 text-indigo-400' 
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900/60'
+                  ? 'bg-brand-card text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
               }`}
             >
               <span>Watchlist</span>
               {favorites.length > 0 && (
-                <span className="px-2.5 py-0.5 bg-indigo-600 text-slate-100 text-xs font-black rounded-full font-mono">
+                <span className="px-2.5 py-0.5 bg-brand-primary text-slate-100 text-xs font-black rounded-full font-mono">
                   {favorites.length}
                 </span>
               )}
             </Link>
+
+            <Link
+              href="/health"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-sm font-bold p-2 rounded-lg transition-colors ${
+                isLinkActive('/health') 
+                  ? 'bg-brand-card text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
+              }`}
+            >
+              Diagnostics
+            </Link>
           </nav>
 
-          <div className="border-t border-slate-900 pt-4 flex flex-col gap-3">
+          <div className="border-t border-brand-border pt-4 flex flex-col gap-3">
             {user ? (
               <div className="flex flex-col gap-2">
-                <span className="text-xs text-slate-500 font-mono truncate px-2">
+                <span className="text-xs text-brand-muted font-mono truncate px-2">
                   👤 {user.email}
                 </span>
                 <button
@@ -168,7 +193,7 @@ export default function Header() {
                     handleLogout();
                     setMobileMenuOpen(false);
                   }}
-                  className="w-full text-center py-2.5 bg-slate-900 border border-slate-850 hover:bg-slate-850 text-slate-300 font-bold text-xs rounded-xl cursor-pointer"
+                  className="w-full text-center py-2.5 bg-brand-card border border-brand-border hover:bg-brand-border text-brand-muted font-bold text-xs rounded-xl cursor-pointer"
                 >
                   Sign Out
                 </button>
@@ -178,14 +203,14 @@ export default function Header() {
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-2.5 bg-slate-900 hover:bg-slate-850 text-slate-300 font-bold text-xs rounded-xl"
+                  className="w-full text-center py-2.5 bg-brand-card hover:bg-brand-border text-brand-muted font-bold text-xs rounded-xl"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-2.5 bg-indigo-600 hover:bg-indigo-500 text-slate-100 font-bold text-xs rounded-xl"
+                  className="w-full text-center py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-slate-100 font-bold text-xs rounded-xl"
                 >
                   Sign Up
                 </Link>
