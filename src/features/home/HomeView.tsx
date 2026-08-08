@@ -41,6 +41,7 @@ export default function HomeView() {
     <div className="w-full max-w-7xl mx-auto px-4 py-8">
       {/* Hero Section */}
       <section className="text-center py-12 md:py-16 mb-8 bg-brand-card/40 backdrop-blur-md border border-brand-border rounded-3xl p-6 shadow-brand-shadow-lg relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/hero-texture.svg')] bg-repeat -z-10 opacity-70" />
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-primary/5 via-transparent to-transparent -z-10" />
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-text mb-4">
           Discover the World of Cinema
