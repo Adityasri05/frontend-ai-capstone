@@ -1,4 +1,4 @@
-# Claude Project Style Note
+do accrodingly :-# Claude Project Style Note
 
 Paste the exact two-line style note below into your Claude Project Custom Instructions to align subsequent code generation with this visual identity:
 

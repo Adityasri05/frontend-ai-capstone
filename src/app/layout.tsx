@@ -3,7 +3,10 @@ import "./globals.css";
 import { AuthProvider } from "../features/auth/AuthContext";
 import { FavoritesProvider } from "../features/favourites/FavoritesContext";
 import Header from "../components/common/Header";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Space_Grotesk, Inter, Geist } from "next/font/google";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -28,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={cn("h-full", spaceGrotesk.variable, inter.variable, "font-sans", geist.variable)}>
       <head>
         <link rel="icon" href="/favicon.svg" />
       </head>
