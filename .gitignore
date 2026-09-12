@@ -30,6 +30,8 @@ pids
 # Directory for instrumented code coverage HTML reports
 coverage/
 *.lcov
+test-results/
+playwright-report/
 
 # Make/CMake/Build tools
 .make/

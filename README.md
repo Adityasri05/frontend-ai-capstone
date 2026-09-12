@@ -201,3 +201,43 @@ The AI Action Button system (`AIActionButton`) communicates state changes throug
 - **Single-Shot Error Shake**: Error states execute a single 380ms horizontal shake (`cubic-bezier(0.36, 0.07, 0.19, 0.97)`) to announce failure clearly without continuous, distracting vibration.
 - **Reduced Motion Accessibility**: Full `prefers-reduced-motion: reduce` compliance strips all physical movement, transforms, and shakes while preserving instant color, text, and icon feedback.
 - **Live Demo & Test Harness**: Interactive sandbox available at [`/playground/buttons`](/playground/buttons) (or [`/motion/button`](/motion/button)).
+
+---
+
+## 9. Automated Testing (Vitest, React Testing Library & Playwright)
+
+The repository implements a comprehensive test suite combining fast unit/component tests with end-to-end browser tests:
+
+### Testing Stack
+- **Unit & Component Testing**: [Vitest](https://vitest.dev/) with `jsdom` and `@testing-library/react` + `@testing-library/jest-dom` + `@testing-library/user-event`.
+- **End-to-End (E2E) Testing**: [Playwright](https://playwright.dev/) running automated Chromium browser test flows.
+- **Continuous Integration (CI)**: GitHub Actions workflow (`.github/workflows/test.yml`) executing typechecks, Vitest suites, and Playwright tests on every push and pull request.
+
+### Test Commands
+```bash
+# Run Vitest component tests in watch mode
+npm run test
+
+# Run Vitest test suite once (CI mode)
+npm run test:run
+
+# Run Vitest with coverage reporting
+npm run test:coverage
+
+# Run Playwright End-to-End tests
+npm run test:e2e
+
+# Run Playwright with interactive UI
+npm run test:e2e:ui
+```
+
+### What Is Tested
+1. **Chat Message Renderer** (`tests/components/chat-message.test.tsx`): User bubbles, assistant responses with markdown/code blocks, and interrupted response states with localized retry.
+2. **Chat Lifecycle & Resilience** (`tests/components/chat-state.test.tsx`): Pending/thinking indicator states with accessible roles, server errors with non-destructive retry, rate-limiting cooldown timers, and first-run onboarding states.
+3. **Form Validation** (`tests/components/form-validation.test.tsx`): Required field enforcement, invalid email formatting, short password validation, and mismatched confirmation password alerts.
+4. **Tool-Result Component** (`tests/components/tool-result.test.tsx`): `CandidateScoreCard` composite scoring, criteria progress bars, recommendation badges, strengths checklists, clipboard copy interaction, and `ToolErrorState`.
+5. **AI Action Button Motion** (`tests/components/ai-action-button.test.tsx`): Full button lifecycle across idle, loading (`aria-busy`), success confirmation, single-shot error shake, and disabled states.
+6. **Primary Flow E2E** (`tests/e2e/primary-flow.spec.ts`): Complete multi-turn candidate interview experience and starter topic initiation.
+
+### Mocked AI / Zero External Dependencies
+Tests strictly mock `/api/chat` and external network routes using deterministic streams. Real external AI provider APIs (Anthropic Claude, OpenAI, Gemini) are **never called during test execution**, ensuring fast, reliable, offline-capable test runs with zero API key leaks.
