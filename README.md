@@ -168,3 +168,23 @@ Instead of outputting raw JSON, the frontend renders the complete 4-state lifecy
 2. `input-available`: `ToolInputState` displays active criteria badges (Technical Depth, Problem Solving, Communication).
 3. `output-available`: `CandidateScoreCard` renders an overall score gauge, progress bars, recommendation pill, strengths with checkmarks, skill gaps, executive summary, and a copy report button.
 4. `output-error`: `ToolErrorState` renders an accessible alert with a "Try Again" retry action without leaking server internals.
+
+---
+
+## 7. Failure & Edge Case Handling
+
+The AI Chat system implements robust fault-tolerance across 10 critical failure and edge cases to ensure a production-grade experience:
+
+1. **Pre-Send Network Offline**: Detects connection loss before sending, preserving the candidate prompt and displaying a reconnection alert with a single-click retry action.
+2. **Server / API Errors (HTTP 500, 502, 503)**: Renders non-destructive error banners without crashing the session; enables retrying failed messages without duplicates.
+3. **Mid-Stream Interruption**: If a network connection or stream breaks mid-sentence, already-streamed tokens are preserved with an amber *"Response Interrupted"* badge and localized inline retry.
+4. **Rate Limiting (HTTP 429)**: Displays a cooldown warning with a dynamic countdown timer that disables the retry button until the rate window clears.
+5. **Empty Input Validation**: Disables submission when input is blank or whitespace-only; provides accessible tooltips without firing unnecessary network requests.
+6. **No Result / Empty Response**: Handles zero-token responses gracefully by showing a fallback recommendation card with actionable follow-up prompt pills.
+7. **First-Run Empty State**: Replaces blank dead-ends with an onboarding hero featuring 4 clickable interview starter prompts.
+8. **Slow Response / High Latency**: Displays a progressive `ThinkingIndicator` with contextual status phases and full cancellation support (`[Stop]`).
+9. **Retry State Machine**: Strict FSM transitions (`IDLE` ➔ `SUBMITTING` ➔ `STREAMING` ➔ `ERROR` ➔ `RETRYING`) ensure inputs never freeze or get locked.
+10. **Mobile & Viewport Optimization**: Tested from 375px to 1280px; uses dynamic `100dvh` layout, pinned input dock, and smart auto-scroll with floating `Jump to latest` controls.
+
+* Comprehensive Matrix: [FAILURE_MATRIX.md](FAILURE_MATRIX.md)
+* Architectural Details: [FAILURE_HANDLING.md](FAILURE_HANDLING.md)

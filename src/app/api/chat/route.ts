@@ -61,6 +61,35 @@ export async function POST(req: NextRequest) {
     }
 
     const validatedMessages = validation.messages;
+    const lastMessage = validatedMessages[validatedMessages.length - 1];
+    const rawContent = lastMessage?.content || '';
+    const query = rawContent.toLowerCase();
+
+    // =========================================================================
+    // DEVELOPMENT FAILURE TEST SABOTAGE HANDLERS
+    // =========================================================================
+
+    // 1. Sabotage: HTTP 500 Internal Server Error
+    if (rawContent.includes('[SIMULATE:HTTP_500]')) {
+      return NextResponse.json(
+        { error: 'Simulated Internal Server Error: Upstream AI model provider returned HTTP 500.' },
+        { status: 500 }
+      );
+    }
+
+    // 2. Sabotage: HTTP 429 Rate Limit
+    if (rawContent.includes('[SIMULATE:HTTP_429]')) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded: The AI service is temporarily experiencing high traffic (HTTP 429).' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': '4',
+          },
+        }
+      );
+    }
+
     const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
 
     // 1. LIVE PRODUCTION MODE: Real Claude streaming via Anthropic API with Tool Calling
@@ -90,8 +119,6 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. LOCAL SIMULATED STREAMING MODE (When ANTHROPIC_API_KEY is not configured)
-    const lastMessage = validatedMessages[validatedMessages.length - 1];
-    const query = (lastMessage?.content || '').toLowerCase();
     const encoder = new TextEncoder();
 
     // Check if the user is requesting an assessment score or deliberately triggering a tool error test
@@ -110,9 +137,54 @@ export async function POST(req: NextRequest) {
       query.includes('failure') ||
       query.includes('simulate error');
 
+    const isMidStreamSabotage = rawContent.includes('[SIMULATE:MID_STREAM_FAIL]');
+    const isEmptyResponseSabotage = rawContent.includes('[SIMULATE:EMPTY_RESPONSE]');
+    const isSlowResponseSabotage = rawContent.includes('[SIMULATE:SLOW_RESPONSE]');
+
     const stream = new ReadableStream({
       async start(controller) {
         try {
+          // 3. Sabotage: Empty response
+          if (isEmptyResponseSabotage) {
+            controller.close();
+            return;
+          }
+
+          // 4. Sabotage: Slow initial latency
+          if (isSlowResponseSabotage) {
+            await new Promise((r) => setTimeout(r, 3500));
+          }
+
+          // 5. Sabotage: Mid-stream failure
+          if (isMidStreamSabotage) {
+            const partialWords = [
+              'Based ',
+              'on ',
+              'your ',
+              'technical ',
+              'responses ',
+              'regarding ',
+              'React ',
+              '19 ',
+              'and ',
+              'Next.js ',
+              '15, ',
+              'your ',
+              'strongest ',
+              'architectural ',
+              'competency ',
+            ];
+
+            for (const word of partialWords) {
+              if (req.signal.aborted) break;
+              controller.enqueue(encoder.encode(word));
+              await new Promise((r) => setTimeout(r, 40));
+            }
+
+            // Throw stream termination error
+            throw new Error('Simulated mid-stream network connection drop.');
+          }
+
           if (isAssessmentRequest || isFailureTest) {
             const toolCallId = `call_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
 

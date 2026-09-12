@@ -1,14 +1,16 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Bot, User, Copy, Check } from 'lucide-react';
+import { Bot, User, Copy, Check, AlertTriangle, RotateCcw } from 'lucide-react';
 
 export interface ChatMessageProps {
   id: string;
   role: 'user' | 'assistant' | 'system';
   content: string;
   isStreaming?: boolean;
+  isInterrupted?: boolean;
   createdAt?: Date;
+  onRetry?: () => void;
 }
 
 /**
@@ -16,7 +18,6 @@ export interface ChatMessageProps {
  * Incomplete code blocks or unclosed tokens are handled gracefully without visual layout breakage.
  */
 function renderSafeContent(text: string, isStreaming?: boolean) {
-  // If text is empty and streaming, show nothing (handled by ThinkingIndicator)
   if (!text) return null;
 
   // Split by code blocks ```...```
@@ -76,7 +77,6 @@ function renderSafeContent(text: string, isStreaming?: boolean) {
             {paragraphs.map((para, pIdx) => {
               if (!para.trim()) return null;
 
-              // Check if paragraph is a bullet list or numbered list
               const lines = para.split('\n');
               const isList = lines.some((l) => /^\s*([*-]|\d+\.)\s+/.test(l));
 
@@ -156,7 +156,9 @@ export default function ChatMessage({
   role,
   content,
   isStreaming = false,
+  isInterrupted = false,
   createdAt,
+  onRetry,
 }: ChatMessageProps) {
   const [copied, setCopied] = useState(false);
   const isAssistant = role === 'assistant';
@@ -168,7 +170,7 @@ export default function ChatMessage({
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
-      // Fallback if clipboard permission is denied
+      // Fallback
     }
   };
 
@@ -211,6 +213,12 @@ export default function ChatMessage({
           {isAssistant && isStreaming && (
             <span className="text-[10px] text-brand-primary font-bold animate-pulse">● LIVE</span>
           )}
+          {isAssistant && isInterrupted && (
+            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-500 bg-amber-500/10 px-1.5 py-0.5 rounded border border-amber-500/20">
+              <AlertTriangle className="w-2.5 h-2.5" />
+              INTERRUPTED
+            </span>
+          )}
         </div>
 
         {/* Message Bubble */}
@@ -222,6 +230,26 @@ export default function ChatMessage({
           }`}
         >
           {renderSafeContent(content, isStreaming)}
+
+          {/* Interrupted Warning Banner */}
+          {isInterrupted && (
+            <div className="mt-3 pt-2.5 border-t border-amber-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-amber-600 dark:text-amber-400">
+              <span className="text-[11px] flex items-center gap-1">
+                <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
+                Stream closed unexpectedly. Partial response saved.
+              </span>
+              {onRetry && (
+                <button
+                  type="button"
+                  onClick={onRetry}
+                  className="inline-flex items-center gap-1 px-2.5 py-1 bg-amber-500/15 hover:bg-amber-500/25 border border-amber-500/30 rounded-lg text-xs font-bold transition-colors cursor-pointer self-start sm:self-auto"
+                >
+                  <RotateCcw className="w-3 h-3" />
+                  <span>Retry</span>
+                </button>
+              )}
+            </div>
+          )}
 
           {/* Action Toolbar (Copy Button) */}
           <div
