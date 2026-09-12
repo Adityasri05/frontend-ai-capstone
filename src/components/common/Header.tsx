@@ -70,6 +70,20 @@ export default function Header() {
             </Link>
             
             <Link
+              href="/interview"
+              className={`text-xs font-bold tracking-wide transition-colors duration-300 flex items-center gap-1.5 ${
+                isLinkActive('/interview') 
+                  ? 'text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text'
+              }`}
+            >
+              <span>AI Interview</span>
+              <span className="px-1.5 py-0.2 bg-brand-primary/10 text-brand-primary text-[9px] font-mono font-bold rounded-md border border-brand-primary/20">
+                LIVE
+              </span>
+            </Link>
+
+            <Link
               href="/health"
               className={`text-xs font-bold tracking-wide transition-colors duration-300 ${
                 isLinkActive('/health') 
@@ -166,6 +180,21 @@ export default function Header() {
                   {favorites.length}
                 </span>
               )}
+            </Link>
+
+            <Link
+              href="/interview"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-sm font-bold p-2 rounded-lg transition-colors flex items-center justify-between ${
+                isLinkActive('/interview') 
+                  ? 'bg-brand-card text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
+              }`}
+            >
+              <span>AI Interview</span>
+              <span className="px-2 py-0.5 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-md border border-brand-primary/20">
+                LIVE
+              </span>
             </Link>
 
             <Link
