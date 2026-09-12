@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { streamText } from 'ai';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import { AI_CONFIG, validateChatMessages } from '@/lib/ai/config';
+import {
+  scoreCandidate,
+  executeScoreCandidate,
+  type ScoreCandidateInput,
+} from '@/lib/ai/tools/scoreCandidate';
 
 // Force dynamic execution for API streaming route
 export const dynamic = 'force-dynamic';
@@ -30,7 +35,7 @@ function getSimulatedInterviewResponse(lastUserMessage: string, turnCount: numbe
     return `Great explanation of \`AbortController\` signal propagation and local state preservation.\n\nLet's move to **Security & Production Hardening**:\nWhy must the LLM API key strictly remain on the server, and how do you prevent malicious client payloads from overriding the interviewer's system prompt or conducting prompt injection attacks?`;
   }
 
-  return `Thank you for sharing those technical details. You've demonstrated a strong grasp of the underlying mechanics.\n\nCould you elaborate further on how you measure and ensure **WCAG 2.1 AA Accessibility** (focus management, ARIA live announcements for streaming text, and keyboard navigation) in real-time interactive AI applications?`;
+  return `Thank you for sharing those technical details. You've demonstrated a strong grasp of modern frontend engineering and AI systems integration. Whenever you're ready, you can request an assessment scorecard to review your qualification metrics!`;
 }
 
 export async function POST(req: NextRequest) {
@@ -58,7 +63,7 @@ export async function POST(req: NextRequest) {
     const validatedMessages = validation.messages;
     const apiKey = process.env.ANTHROPIC_API_KEY?.trim();
 
-    // 1. LIVE PRODUCTION MODE: Real Claude streaming via Anthropic API
+    // 1. LIVE PRODUCTION MODE: Real Claude streaming via Anthropic API with Tool Calling
     if (apiKey) {
       const anthropic = createAnthropic({
         apiKey,
@@ -68,6 +73,9 @@ export async function POST(req: NextRequest) {
         model: anthropic(AI_CONFIG.model),
         system: AI_CONFIG.systemPrompt,
         messages: validatedMessages,
+        tools: {
+          scoreCandidate,
+        },
         temperature: AI_CONFIG.temperature,
         maxOutputTokens: AI_CONFIG.maxOutputTokens,
         abortSignal: req.signal,
@@ -82,50 +90,136 @@ export async function POST(req: NextRequest) {
     }
 
     // 2. LOCAL SIMULATED STREAMING MODE (When ANTHROPIC_API_KEY is not configured)
-    // Streams genuine tokens incrementally using AI SDK Data Stream protocol
     const lastMessage = validatedMessages[validatedMessages.length - 1];
-    const simulatedResponse = getSimulatedInterviewResponse(
-      lastMessage?.content || '',
-      validatedMessages.length
-    );
-
-    // Split into realistic streaming word chunks
-    const words = simulatedResponse.split(/(\s+)/);
+    const query = (lastMessage?.content || '').toLowerCase();
     const encoder = new TextEncoder();
+
+    // Check if the user is requesting an assessment score or deliberately triggering a tool error test
+    const isAssessmentRequest =
+      query.includes('assess') ||
+      query.includes('score') ||
+      query.includes('evaluate') ||
+      query.includes('performance') ||
+      query.includes('rating') ||
+      query.includes('review') ||
+      query.includes('card');
+
+    const isFailureTest =
+      query.includes('error') ||
+      query.includes('fail') ||
+      query.includes('failure') ||
+      query.includes('simulate error');
 
     const stream = new ReadableStream({
       async start(controller) {
         try {
-          // Send initial metadata
-          controller.enqueue(
-            encoder.encode(`2:[{"systemStatus":"HIREVIUM AI Simulated Interview Stream"}]\n`)
-          );
+          if (isAssessmentRequest || isFailureTest) {
+            const toolCallId = `call_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
 
-          // Stream incremental text parts in AI SDK v1 Data Stream protocol (0:"text"\n)
-          for (let i = 0; i < words.length; i++) {
-            if (req.signal.aborted) {
-              break;
+            // State 1: input-streaming
+            const event1 = {
+              type: 'tool-call',
+              toolCallId,
+              toolName: 'scoreCandidate',
+              state: 'input-streaming',
+            };
+            controller.enqueue(encoder.encode(`__TOOL_EVENT__:${JSON.stringify(event1)}\n`));
+            await new Promise((r) => setTimeout(r, 450));
+
+            // State 2: input-available
+            const toolInput: ScoreCandidateInput = {
+              candidateName: 'Frontend Engineer Candidate',
+              targetRole: 'Senior Frontend & AI SDK Engineer',
+              technicalScore: isFailureTest ? 45 : 92,
+              problemSolvingScore: isFailureTest ? 50 : 88,
+              communicationScore: isFailureTest ? 60 : 85,
+              strengths: [
+                'Deep mastery of Next.js 15 App Router & Server Components',
+                'Robust streaming token decoding and error resilience',
+                'Strong accessibility (WCAG 2.1 AA) and keyboard UX patterns',
+              ],
+              skillGaps: [
+                'Production observability & distributed tracing depth',
+                'Automated end-to-end multi-agent integration tests',
+              ],
+              recommendation: isFailureTest ? 'needs-review' : 'strong',
+              summary:
+                'The candidate demonstrated exceptional architectural depth across streaming AI integration, state management, and WCAG AA compliance with clear trade-off analysis.',
+              forceFailure: isFailureTest,
+            };
+
+            const event2 = {
+              type: 'tool-call',
+              toolCallId,
+              toolName: 'scoreCandidate',
+              state: 'input-available',
+              input: toolInput,
+            };
+            controller.enqueue(encoder.encode(`__TOOL_EVENT__:${JSON.stringify(event2)}\n`));
+            await new Promise((r) => setTimeout(r, 600));
+
+            // Server-side tool execution
+            try {
+              const result = await executeScoreCandidate(toolInput);
+
+              // State 3: output-available
+              const event3 = {
+                type: 'tool-call',
+                toolCallId,
+                toolName: 'scoreCandidate',
+                state: 'output-available',
+                result,
+              };
+              controller.enqueue(encoder.encode(`__TOOL_EVENT__:${JSON.stringify(event3)}\n`));
+            } catch (err: unknown) {
+              // State 4: output-error
+              const errorMsg =
+                err instanceof Error
+                  ? err.message
+                  : 'We encountered an unexpected error while generating the score card.';
+              const eventError = {
+                type: 'tool-call',
+                toolCallId,
+                toolName: 'scoreCandidate',
+                state: 'output-error',
+                error: errorMsg,
+              };
+              controller.enqueue(encoder.encode(`__TOOL_EVENT__:${JSON.stringify(eventError)}\n`));
             }
-            const chunk = words[i];
-            const escaped = JSON.stringify(chunk);
-            controller.enqueue(encoder.encode(`0:${escaped}\n`));
-            
-            // Subtle natural token delay between 15ms and 35ms
-            const delayMs = chunk.includes('\n') ? 50 : chunk.trim().length > 4 ? 30 : 15;
-            await new Promise((resolve) => setTimeout(resolve, delayMs));
+
+            // Stream follow-up commentary
+            const followUp = isFailureTest
+              ? '\n\nI attempted to generate your Qualification Score Card, but encountered a controlled test error. Your conversational history is safe and we can retry at any time.'
+              : '\n\nI have generated your structured **Candidate Qualification Score Card** above based on your technical architectural depth, streaming resilience, and accessibility responses. Feel free to ask any questions or continue the interview!';
+
+            for (const word of followUp.split(/(\s+)/)) {
+              if (req.signal.aborted) break;
+              controller.enqueue(encoder.encode(word));
+              await new Promise((r) => setTimeout(r, 20));
+            }
+          } else {
+            // Standard conversational interview response
+            const simulatedResponse = getSimulatedInterviewResponse(
+              lastMessage?.content || '',
+              validatedMessages.length
+            );
+            const words = simulatedResponse.split(/(\s+)/);
+
+            for (let i = 0; i < words.length; i++) {
+              if (req.signal.aborted) break;
+              const chunk = words[i];
+              controller.enqueue(encoder.encode(chunk));
+              const delayMs = chunk.includes('\n') ? 40 : chunk.trim().length > 4 ? 25 : 12;
+              await new Promise((resolve) => setTimeout(resolve, delayMs));
+            }
           }
 
-          // Finish stream successfully
-          controller.enqueue(encoder.encode(`d:{"finishReason":"stop"}\n`));
           controller.close();
         } catch (streamErr) {
           if (!req.signal.aborted) {
             controller.error(streamErr);
           }
         }
-      },
-      cancel() {
-        // Stream aborted by client
       },
     });
 
@@ -134,13 +228,11 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'no-cache, no-transform',
         'X-Content-Type-Options': 'nosniff',
-        'x-vercel-ai-data-stream': 'v1',
       },
     });
   } catch (error: unknown) {
     console.error('Error in /api/chat route:', error);
 
-    // Return sanitized error message - never leak server internals or API credentials
     return NextResponse.json(
       {
         error: 'An error occurred while generating the interview response. Please check your connection and try again.',

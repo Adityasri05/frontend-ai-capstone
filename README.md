@@ -117,3 +117,54 @@ Verify the production build:
 # Build production bundle
 npm run build
 ```
+
+---
+
+# AI Tool Contract
+
+HIREVIUM integrates server-side AI tool calling paired with a Generative UI architecture.
+
+### Tool: `scoreCandidate`
+* **Definition File**: `src/lib/ai/tools/scoreCandidate.ts`
+* **Purpose**: Evaluates candidate qualifications across technical architecture, system design trade-offs, and communication clarity to generate a structured candidate assessment score card.
+
+### Input Schema (Zod)
+The tool enforces strict Zod validation:
+* `candidateName` (`string`, 1–100 chars): Full name of the candidate.
+* `targetRole` (`string`, 1–100 chars): Target engineering position (e.g. *Senior Frontend & AI Engineer*).
+* `technicalScore` (`number`, 0–100): Evaluates React 19, Next.js 15, and streaming AI depth.
+* `problemSolvingScore` (`number`, 0–100): Evaluates system design, trade-off reasoning, and edge cases.
+* `communicationScore` (`number`, 0–100): Evaluates clarity, problem articulation, and decomposition.
+* `strengths` (`string[]`, 1–6 items): Key observed technical strengths with evidence.
+* `skillGaps` (`string[]`, 1–6 items): Identified areas for growth.
+* `recommendation` (`"strong" | "consider" | "needs-review"`): Categorical hiring recommendation.
+* `summary` (`string`, 10–500 chars): Executive qualification assessment summary.
+* `forceFailure` (`boolean`, optional): Development test flag for verifying error resilience.
+
+### Return Shape
+```typescript
+interface CandidateScoreResult {
+  candidateName: string;
+  targetRole: string;
+  overallScore: number;
+  technicalScore: number;
+  communicationScore: number;
+  problemSolvingScore: number;
+  strengths: string[];
+  skillGaps: string[];
+  recommendation: 'strong' | 'consider' | 'needs-review';
+  summary: string;
+  assessedAt: string;
+}
+```
+
+### Server-Side Execution
+The tool executes exclusively on the server (`src/app/api/chat/route.ts`). It computes the composite overall score using weighted criteria:
+$$\text{Overall Score} = 0.5 \times \text{Technical} + 0.3 \times \text{Problem Solving} + 0.2 \times \text{Communication}$$
+
+### Generative UI Component Rendering
+Instead of outputting raw JSON, the frontend renders the complete 4-state lifecycle using typed React components:
+1. `input-streaming`: `ToolInputState` displays an animated progress synthesis indicator.
+2. `input-available`: `ToolInputState` displays active criteria badges (Technical Depth, Problem Solving, Communication).
+3. `output-available`: `CandidateScoreCard` renders an overall score gauge, progress bars, recommendation pill, strengths with checkmarks, skill gaps, executive summary, and a copy report button.
+4. `output-error`: `ToolErrorState` renders an accessible alert with a "Try Again" retry action without leaking server internals.

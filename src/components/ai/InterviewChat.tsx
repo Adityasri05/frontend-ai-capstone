@@ -11,15 +11,19 @@ import {
   CheckCircle2,
   HelpCircle,
   Terminal,
+  Award,
+  ShieldAlert,
 } from 'lucide-react';
 import ChatMessage from './ChatMessage';
 import ThinkingIndicator from './ThinkingIndicator';
 import JumpToLatest from './JumpToLatest';
+import ToolCallCard, { type ToolCallData } from './tools/ToolCallCard';
 
 export interface MessageItem {
   id: string;
   role: 'user' | 'assistant';
   content: string;
+  toolCalls?: ToolCallData[];
   createdAt: Date;
 }
 
@@ -27,7 +31,7 @@ const STARTER_TOPICS = [
   'Architecting a resilient Next.js 15 App with Server Components',
   'Real-time streaming AI token handling & cancellation UX',
   'WCAG 2.1 AA Accessibility & Keyboard Navigation standards',
-  'State management & optimistic UI in high-concurrency apps',
+  'Can you assess my performance so far and generate a score card?',
 ];
 
 export default function InterviewChat() {
@@ -152,80 +156,147 @@ export default function InterviewChat() {
       const reader = response.body.getReader();
       const decoder = new TextDecoder('utf-8');
       let assistantText = '';
+      let toolCallsList: ToolCallData[] = [];
       let hasReceivedFirstToken = false;
 
-      // 4. Stream Tokens
+      // 4. Stream Tokens & Tool Events
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
 
-        const chunk = decoder.decode(value, { stream: true });
-        if (!chunk) continue;
+        const rawChunk = decoder.decode(value, { stream: true });
+        if (!rawChunk) continue;
 
-        let newTokens = '';
+        // Split chunk by lines to check for tool event protocol
+        const lines = rawChunk.split('\n');
 
-        // Check if stream is in AI SDK 0:"..." data format
-        if (chunk.includes('0:')) {
-          const lines = chunk.split('\n');
-          for (const line of lines) {
-            if (line.startsWith('0:')) {
-              try {
-                const parsed = JSON.parse(line.slice(2));
-                newTokens += parsed;
-              } catch {
-                // Ignore incomplete JSON chunks on stream boundaries
+        for (const line of lines) {
+          if (!line) continue;
+
+          // Check if line is a Generative UI tool call event
+          if (line.startsWith('__TOOL_EVENT__:')) {
+            try {
+              const eventData = JSON.parse(line.slice('__TOOL_EVENT__:'.length));
+              if (eventData && eventData.type === 'tool-call') {
+                if (!hasReceivedFirstToken) {
+                  hasReceivedFirstToken = true;
+                  setIsThinking(false);
+                  setIsStreaming(true);
+                }
+
+                const existingIdx = toolCallsList.findIndex(
+                  (tc) => tc.toolCallId === eventData.toolCallId
+                );
+
+                if (existingIdx !== -1) {
+                  toolCallsList[existingIdx] = {
+                    ...toolCallsList[existingIdx],
+                    state: eventData.state,
+                    input: eventData.input || toolCallsList[existingIdx].input,
+                    result: eventData.result || toolCallsList[existingIdx].result,
+                    error: eventData.error || toolCallsList[existingIdx].error,
+                  };
+                } else {
+                  toolCallsList.push({
+                    toolCallId: eventData.toolCallId,
+                    toolName: eventData.toolName,
+                    state: eventData.state,
+                    input: eventData.input,
+                    result: eventData.result,
+                    error: eventData.error,
+                  });
+                }
+
+                // Update message in state with tool call data
+                setMessages((prev) => {
+                  const aIdx = prev.findIndex((m) => m.id === assistantId);
+                  if (aIdx !== -1) {
+                    const updated = [...prev];
+                    updated[aIdx] = {
+                      ...updated[aIdx],
+                      toolCalls: [...toolCallsList],
+                    };
+                    return updated;
+                  } else {
+                    return [
+                      ...prev,
+                      {
+                        id: assistantId,
+                        role: 'assistant',
+                        content: '',
+                        toolCalls: [...toolCallsList],
+                        createdAt: new Date(),
+                      },
+                    ];
+                  }
+                });
+
+                if (isAtBottomRef.current) {
+                  scrollToBottom();
+                }
               }
+            } catch {
+              // Ignore partial JSON
+            }
+            continue;
+          }
+
+          // Handle AI SDK data protocol or raw text tokens
+          let textDelta = line;
+          if (line.startsWith('0:')) {
+            try {
+              textDelta = JSON.parse(line.slice(2));
+            } catch {
+              textDelta = '';
             }
           }
-        } else {
-          // Standard text stream
-          newTokens = chunk;
-        }
 
-        if (newTokens) {
-          assistantText += newTokens;
+          if (textDelta) {
+            assistantText += textDelta;
 
-          if (!hasReceivedFirstToken) {
-            hasReceivedFirstToken = true;
-            setIsThinking(false);
-            setIsStreaming(true);
-          }
+            if (!hasReceivedFirstToken) {
+              hasReceivedFirstToken = true;
+              setIsThinking(false);
+              setIsStreaming(true);
+            }
 
-          // Update assistant message in state
-          setMessages((prev) => {
-            const existingIdx = prev.findIndex((m) => m.id === assistantId);
-            if (existingIdx !== -1) {
-              const updated = [...prev];
-              updated[existingIdx] = {
-                ...updated[existingIdx],
-                content: assistantText,
-              };
-              return updated;
-            } else {
-              return [
-                ...prev,
-                {
-                  id: assistantId,
-                  role: 'assistant',
+            // Update assistant message in state
+            setMessages((prev) => {
+              const existingIdx = prev.findIndex((m) => m.id === assistantId);
+              if (existingIdx !== -1) {
+                const updated = [...prev];
+                updated[existingIdx] = {
+                  ...updated[existingIdx],
                   content: assistantText,
-                  createdAt: new Date(),
-                },
-              ];
-            }
-          });
+                  toolCalls: [...toolCallsList],
+                };
+                return updated;
+              } else {
+                return [
+                  ...prev,
+                  {
+                    id: assistantId,
+                    role: 'assistant',
+                    content: assistantText,
+                    toolCalls: [...toolCallsList],
+                    createdAt: new Date(),
+                  },
+                ];
+              }
+            });
 
-          // Handle auto-scroll tracking
-          if (isAtBottomRef.current) {
-            scrollToBottom();
-          } else {
-            setHasNewTokensWhileAway(true);
+            // Handle auto-scroll tracking
+            if (isAtBottomRef.current) {
+              scrollToBottom();
+            } else {
+              setHasNewTokensWhileAway(true);
+            }
           }
         }
       }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') {
         // User intentionally cancelled stream via Stop button
-        // Keep partial text intact!
       } else {
         const errorMessage =
           err instanceof Error
@@ -237,15 +308,12 @@ export default function InterviewChat() {
       setIsThinking(false);
       setIsStreaming(false);
       abortControllerRef.current = null;
-      // Re-focus input for next turn
       textareaRef.current?.focus();
     }
   };
 
   /**
    * Stop / Cancel Generation Handler
-   * Aborts HTTP stream immediately, preserves partial assistant response in messages,
-   * re-enables candidate input.
    */
   const handleStop = () => {
     if (abortControllerRef.current) {
@@ -297,17 +365,40 @@ export default function InterviewChat() {
               </h1>
               <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                 <CheckCircle2 className="w-2.5 h-2.5" />
-                Live Claude Stream
+                Generative UI Active
               </span>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              Candidate Technical Assessment • Frontend & AI SDK Architecture
+              Candidate Technical Assessment • Server-Side Tool Calling (`scoreCandidate`)
             </p>
           </div>
         </div>
 
-        {/* Controls */}
+        {/* Quick Toolbar Actions */}
         <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => sendMessage('Can you assess my performance so far and generate a score card?')}
+            disabled={isStreaming || isThinking}
+            aria-label="Generate Candidate Score Card via AI tool"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-primary/30 bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary text-xs font-semibold transition-all duration-200 cursor-pointer shadow-sm active:scale-95 disabled:opacity-50"
+          >
+            <Award className="w-3.5 h-3.5" aria-hidden="true" />
+            <span className="hidden md:inline">Score Candidate</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => sendMessage('Simulate error in candidate assessment tool')}
+            disabled={isStreaming || isThinking}
+            aria-label="Test tool error state"
+            className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-xl border border-destructive/20 bg-destructive/5 hover:bg-destructive/15 text-destructive text-xs font-semibold transition-all duration-200 cursor-pointer active:scale-95 disabled:opacity-50"
+            title="Deliberately tests the output-error state"
+          >
+            <ShieldAlert className="w-3 h-3" aria-hidden="true" />
+            <span className="text-[11px]">Test Error</span>
+          </button>
+
           {messages.length > 0 && (
             <button
               type="button"
@@ -316,7 +407,7 @@ export default function InterviewChat() {
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-brand-border bg-brand-card hover:bg-brand-border/80 text-muted-foreground hover:text-foreground text-xs font-semibold transition-all duration-200 cursor-pointer shadow-sm active:scale-95"
             >
               <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
-              <span className="hidden sm:inline">New Interview</span>
+              <span className="hidden sm:inline">Reset</span>
             </button>
           )}
         </div>
@@ -342,8 +433,8 @@ export default function InterviewChat() {
               Technical Qualification Interview
             </h2>
             <p className="text-xs text-muted-foreground leading-relaxed mb-6">
-              Welcome to your HIREVIUM live engineering evaluation. The AI Interviewer will evaluate
-              your architectural reasoning, modern React/Next.js depth, accessibility, and AI systems engineering.
+              Welcome to your HIREVIUM live engineering evaluation. The AI Interviewer uses server-side
+              tools and Generative UI to deliver structured candidate assessments.
             </p>
 
             <div className="w-full space-y-2">
@@ -369,7 +460,7 @@ export default function InterviewChat() {
 
             <div className="mt-8 flex items-center gap-2 text-[11px] text-muted-foreground bg-brand-card/80 px-3.5 py-2 rounded-xl border border-brand-border">
               <ShieldCheck className="w-4 h-4 text-emerald-500 flex-shrink-0" />
-              <span>Server-side Claude streaming • Zero client API key leakage</span>
+              <span>Server-side `scoreCandidate` tool • Typed generative UI • Zero JSON dump</span>
             </div>
           </div>
         )}
@@ -380,14 +471,33 @@ export default function InterviewChat() {
             msg.role === 'assistant' && index === messages.length - 1 && isStreaming;
 
           return (
-            <ChatMessage
-              key={msg.id}
-              id={msg.id}
-              role={msg.role}
-              content={msg.content}
-              isStreaming={isLastAssistantMessage}
-              createdAt={msg.createdAt}
-            />
+            <div key={msg.id} className="space-y-2">
+              {/* Render Tool Calls if present */}
+              {msg.toolCalls && msg.toolCalls.length > 0 && (
+                <div className="max-w-3xl mr-auto">
+                  {msg.toolCalls.map((tc) => (
+                    <ToolCallCard
+                      key={tc.toolCallId}
+                      data={tc}
+                      onRetry={() =>
+                        sendMessage('Can you assess my performance so far and generate a score card?')
+                      }
+                    />
+                  ))}
+                </div>
+              )}
+
+              {/* Render Chat Text Message */}
+              {msg.content && (
+                <ChatMessage
+                  id={msg.id}
+                  role={msg.role}
+                  content={msg.content}
+                  isStreaming={isLastAssistantMessage}
+                  createdAt={msg.createdAt}
+                />
+              )}
+            </div>
           );
         })}
 
@@ -440,8 +550,8 @@ export default function InterviewChat() {
               onKeyDown={handleKeyDown}
               placeholder={
                 isStreaming
-                  ? 'AI Interviewer is answering... (Click Stop to interrupt)'
-                  : 'Type your technical response... (Enter to send, Shift+Enter for newline)'
+                  ? 'AI Interviewer is analyzing... (Click Stop to interrupt)'
+                  : 'Type your technical response or ask for an assessment... (Enter to send)'
               }
               rows={2}
               disabled={isStreaming || isThinking}
