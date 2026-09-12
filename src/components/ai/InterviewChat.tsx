@@ -19,6 +19,7 @@ import JumpToLatest from './JumpToLatest';
 import ToolCallCard, { type ToolCallData } from './tools/ToolCallCard';
 import ChatErrorBanner, { type ChatErrorDetails } from './ChatErrorBanner';
 import DevSabotageDrawer from './DevSabotageDrawer';
+import { AIActionButton } from './AIActionButton';
 
 export interface MessageItem {
   id: string;
@@ -680,15 +681,15 @@ export default function InterviewChat() {
                   <span>Stop</span>
                 </button>
               ) : (
-                <button
+                <AIActionButton
                   type="submit"
+                  size="sm"
+                  actionType="send"
                   disabled={!input.trim()}
+                  state={!input.trim() ? 'disabled' : 'idle'}
+                  idleLabel="Send"
                   aria-label="Send technical answer"
-                  className="flex items-center gap-1.5 px-3.5 py-2 bg-brand-primary hover:bg-brand-primary-hover text-white text-xs font-bold rounded-xl shadow-md disabled:opacity-40 disabled:pointer-events-none transition-all active:scale-95 cursor-pointer"
-                >
-                  <Send className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span className="hidden sm:inline">Send</span>
-                </button>
+                />
               )}
             </div>
           </div>

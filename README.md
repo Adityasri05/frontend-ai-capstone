@@ -188,3 +188,16 @@ The AI Chat system implements robust fault-tolerance across 10 critical failure 
 
 * Comprehensive Matrix: [FAILURE_MATRIX.md](FAILURE_MATRIX.md)
 * Architectural Details: [FAILURE_HANDLING.md](FAILURE_HANDLING.md)
+
+---
+
+## 8. Motion Decisions (Buttons with a Brain — Motion with Intent)
+
+The AI Action Button system (`AIActionButton`) communicates state changes through purposeful, compositor-driven motion:
+
+- **Micro-interactions & Responsiveness**: Hover and active micro-interactions use tight 150–200ms transitions with `cubic-bezier(0.16, 1, 0.3, 1)` easing so the button feels crisp and responsive without introducing perceptual lag.
+- **State Transition Intent**: Loading and success transitions use 200–300ms easing curves to make state progression perceptible and smooth rather than abrupt.
+- **GPU Compositor Performance**: Only `transform` and `opacity` are animated to eliminate layout thrashing, repaint cycles, and parent reflows.
+- **Single-Shot Error Shake**: Error states execute a single 380ms horizontal shake (`cubic-bezier(0.36, 0.07, 0.19, 0.97)`) to announce failure clearly without continuous, distracting vibration.
+- **Reduced Motion Accessibility**: Full `prefers-reduced-motion: reduce` compliance strips all physical movement, transforms, and shakes while preserving instant color, text, and icon feedback.
+- **Live Demo & Test Harness**: Interactive sandbox available at [`/playground/buttons`](/playground/buttons) (or [`/motion/button`](/motion/button)).
