@@ -84,6 +84,20 @@ export default function Header() {
             </Link>
 
             <Link
+              href="/workspace"
+              className={`text-xs font-bold tracking-wide transition-colors duration-300 flex items-center gap-1.5 ${
+                isLinkActive('/workspace') 
+                  ? 'text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text'
+              }`}
+            >
+              <span>3D Workspace</span>
+              <span className="px-1.5 py-0.2 bg-purple-500/10 text-purple-600 text-[9px] font-mono font-bold rounded-md border border-purple-500/20">
+                3D
+              </span>
+            </Link>
+
+            <Link
               href="/health"
               className={`text-xs font-bold tracking-wide transition-colors duration-300 ${
                 isLinkActive('/health') 
@@ -194,6 +208,21 @@ export default function Header() {
               <span>AI Interview</span>
               <span className="px-2 py-0.5 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-md border border-brand-primary/20">
                 LIVE
+              </span>
+            </Link>
+
+            <Link
+              href="/workspace"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`text-sm font-bold p-2 rounded-lg transition-colors flex items-center justify-between ${
+                isLinkActive('/workspace') 
+                  ? 'bg-brand-card text-brand-primary' 
+                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
+              }`}
+            >
+              <span>3D Workspace</span>
+              <span className="px-2 py-0.5 bg-purple-500/10 text-purple-600 text-xs font-bold rounded-md border border-purple-500/20">
+                3D
               </span>
             </Link>
 
