@@ -3,38 +3,28 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useAuth } from '../../features/auth/AuthContext';
-import { useFavorites } from '../../features/favourites/FavoritesContext';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { user, logout } = useAuth();
-  const { favorites } = useFavorites();
   const pathname = usePathname();
 
   const isLinkActive = (path: string) => {
-    return pathname === path;
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-    } catch (error) {
-      console.error('Failed to log out:', error);
-    }
+    if (path === '/' && pathname === '/') return true;
+    if (path !== '/' && pathname.startsWith(path)) return true;
+    return false;
   };
 
   return (
     <header className="w-full bg-brand-bg/80 backdrop-blur-md border-b border-brand-border sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Portfolio Mark */}
           <div className="flex-shrink-0">
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-8 h-8 rounded-lg border-2 border-brand-primary flex items-center justify-center font-display font-bold text-sm text-brand-text group-hover:border-brand-primary/80 transition-colors">
+              <div className="w-8 h-8 rounded-lg border-2 border-brand-accent flex items-center justify-center font-display font-bold text-sm text-brand-text group-hover:border-brand-primary-hover transition-colors">
                 AS
               </div>
-              <span className="text-sm font-bold tracking-wider text-brand-text group-hover:text-brand-primary transition-colors uppercase">
+              <span className="text-sm font-bold tracking-wider text-brand-text group-hover:text-brand-accent transition-colors uppercase">
                 Aditya Srivastav
               </span>
             </Link>
@@ -44,102 +34,49 @@ export default function Header() {
           <nav className="hidden md:flex items-center gap-6" aria-label="Main Navigation">
             <Link
               href="/"
-              className={`text-xs font-bold tracking-wide transition-colors duration-300 ${
+              className={`text-xs font-bold tracking-wide transition-colors duration-200 ${
                 isLinkActive('/') 
-                  ? 'text-brand-primary' 
+                  ? 'text-brand-accent' 
                   : 'text-brand-muted hover:text-brand-text'
               }`}
             >
-              Browse
+              Home
             </Link>
             
             <Link
-              href="/favourites"
-              className={`text-xs font-bold tracking-wide transition-colors duration-300 flex items-center gap-2 ${
-                isLinkActive('/favourites') 
-                  ? 'text-brand-primary' 
+              href="/projects"
+              className={`text-xs font-bold tracking-wide transition-colors duration-200 ${
+                isLinkActive('/projects') 
+                  ? 'text-brand-accent' 
                   : 'text-brand-muted hover:text-brand-text'
               }`}
             >
-              <span>Watchlist</span>
-              {favorites.length > 0 && (
-                <span className="px-2 py-0.5 bg-brand-primary text-slate-100 text-[10px] font-black rounded-full font-mono">
-                  {favorites.length}
-                </span>
-              )}
+              Projects
             </Link>
             
             <Link
-              href="/interview"
-              className={`text-xs font-bold tracking-wide transition-colors duration-300 flex items-center gap-1.5 ${
-                isLinkActive('/interview') 
-                  ? 'text-brand-primary' 
+              href="/resume"
+              className={`text-xs font-bold tracking-wide transition-colors duration-200 ${
+                isLinkActive('/resume') 
+                  ? 'text-brand-accent' 
                   : 'text-brand-muted hover:text-brand-text'
               }`}
             >
-              <span>AI Interview</span>
-              <span className="px-1.5 py-0.2 bg-brand-primary/10 text-brand-primary text-[9px] font-mono font-bold rounded-md border border-brand-primary/20">
-                LIVE
-              </span>
-            </Link>
-
-            <Link
-              href="/workspace"
-              className={`text-xs font-bold tracking-wide transition-colors duration-300 flex items-center gap-1.5 ${
-                isLinkActive('/workspace') 
-                  ? 'text-brand-primary' 
-                  : 'text-brand-muted hover:text-brand-text'
-              }`}
-            >
-              <span>3D Workspace</span>
-              <span className="px-1.5 py-0.2 bg-purple-500/10 text-purple-600 text-[9px] font-mono font-bold rounded-md border border-purple-500/20">
-                3D
-              </span>
-            </Link>
-
-            <Link
-              href="/health"
-              className={`text-xs font-bold tracking-wide transition-colors duration-300 ${
-                isLinkActive('/health') 
-                  ? 'text-brand-primary' 
-                  : 'text-brand-muted hover:text-brand-text'
-              }`}
-            >
-              Diagnostics
+              Resume
             </Link>
           </nav>
 
-          {/* User Profile / Auth links (Desktop) */}
-          <div className="hidden md:flex items-center gap-4">
-            {user ? (
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-brand-muted font-mono font-medium max-w-[150px] truncate" title={user.email || ''}>
-                  👤 {user.email}
-                </span>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="px-3.5 py-1.5 border border-brand-border bg-brand-card hover:bg-brand-border text-brand-muted hover:text-brand-text text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 cursor-pointer shadow-md"
-                >
-                  Sign Out
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center gap-2">
-                <Link
-                  href="/login"
-                  className="px-4 py-2 text-xs font-bold text-brand-muted hover:text-brand-text transition-colors"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/register"
-                  className="px-4 py-2 bg-brand-primary hover:bg-brand-primary-hover text-slate-100 text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 shadow-md"
-                >
-                  Sign Up
-                </Link>
-              </div>
-            )}
+          {/* Primary Action Button (Desktop) */}
+          <div className="hidden md:flex items-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/aditya-srivastav-64906927a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-brand-accent hover:bg-brand-primary-hover text-slate-100 text-xs font-bold rounded-xl transition-all duration-300 active:scale-95 shadow-md flex items-center gap-1.5"
+            >
+              <span>Contact on LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
 
           {/* Mobile menu trigger */}
@@ -165,115 +102,56 @@ export default function Header() {
 
       {/* Mobile Menu Panel */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-brand-bg border-b border-brand-border py-4 px-4 space-y-4">
-          <nav className="flex flex-col gap-3" aria-label="Mobile Navigation">
+        <div className="md:hidden bg-brand-bg border-b border-brand-border py-4 px-4 space-y-3">
+          <nav className="flex flex-col gap-2" aria-label="Mobile Navigation">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-bold p-2 rounded-lg transition-colors ${
+              className={`text-sm font-bold p-2.5 rounded-lg transition-colors ${
                 isLinkActive('/') 
-                  ? 'bg-brand-card text-brand-primary' 
+                  ? 'bg-brand-card text-brand-accent' 
                   : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
               }`}
             >
-              Browse
+              Home
             </Link>
             
             <Link
-              href="/favourites"
+              href="/projects"
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-bold p-2 rounded-lg transition-colors flex items-center justify-between ${
-                isLinkActive('/favourites') 
-                  ? 'bg-brand-card text-brand-primary' 
+              className={`text-sm font-bold p-2.5 rounded-lg transition-colors ${
+                isLinkActive('/projects') 
+                  ? 'bg-brand-card text-brand-accent' 
                   : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
               }`}
             >
-              <span>Watchlist</span>
-              {favorites.length > 0 && (
-                <span className="px-2.5 py-0.5 bg-brand-primary text-slate-100 text-xs font-black rounded-full font-mono">
-                  {favorites.length}
-                </span>
-              )}
+              Projects
             </Link>
 
             <Link
-              href="/interview"
+              href="/resume"
               onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-bold p-2 rounded-lg transition-colors flex items-center justify-between ${
-                isLinkActive('/interview') 
-                  ? 'bg-brand-card text-brand-primary' 
+              className={`text-sm font-bold p-2.5 rounded-lg transition-colors ${
+                isLinkActive('/resume') 
+                  ? 'bg-brand-card text-brand-accent' 
                   : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
               }`}
             >
-              <span>AI Interview</span>
-              <span className="px-2 py-0.5 bg-brand-primary/10 text-brand-primary text-xs font-bold rounded-md border border-brand-primary/20">
-                LIVE
-              </span>
-            </Link>
-
-            <Link
-              href="/workspace"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-bold p-2 rounded-lg transition-colors flex items-center justify-between ${
-                isLinkActive('/workspace') 
-                  ? 'bg-brand-card text-brand-primary' 
-                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
-              }`}
-            >
-              <span>3D Workspace</span>
-              <span className="px-2 py-0.5 bg-purple-500/10 text-purple-600 text-xs font-bold rounded-md border border-purple-500/20">
-                3D
-              </span>
-            </Link>
-
-            <Link
-              href="/health"
-              onClick={() => setMobileMenuOpen(false)}
-              className={`text-sm font-bold p-2 rounded-lg transition-colors ${
-                isLinkActive('/health') 
-                  ? 'bg-brand-card text-brand-primary' 
-                  : 'text-brand-muted hover:text-brand-text hover:bg-brand-card/60'
-              }`}
-            >
-              Diagnostics
+              Resume
             </Link>
           </nav>
 
-          <div className="border-t border-brand-border pt-4 flex flex-col gap-3">
-            {user ? (
-              <div className="flex flex-col gap-2">
-                <span className="text-xs text-brand-muted font-mono truncate px-2">
-                  👤 {user.email}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    handleLogout();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full text-center py-2.5 bg-brand-card border border-brand-border hover:bg-brand-border text-brand-muted font-bold text-xs rounded-xl cursor-pointer"
-                >
-                  Sign Out
-                </button>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/login"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-2.5 bg-brand-card hover:bg-brand-border text-brand-muted font-bold text-xs rounded-xl"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  href="/register"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full text-center py-2.5 bg-brand-primary hover:bg-brand-primary-hover text-slate-100 font-bold text-xs rounded-xl"
-                >
-                  Sign Up
-                </Link>
-              </div>
-            )}
+          <div className="border-t border-brand-border pt-3">
+            <a
+              href="https://www.linkedin.com/in/aditya-srivastav-64906927a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-center py-2.5 bg-brand-accent hover:bg-brand-primary-hover text-slate-100 font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 shadow-md"
+            >
+              <span>Contact on LinkedIn</span>
+              <span aria-hidden="true">↗</span>
+            </a>
           </div>
         </div>
       )}

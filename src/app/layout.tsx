@@ -40,8 +40,8 @@ export default function RootLayout({
           <FavoritesProvider>
             <Header />
             <main className="flex-grow w-full">{children}</main>
-            <footer className="w-full py-8 text-center text-[10px] font-mono text-brand-muted border-t border-brand-border bg-brand-card/40">
-              CineTrack © 2026 • Built as a FlyRank AI Capstone
+            <footer className="w-full py-8 text-center text-xs font-mono text-brand-muted border-t border-brand-border bg-brand-card/40">
+              Aditya Srivastav © 2026 • Frontend AI Engineer • Building AI-powered products
             </footer>
           </FavoritesProvider>
         </AuthProvider>
