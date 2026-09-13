@@ -1,0 +1,62 @@
+{
+  "user": {
+    "name": "Aditya Srivastav",
+    "role": "Computer Science & Engineering Student (B.Tech)",
+    "positioning": "Frontend AI Engineer building practical GenAI products, agent workflows, and resilient interfaces",
+    "target_roles": ["Junior Frontend AI Engineer", "AI Engineering Intern", "Full-Stack AI Developer"],
+    "links": {
+      "github": "https://github.com/Adityasri05",
+      "linkedin": "https://www.linkedin.com/in/aditya-srivastav-64906927a/"
+    }
+  },
+  "skills": {
+    "frontend": ["React 19", "Next.js 15 (App Router)", "TypeScript", "Tailwind CSS", "Zustand", "Accessibility (a11y)"],
+    "backend_routing": ["Python", "FastAPI", "Node.js", "REST APIs", "Secure Proxy Routing"],
+    "ai_and_llm": ["Gemini 2.5 Flash / Pro", "Claude 3.5 Sonnet", "Vercel AI SDK", "Vector RAG (tRPC/Pinecone)", "Agent Tools & MCP", "Speech-to-Text APIs"],
+    "ml_foundations": ["PyTorch Foundations", "Embeddings & Semantic Search"]
+  },
+  "portfolio_projects": [
+    {
+      "name": "HIREVIUM",
+      "tagline": "AI Hiring Intelligence Operating System",
+      "tech": ["React 19", "FastAPI", "Gemini 2.5 Flash Lite", "Adaptive Difficulty Controller"],
+      "domain": "HRTech / Interview Vetting"
+    },
+    {
+      "name": "INDRA AI",
+      "tagline": "Institutional Knowledge Intelligence",
+      "tech": ["Next.js 15", "tRPC", "Vector RAG", "Grounded Citations Drawer"],
+      "domain": "Enterprise Search / Knowledge Graphs"
+    },
+    {
+      "name": "StackScout",
+      "tagline": "Autonomous Software Procurement & Decision Agent",
+      "tech": ["React 19", "Zustand", "Web Scrapers", "Progressive Disclosure Logs"],
+      "domain": "B2B SaaS / Autonomous Agents"
+    },
+    {
+      "name": "ResQra",
+      "tagline": "AI Emergency Intelligence & Response Platform",
+      "tech": ["Next.js", "Real-time Telemetry", "AI Dispatch Routing"],
+      "domain": "Emergency Response / Real-time Systems"
+    }
+  ],
+  "opportunity_preferences": {
+    "target_categories": [
+      "AI & GenAI Hackathons",
+      "Agentic AI Competitions",
+      "Student Developer Grants & Fellowships",
+      "Open-Source AI Challenges"
+    ],
+    "eligibility_types": ["College / University Student", "Open / Global Track", "Early-Career Developer"],
+    "formats": ["Virtual / Online (Preferred)", "Hybrid / Regional In-Person"],
+    "min_lead_time_days": 5,
+    "max_lead_time_days": 60,
+    "excluded_categories": [
+      "PhD-Only Research Competitions",
+      "Hardware / FPGA-Only Challenges",
+      "Corporate-Internal Employee-Only Hackathons",
+      "Paid-Entry Tournaments"
+    ]
+  }
+}
