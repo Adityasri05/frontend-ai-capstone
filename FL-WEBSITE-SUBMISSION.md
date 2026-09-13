@@ -46,6 +46,11 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Documentation Index
 
+- **Break Test Plan**: [`BREAK-TEST-PLAN.md`](./BREAK-TEST-PLAN.md) — Comprehensive edge-case testing matrix covering forms, navigation, AI streaming, and viewports.
+- **Where It Breaks**: [`WHERE-IT-BREAKS.md`](./WHERE-IT-BREAKS.md) — Real failure modes, FIX-NOW items, and honest known limitations.
+- **Hardening Fixes Log**: [`HARDENING-FIXES.md`](./HARDENING-FIXES.md) — Architectural details of double-submit locks, server deduplication, and SEO metadata.
+- **Hardening Review Package**: [`HARDENING-REVIEW-PACKAGE.md`](./HARDENING-REVIEW-PACKAGE.md) — Review prompt and test instructions for external peer review.
+- **Hardening Review Record**: [`HARDENING-REVIEW.md`](./HARDENING-REVIEW.md) — Captured peer feedback, triage table, applied must-fixes, and verification checklist.
 - **Accessibility & Performance Audit**: [`AUDIT.md`](./AUDIT.md) — Production Lighthouse Mobile (96), Accessibility (100), WAVE (0 errors), and AI streaming keyboard audit.
 - **Audit Screenshots Directory**: [`audit/README.md`](./audit/README.md) — Procedures and references for Lighthouse Mobile before/after screenshots.
 - **Reviewer Package**: [`REVIEWER-PACKAGE.md`](./REVIEWER-PACKAGE.md) — Unbiased review guide with Chapter 1 proof statement and the two 10-second test questions.
@@ -64,6 +69,8 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Verification & QA Checklist
 
+- [x] **Rapid Double-Submit Guard**: Synchronous client-side ref lock + server-side 15s fingerprint cache deployed.
+- [x] **SEO & Social Preview**: Dynamic `/robots.txt`, `/sitemap.xml`, Open Graph card (`/og-image.svg`), and canonical metadata configured.
 - [x] **Critique Must-Fixes Deployed**: Scannable action contributions, deepened ResQra architecture specifics, and prominent proof buttons implemented.
 - [x] **Mobile Touch Targets**: All CTAs, navigation links, and form triggers adhere to WCAG 2.1 AA (≥ 44x44px).
 - [x] **iOS Safari Zoom Prevention**: Form inputs configured with `text-base sm:text-xs` to eliminate viewport zoom on focus.

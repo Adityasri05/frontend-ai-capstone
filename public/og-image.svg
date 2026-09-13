@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="text-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="60" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+
+  <!-- Decorative Ambient Circles -->
+  <circle cx="200" cy="150" r="180" fill="#2563eb" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="1000" cy="450" r="220" fill="#06b6d4" opacity="0.12" filter="url(#glow)"/>
+
+  <!-- Decorative Grid Pattern -->
+  <g stroke="#334155" stroke-width="1" opacity="0.2">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="0" y1="500" x2="1200" y2="500"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Card Container -->
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="#0f172a" fill-opacity="0.8" stroke="#334155" stroke-width="2"/>
+
+  <!-- Brand Monogram -->
+  <rect x="140" y="140" width="70" height="70" rx="16" fill="#1e293b" stroke="#3b82f6" stroke-width="2.5"/>
+  <text x="175" y="185" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="28" fill="#60a5fa" text-anchor="middle">AS</text>
+
+  <!-- Title & Subtitle -->
+  <text x="140" y="270" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="46" fill="#f8fafc" letter-spacing="-0.02em">
+    Aditya Srivastav
+  </text>
+  <text x="140" y="325" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="26" fill="url(#text-grad)">
+    Frontend AI Engineer • Practical LLM &amp; Resilient UI Systems
+  </text>
+
+  <!-- Description / Proof Points -->
+  <text x="140" y="385" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94a3b8">
+    B.Tech CSE student building production-grade AI applications with verified state machines,
+  </text>
+  <text x="140" y="415" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="18" fill="#94a3b8">
+    resilient streaming architectures, WCAG 2.1 AA accessibility, and real API integrations.
+  </text>
+
+  <!-- Project Badges -->
+  <g transform="translate(140, 460)">
+    <!-- Badge 1 -->
+    <rect x="0" y="0" width="140" height="36" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="70" y="23" font-family="system-ui, sans-serif" font-weight="600" font-size="13" fill="#cbd5e1" text-anchor="middle">HIREVIUM</text>
+    <!-- Badge 2 -->
+    <rect x="155" y="0" width="135" height="36" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="222" y="23" font-family="system-ui, sans-serif" font-weight="600" font-size="13" fill="#cbd5e1" text-anchor="middle">INDRA AI</text>
+    <!-- Badge 3 -->
+    <rect x="305" y="0" width="145" height="36" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="377" y="23" font-family="system-ui, sans-serif" font-weight="600" font-size="13" fill="#cbd5e1" text-anchor="middle">StackScout</text>
+    <!-- Badge 4 -->
+    <rect x="465" y="0" width="125" height="36" rx="10" fill="#1e293b" stroke="#334155"/>
+    <text x="527" y="23" font-family="system-ui, sans-serif" font-weight="600" font-size="13" fill="#cbd5e1" text-anchor="middle">ResQra</text>
+  </g>
+
+  <!-- URL watermark -->
+  <text x="1060" y="520" font-family="system-ui, monospace" font-weight="600" font-size="14" fill="#64748b" text-anchor="end">
+    aditya-srivastav.netlify.app
+  </text>
+</svg>

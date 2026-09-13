@@ -70,15 +70,30 @@ export default function ContactForm() {
     }
   };
 
+  const isSubmittingRef = React.useRef(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (isSubmittingRef.current || status === 'submitting') {
+      return;
+    }
 
     if (!validate()) {
       return;
     }
 
+    isSubmittingRef.current = true;
     setStatus('submitting');
     setErrors({});
+
+    const cleanPayload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim(),
+      'bot-field': formData['bot-field'],
+    };
 
     try {
       // 1. Dual-compatible submission: Try the Next.js API route first
@@ -88,7 +103,7 @@ export default function ContactForm() {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(cleanPayload),
       });
 
       const data = await response.json().catch(() => ({}));
@@ -118,10 +133,13 @@ export default function ContactForm() {
       setErrors({
         general: 'Network error. Please check your connection or reach out on LinkedIn.',
       });
+    } finally {
+      isSubmittingRef.current = false;
     }
   };
 
   const handleReset = () => {
+    isSubmittingRef.current = false;
     setStatus('idle');
     setErrors({});
     setSuccessMessage('');

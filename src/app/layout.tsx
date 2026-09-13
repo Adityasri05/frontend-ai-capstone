@@ -21,8 +21,66 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Aditya Srivastav — Frontend AI Engineer",
-  description: "Portfolio of Aditya Srivastav — B.Tech CSE student focused on practical AI product development, resilient frontend interfaces, and LLM workflows.",
+  metadataBase: new URL("https://aditya-srivastav.netlify.app"),
+  title: {
+    default: "Aditya Srivastav — Frontend AI Engineer",
+    template: "%s | Aditya Srivastav",
+  },
+  description:
+    "Portfolio of Aditya Srivastav — B.Tech CSE student building production-grade AI applications with practical LLM integrations, resilient streaming UI, and WCAG 2.1 AA accessibility.",
+  keywords: [
+    "Aditya Srivastav",
+    "Frontend AI Engineer",
+    "Next.js Developer",
+    "React Engineer",
+    "LLM Interfaces",
+    "AI Product Development",
+    "Web Accessibility",
+    "HIREVIUM",
+    "INDRA AI",
+    "StackScout",
+    "ResQra",
+  ],
+  authors: [{ name: "Aditya Srivastav", url: "https://aditya-srivastav.netlify.app" }],
+  creator: "Aditya Srivastav",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://aditya-srivastav.netlify.app",
+    siteName: "Aditya Srivastav Portfolio",
+    title: "Aditya Srivastav — Frontend AI Engineer",
+    description:
+      "Explore production AI projects (HIREVIUM, INDRA AI, StackScout, ResQra), interactive case studies, and engineering benchmarks.",
+    images: [
+      {
+        url: "/og-image.svg",
+        width: 1200,
+        height: 630,
+        alt: "Aditya Srivastav — Frontend AI Engineer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Aditya Srivastav — Frontend AI Engineer",
+    description:
+      "Frontend engineer building AI-powered products with practical LLM integrations, resilient streaming UI, and WCAG 2.1 AA accessibility.",
+    images: ["/og-image.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({

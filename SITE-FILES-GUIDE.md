@@ -36,6 +36,14 @@ A complete reference guide explaining every deployed file and configuration in t
 | `WEEK-07-FIX-LOG.md` | Mobile & Production Polish Fix Log | Complete before/after audit log covering iOS zoom fixes, touch targets, reduced-motion, and link audit. | **Audit & Documentation** |
 | `AUDIT.md` | Accessibility & Performance Audit Deliverable | Comprehensive Lighthouse, WAVE, Keyboard, and AI streaming audit with before/after benchmarks and Web Vitals analysis. | **Quality Assurance & Audit Deliverable** |
 | `audit/README.md` | Audit Screenshots & Testing Guide | Standardized procedures for capturing and verifying real Lighthouse Mobile and WAVE audit screenshots. | **Quality Assurance & Testing** |
+| `BREAK-TEST-PLAN.md` | Edge-Case & Break-Test Plan | Structured stress-testing plan covering input validation, rapid double-submit, network failure, viewports, and SEO. | **Testing & Hardening Plan** |
+| `WHERE-IT-BREAKS.md` | Failure Modes & Triage Log | Real production findings categorized under FIX-NOW, KNOWN LIMITATIONS, and NOT REPRODUCED. | **Hardening & Quality Assurance** |
+| `HARDENING-FIXES.md` | Edge-Case Hardening Fixes | Detailed architectural descriptions of frontend submit locks, server-side deduplication, and SEO metadata. | **Engineering & Fix Log** |
+| `HARDENING-REVIEW-PACKAGE.md` | External Reviewer Package | Unbiased hardening evaluation guide and test prompt for external peer review. | **Hardening & Review Package** |
+| `HARDENING-REVIEW.md` | External Hardening Review Record | Captured peer reviewer findings, triage table, must-fixes applied, and production verification checklist. | **Review & Quality Assurance** |
+| `src/app/robots.ts` | Robots.txt Route Handler | Generates dynamic `/robots.txt` allowing crawler discovery across all public pages. | **SEO & Discovery** |
+| `src/app/sitemap.ts` | XML Sitemap Route Handler | Generates dynamic `/sitemap.xml` indexing all 7 core portfolio routes. | **SEO & Discovery** |
+| `public/og-image.svg` | Social Open Graph Card Asset | High-resolution 1200×630 vector preview banner for rich social sharing cards. | **SEO & Social Preview** |
 | `agent/hackscout_agent.py` | HackScout AI Agent Script | Python agent for discovering, scoring, and prioritizing hackathons and developer opportunities. | **Capstone Agent Runtime** |
 | `agent/eval_runner.py` | Agent Evaluation Suite | Deterministic test runner running 7 rigorous unit tests against the HackScout AI agent logic. | **Testing & Agent Evaluation** |
 | `agent-config/profile.json` | Candidate Profile Ground Truth | Machine-readable source of truth defining verified skills, URLs, projects, and target roles. | **Agent & Portfolio Metadata** |

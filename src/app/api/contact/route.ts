@@ -14,6 +14,10 @@ const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 const RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 5;
 
+// Deduplication cache for rapid double-submit protection (15 second window)
+const duplicateSubmissionCache = new Map<string, { timestamp: number; response: { success: boolean; message: string; receivedAt: string } }>();
+const DEDUP_WINDOW_MS = 15 * 1000;
+
 function isRateLimited(ip: string): boolean {
   const now = Date.now();
   const record = rateLimitMap.get(ip) || { count: 0, lastReset: now };
@@ -125,6 +129,16 @@ export async function POST(request: Request) {
       );
     }
 
+    // 4.5. Duplicate Rapid Submission Guard (Idempotency Check)
+    const submissionFingerprint = `${ip}:${trimmedEmail.toLowerCase()}:${trimmedMessage.slice(0, 100)}`;
+    const now = Date.now();
+    const existingSubmission = duplicateSubmissionCache.get(submissionFingerprint);
+
+    if (existingSubmission && now - existingSubmission.timestamp < DEDUP_WINDOW_MS) {
+      // Return cached success without duplicating dispatch or email alerts
+      return NextResponse.json(existingSubmission.response, { status: 200 });
+    }
+
     // 5. Destination Dispatch & Audit Logging
     const destinationEmail = process.env.CONTACT_EMAIL || 'adityasri1205@gmail.com';
     const timestamp = new Date().toISOString();
@@ -157,15 +171,19 @@ export async function POST(request: Request) {
       }
     }
 
-    // 6. Return Clean Success Response
-    return NextResponse.json(
-      {
-        success: true,
-        message: 'Message sent successfully. Thanks for reaching out.',
-        receivedAt: timestamp,
-      },
-      { status: 200 }
-    );
+    // 6. Cache Response for Idempotency & Return Clean Success Response
+    const successResult = {
+      success: true,
+      message: 'Message sent successfully. Thanks for reaching out.',
+      receivedAt: timestamp,
+    };
+
+    duplicateSubmissionCache.set(submissionFingerprint, {
+      timestamp: now,
+      response: successResult,
+    });
+
+    return NextResponse.json(successResult, { status: 200 });
   } catch (error) {
     console.error('[Contact API Error]:', error);
     return NextResponse.json(
