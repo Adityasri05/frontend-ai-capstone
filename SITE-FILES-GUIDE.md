@@ -28,6 +28,10 @@ A complete reference guide explaining every deployed file and configuration in t
 | `netlify.toml` | Netlify Deployment Configuration | Defines build commands (`npm run build`), publish directory (`.next`), and Next.js Netlify runtime plugin. | **Deployment Infrastructure** |
 | `vitest.config.ts` | Unit & Component Test Config | Configures Vitest test environment (JSDOM), aliases, and mock runners for fast automated testing. | **Testing & CI** |
 | `tests/components/contact-form.test.tsx` | Contact Form Unit Test Suite | 6 automated interaction tests validating idle, error, submitting, and success states. | **Testing & CI** |
+| `REVIEWER-PACKAGE.md` | Reviewer Evaluation Package | Complete unbiased review prompt with Chapter 1 proof statement and the two 10-second test questions. | **Critique & Evaluation** |
+| `PORTFOLIO-REVIEW.md` | Critique Capture & Triage | Raw reviewer feedback capture, initial reflections, and MUST-FIX vs NICE-TO-HAVE triage table. | **Critique & Evaluation** |
+| `MUST-FIX-VERIFICATION.md` | Must-Fix Verification Log | Tracks the implementation and testing of all 3 critique resolutions. | **Critique & Quality Assurance** |
+| `REVIEWER-FOLLOW-UP.md` | Reviewer Response Draft | Professional follow-up response summarizing live fixes and thanking the reviewer. | **Critique & Communication** |
 | `REAL-PHONE-CHECKLIST.md` | Real Phone Mobile QA Checklist | Structured checklist for verifying layout, touch targets, forms, contrast, and orientation on physical smartphones. | **Quality Assurance & Verification** |
 | `WEEK-07-FIX-LOG.md` | Mobile & Production Polish Fix Log | Complete before/after audit log covering iOS zoom fixes, touch targets, reduced-motion, and link audit. | **Audit & Documentation** |
 | `agent/hackscout_agent.py` | HackScout AI Agent Script | Python agent for discovering, scoring, and prioritizing hackathons and developer opportunities. | **Capstone Agent Runtime** |
@@ -48,7 +52,7 @@ A complete reference guide explaining every deployed file and configuration in t
 * **Why the site needs it**: Provides a secure backend API boundary without exposing email server credentials to the browser.
 * **Impact Layer**: Serverless execution layer.
 
-### `REAL-PHONE-CHECKLIST.md` & `WEEK-07-FIX-LOG.md`
-* **What they do**: Provide the structured real-device testing protocol and comprehensive fix log documenting accessibility, performance, and mobile layout refinements.
-* **Why the site needs them**: Mandatory deliverables for Week 07 ("Open It on Your Phone") proving production readiness.
+### Critique Artifacts (`REVIEWER-PACKAGE.md`, `PORTFOLIO-REVIEW.md`, `MUST-FIX-VERIFICATION.md`, `REVIEWER-FOLLOW-UP.md`)
+* **What they do**: Provide the structured peer critique package, feedback capture, triage classification, verification records, and professional reviewer follow-up draft.
+* **Why the site needs them**: Mandatory deliverables for "Survive the Crit" proving the ability to iterate on direct feedback and ship must-fixes to production.
 * **Impact Layer**: Documentation and Quality Assurance.

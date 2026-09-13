@@ -46,6 +46,10 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Documentation Index
 
+- **Reviewer Package**: [`REVIEWER-PACKAGE.md`](./REVIEWER-PACKAGE.md) — Unbiased review guide with Chapter 1 proof statement and the two 10-second test questions.
+- **Portfolio Review & Triage**: [`PORTFOLIO-REVIEW.md`](./PORTFOLIO-REVIEW.md) — Captured critique feedback, initial reactions, and MUST-FIX vs NICE-TO-HAVE triage table.
+- **Must-Fix Verification Log**: [`MUST-FIX-VERIFICATION.md`](./MUST-FIX-VERIFICATION.md) — Verification tracking for all 3 critique resolutions.
+- **Reviewer Follow-Up Draft**: [`REVIEWER-FOLLOW-UP.md`](./REVIEWER-FOLLOW-UP.md) — Professional follow-up response summarizing live fixes.
 - **Real Phone QA Checklist**: [`REAL-PHONE-CHECKLIST.md`](./REAL-PHONE-CHECKLIST.md) — Physical phone testing instructions covering layout, interaction, contrast, and orientation.
 - **Week 07 Fix Log**: [`WEEK-07-FIX-LOG.md`](./WEEK-07-FIX-LOG.md) — Comprehensive Before/After audit log, mobile findings, a11y improvements, and link audit table.
 - **Contact Form Walkthrough**: [`CONTACT-FORM-WALKTHROUGH.md`](./CONTACT-FORM-WALKTHROUGH.md) — Architectural overview, end-to-end data flow, UX states, accessibility, and security review.
@@ -58,6 +62,7 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Verification & QA Checklist
 
+- [x] **Critique Must-Fixes Deployed**: Scannable action contributions, deepened ResQra architecture specifics, and prominent proof buttons implemented.
 - [x] **Mobile Touch Targets**: All CTAs, navigation links, and form triggers adhere to WCAG 2.1 AA (≥ 44x44px).
 - [x] **iOS Safari Zoom Prevention**: Form inputs configured with `text-base sm:text-xs` to eliminate viewport zoom on focus.
 - [x] **Accessibility & Reduced Motion**: `@media (prefers-reduced-motion: reduce)` implemented in CSS; high-contrast tokens verified.

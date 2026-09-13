@@ -11,9 +11,9 @@ export default function Home() {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-accent/10 via-transparent to-transparent -z-10" />
 
         {/* Identity & Current Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-brand-accent/10 border border-brand-accent/25 rounded-full text-xs font-mono font-semibold text-brand-accent mb-6">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-accent/10 border border-brand-accent/25 rounded-full text-xs font-mono font-semibold text-brand-accent mb-6">
           <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-          <span>Available for Frontend AI Roles • 2026</span>
+          <span>Available for Junior Frontend AI Roles • 2026</span>
         </div>
 
         {/* Name & Positioning */}
@@ -102,10 +102,10 @@ export default function Home() {
               <div className="p-3.5 sm:p-4 bg-brand-bg/60 rounded-xl border border-brand-border/60 mb-4">
                 <h4 className="text-[11px] sm:text-xs font-bold font-mono text-brand-text uppercase mb-2">What I Actually Built &amp; Contributed:</h4>
                 <ul className="text-xs sm:text-sm text-brand-muted space-y-1.5 list-disc list-inside">
-                  <li>Engineered the React candidate interview workspace and recruiter scoring dashboard.</li>
-                  <li>Integrated an Adaptive Difficulty Controller that scales question complexity dynamically based on candidate response scores.</li>
-                  <li>Implemented secure backend API proxying in FastAPI to route Gemini 2.5 Flash Lite calls without exposing Google credentials in the client bundle.</li>
-                  <li>Built local interview timers, loading skeletons, and validation guards to handle network timeouts gracefully.</li>
+                  <li><strong>Engineered</strong> the React candidate interview workspace and recruiter scoring dashboard with dynamic score telemetry.</li>
+                  <li><strong>Integrated</strong> an Adaptive Difficulty Controller that scales question complexity dynamically based on candidate response scores.</li>
+                  <li><strong>Implemented</strong> secure backend API proxying in FastAPI to route Gemini 2.5 Flash Lite calls without exposing Google credentials in the client bundle.</li>
+                  <li><strong>Built</strong> local interview timers, loading skeletons, and validation guards to handle network timeouts gracefully.</li>
                 </ul>
               </div>
             </div>
@@ -118,21 +118,21 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <Link
                   href="/projects/hirevium"
-                  className="min-h-[44px] flex items-center text-xs font-bold text-brand-accent hover:underline gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-slate-100 font-bold text-xs rounded-xl border border-brand-accent/20 transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>View Case Study</span>
+                  <span>Read Case Study</span>
                   <span aria-hidden="true">→</span>
                 </Link>
                 <a
                   href="https://github.com/Adityasri05/frontend-ai-capstone"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] flex items-center text-xs font-mono text-brand-muted hover:text-brand-text gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-bg hover:bg-brand-border text-brand-muted hover:text-brand-text font-mono text-xs rounded-xl border border-brand-border transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>GitHub</span>
+                  <span>View Source</span>
                   <span aria-hidden="true">↗</span>
                 </a>
               </div>
@@ -163,10 +163,10 @@ export default function Home() {
               <div className="p-3.5 sm:p-4 bg-brand-bg/60 rounded-xl border border-brand-border/60 mb-4">
                 <h4 className="text-[11px] sm:text-xs font-bold font-mono text-brand-text uppercase mb-2">What I Actually Built &amp; Contributed:</h4>
                 <ul className="text-xs sm:text-sm text-brand-muted space-y-1.5 list-disc list-inside">
-                  <li>Built the Next.js search dashboard featuring grounded RAG responses with numbered inline citation badges [1], [2].</li>
-                  <li>Engineered a sliding side drawer panel with accessible keyboard focus trapping to let users inspect source paragraphs side-by-side without losing search state.</li>
-                  <li>Implemented color-coded trust score indicators to communicate model grounding confidence directly to users.</li>
-                  <li>Integrated tRPC for end-to-end type safety between the retrieval backend and UI components.</li>
+                  <li><strong>Built</strong> the Next.js search dashboard featuring grounded RAG responses with numbered inline citation badges [1], [2].</li>
+                  <li><strong>Engineered</strong> a sliding side drawer panel with accessible keyboard focus trapping to let users inspect source paragraphs side-by-side without losing search state.</li>
+                  <li><strong>Implemented</strong> color-coded trust score indicators to communicate model grounding confidence directly to users.</li>
+                  <li><strong>Integrated</strong> tRPC for end-to-end type safety between the retrieval backend and UI components.</li>
                 </ul>
               </div>
             </div>
@@ -179,21 +179,21 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <Link
                   href="/projects/indra-ai"
-                  className="min-h-[44px] flex items-center text-xs font-bold text-brand-accent hover:underline gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-slate-100 font-bold text-xs rounded-xl border border-brand-accent/20 transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>View Case Study</span>
+                  <span>Read Case Study</span>
                   <span aria-hidden="true">→</span>
                 </Link>
                 <a
                   href="https://github.com/Adityasri05/frontend-ai-capstone"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] flex items-center text-xs font-mono text-brand-muted hover:text-brand-text gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-bg hover:bg-brand-border text-brand-muted hover:text-brand-text font-mono text-xs rounded-xl border border-brand-border transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>GitHub</span>
+                  <span>View Source</span>
                   <span aria-hidden="true">↗</span>
                 </a>
               </div>
@@ -224,10 +224,10 @@ export default function Home() {
               <div className="p-3.5 sm:p-4 bg-brand-bg/60 rounded-xl border border-brand-border/60 mb-4">
                 <h4 className="text-[11px] sm:text-xs font-bold font-mono text-brand-text uppercase mb-2">What I Actually Built &amp; Contributed:</h4>
                 <ul className="text-xs sm:text-sm text-brand-muted space-y-1.5 list-disc list-inside">
-                  <li>Built the agent decision dashboard with a progressive disclosure pipeline: Planning → Crawling → Scoring → Report.</li>
-                  <li>Created collapsible live scraper log panels so users can observe agent progress without getting overwhelmed by raw crawler dumps.</li>
-                  <li>Implemented resilient HTTP polling hooks with error badge triggers (rate limits, timeouts) and one-click retry actions.</li>
-                  <li>Designed structured vendor comparison matrices comparing pricing tiers and feature checkboxes side-by-side.</li>
+                  <li><strong>Built</strong> the agent decision dashboard with a progressive disclosure pipeline: Planning → Crawling → Scoring → Report.</li>
+                  <li><strong>Created</strong> collapsible live scraper log panels so users can observe agent progress without getting overwhelmed by raw crawler dumps.</li>
+                  <li><strong>Implemented</strong> resilient HTTP polling hooks with error badge triggers (rate limits, timeouts) and one-click retry actions.</li>
+                  <li><strong>Designed</strong> structured vendor comparison matrices comparing pricing tiers and feature checkboxes side-by-side.</li>
                 </ul>
               </div>
             </div>
@@ -240,21 +240,21 @@ export default function Home() {
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <Link
                   href="/projects/stackscout"
-                  className="min-h-[44px] flex items-center text-xs font-bold text-brand-accent hover:underline gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-accent/10 hover:bg-brand-accent text-brand-accent hover:text-slate-100 font-bold text-xs rounded-xl border border-brand-accent/20 transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>View Case Study</span>
+                  <span>Read Case Study</span>
                   <span aria-hidden="true">→</span>
                 </Link>
                 <a
                   href="https://github.com/Adityasri05/frontend-ai-capstone"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] flex items-center text-xs font-mono text-brand-muted hover:text-brand-text gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-bg hover:bg-brand-border text-brand-muted hover:text-brand-text font-mono text-xs rounded-xl border border-brand-border transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>GitHub</span>
+                  <span>View Source</span>
                   <span aria-hidden="true">↗</span>
                 </a>
               </div>
@@ -269,7 +269,7 @@ export default function Home() {
                   Emergency Intelligence Platform
                 </span>
               </div>
-              <span className="text-[11px] sm:text-xs font-mono text-brand-muted">Real-time Telemetry / Triage</span>
+              <span className="text-[11px] sm:text-xs font-mono text-brand-muted">Real-time Telemetry / Triage State Machine</span>
             </div>
 
             <div>
@@ -277,37 +277,38 @@ export default function Home() {
                 ResQra — AI Emergency Intelligence &amp; Dispatch Triage
               </h3>
               <p className="text-xs sm:text-sm font-semibold text-brand-text/90 mb-3 leading-relaxed">
-                <strong>What is it?</strong> A real-time incident triage and dispatch interface combining AI classification with live telemetry feeds.
+                <strong>What is it?</strong> A real-time incident triage and dispatch interface combining AI severity classification with live telemetry feeds.
               </p>
               <p className="text-xs sm:text-sm text-brand-muted leading-relaxed mb-4">
-                <strong>What problem does it solve?</strong> First-response dispatchers experience heavy cognitive load during multi-incident emergencies when incoming reports need immediate severity ranking.
+                <strong>What problem does it solve?</strong> First-response dispatchers experience heavy cognitive load during multi-incident emergencies when incoming reports need immediate severity ranking and geospatial triage.
               </p>
               <div className="p-3.5 sm:p-4 bg-brand-bg/60 rounded-xl border border-brand-border/60 mb-4">
                 <h4 className="text-[11px] sm:text-xs font-bold font-mono text-brand-text uppercase mb-2">What I Actually Built &amp; Contributed:</h4>
                 <ul className="text-xs sm:text-sm text-brand-muted space-y-1.5 list-disc list-inside">
-                  <li>Built the incident management dashboard with triage severity tags (Critical, High, Moderate).</li>
-                  <li>Designed clear visual hierarchy to highlight urgent alerts, responder availability, and location coordinates.</li>
-                  <li>Handled transient network conditions and latency with offline states and error boundaries.</li>
+                  <li><strong>Architected</strong> the real-time incident triage dashboard with automated severity ranking (Critical, High, Moderate).</li>
+                  <li><strong>Engineered</strong> a resilient client-side state machine handling live responder availability and geospatial coordinates.</li>
+                  <li><strong>Implemented</strong> offline caching and error boundaries so dispatchers never lose active incident data during cellular drops.</li>
+                  <li><strong>Designed</strong> high-contrast visual status badges ensuring urgent alerts stand out immediately in emergency dispatch environments.</li>
                 </ul>
               </div>
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-brand-border/50">
               <div className="flex flex-wrap gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-mono">
-                {['Next.js', 'TypeScript', 'Telemetry Feed', 'Tailwind CSS', 'Triage Logic'].map((tag) => (
+                {['Next.js', 'TypeScript', 'Telemetry Feed', 'Tailwind CSS', 'Triage State Machine'].map((tag) => (
                   <span key={tag} className="px-2 py-0.5 sm:px-2.5 sm:py-1 bg-brand-bg rounded-lg border border-brand-border text-brand-text">
                     {tag}
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 <a
                   href="https://github.com/Adityasri05/frontend-ai-capstone"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="min-h-[44px] flex items-center text-xs font-mono text-brand-muted hover:text-brand-text gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent rounded"
+                  className="min-h-[40px] px-3.5 py-2 bg-brand-bg hover:bg-brand-border text-brand-muted hover:text-brand-text font-mono text-xs rounded-xl border border-brand-border transition-all flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
                 >
-                  <span>GitHub</span>
+                  <span>View Source</span>
                   <span aria-hidden="true">↗</span>
                 </a>
               </div>
