@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import ContactForm from '../components/contact/ContactForm';
 
 export default function Home() {
   return (
@@ -44,6 +45,13 @@ export default function Home() {
           >
             <span>View Selected Work</span>
             <span aria-hidden="true">↓</span>
+          </a>
+
+          <a
+            href="#contact"
+            className="px-6 py-3 bg-brand-bg hover:bg-brand-card text-brand-text border border-brand-border font-semibold text-sm rounded-xl transition-all duration-300 active:scale-95"
+          >
+            Send Message
           </a>
 
           <a
@@ -515,33 +523,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. CONTACT CTA SECTION */}
-      <section id="contact" className="scroll-mt-24 text-center py-12 px-6 bg-gradient-to-b from-brand-card to-brand-card/40 border border-brand-border rounded-3xl shadow-brand-shadow-lg">
-        <div className="max-w-2xl mx-auto space-y-4">
+      {/* 7. REAL CONTACT FORM & DIRECT CHANNELS SECTION */}
+      <section id="contact" className="scroll-mt-24 py-12 px-4 sm:px-8 bg-gradient-to-b from-brand-card to-brand-card/40 border border-brand-border rounded-3xl shadow-brand-shadow-lg">
+        <div className="max-w-3xl mx-auto text-center space-y-4 mb-10">
           <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-brand-accent uppercase tracking-wider">
             <span>Get in Touch</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-brand-text font-display">
             Let&apos;s Build AI-Powered Interfaces Together
           </h2>
-          <p className="text-sm text-brand-muted leading-relaxed">
+          <p className="text-sm text-brand-muted leading-relaxed max-w-xl mx-auto">
             I am actively seeking junior Frontend AI Engineering roles, internships, and opportunities to build resilient, AI-integrated web applications.
           </p>
-          <div className="pt-4 flex flex-wrap justify-center gap-4 items-center">
+        </div>
+
+        {/* Real Dynamic Contact Form */}
+        <ContactForm />
+
+        {/* Alternative Direct Channels */}
+        <div className="mt-10 pt-8 border-t border-brand-border/60 text-center">
+          <p className="text-xs font-mono text-brand-muted mb-4 uppercase tracking-wider">
+            Or connect via direct social channels:
+          </p>
+          <div className="flex flex-wrap justify-center gap-4 items-center">
             <a
               href="https://www.linkedin.com/in/aditya-srivastav-64906927a/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-brand-accent hover:bg-brand-primary-hover text-slate-100 font-bold text-sm rounded-xl transition-all duration-300 active:scale-95 shadow-md flex items-center gap-2"
+              className="px-6 py-2.5 bg-brand-accent hover:bg-brand-primary-hover text-slate-100 font-bold text-xs rounded-xl transition-all duration-300 active:scale-95 shadow-md flex items-center gap-2"
             >
-              <span>Message on LinkedIn</span>
+              <span>LinkedIn Profile</span>
               <span aria-hidden="true">↗</span>
             </a>
             <a
               href="https://github.com/Adityasri05"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 py-3.5 bg-brand-bg hover:bg-brand-border text-brand-text border border-brand-border font-semibold text-sm rounded-xl transition-all duration-300 active:scale-95 flex items-center gap-2"
+              className="px-6 py-2.5 bg-brand-bg hover:bg-brand-border text-brand-text border border-brand-border font-semibold text-xs rounded-xl transition-all duration-300 active:scale-95 flex items-center gap-2"
             >
               <span>GitHub Profile</span>
               <span aria-hidden="true">↗</span>
