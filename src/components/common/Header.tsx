@@ -43,6 +43,27 @@ export default function Header() {
               Home
             </Link>
             
+            <a
+              href="/#work"
+              className="text-xs font-bold tracking-wide text-brand-muted hover:text-brand-text transition-colors duration-200"
+            >
+              Work
+            </a>
+
+            <a
+              href="/#about"
+              className="text-xs font-bold tracking-wide text-brand-muted hover:text-brand-text transition-colors duration-200"
+            >
+              About
+            </a>
+
+            <a
+              href="/#tech"
+              className="text-xs font-bold tracking-wide text-brand-muted hover:text-brand-text transition-colors duration-200"
+            >
+              AI / Tech
+            </a>
+            
             <Link
               href="/projects"
               className={`text-xs font-bold tracking-wide transition-colors duration-200 ${
@@ -116,6 +137,30 @@ export default function Header() {
               Home
             </Link>
             
+            <a
+              href="/#work"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-bold p-2.5 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-card/60 transition-colors"
+            >
+              Work
+            </a>
+
+            <a
+              href="/#about"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-bold p-2.5 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-card/60 transition-colors"
+            >
+              About
+            </a>
+
+            <a
+              href="/#tech"
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-sm font-bold p-2.5 rounded-lg text-brand-muted hover:text-brand-text hover:bg-brand-card/60 transition-colors"
+            >
+              AI / Tech
+            </a>
+
             <Link
               href="/projects"
               onClick={() => setMobileMenuOpen(false)}
