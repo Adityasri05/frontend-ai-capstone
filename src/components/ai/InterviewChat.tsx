@@ -43,6 +43,7 @@ export default function InterviewChat() {
   const [messages, setMessages] = useState<MessageItem[]>([]);
   const [input, setInput] = useState('');
   const [status, setStatus] = useState<ChatStatus>('idle');
+  const [liveAnnouncement, setLiveAnnouncement] = useState<string>('');
   const [activeError, setActiveError] = useState<ChatErrorDetails | null>(null);
   const [inputValidationWarning, setInputValidationWarning] = useState<string | null>(null);
   const [isAtBottom, setIsAtBottom] = useState(true);
@@ -115,6 +116,7 @@ export default function InterviewChat() {
     setActiveError(null);
     setInput('');
     setStatus(isRetry ? 'retrying' : 'submitting');
+    setLiveAnnouncement(isRetry ? 'Retrying previous answer. AI interviewer is thinking...' : 'Answer submitted. AI interviewer is evaluating...');
     setIsAtBottom(true);
 
     // Step 9: Network check before sending
@@ -302,6 +304,9 @@ export default function InterviewChat() {
           }
 
           if (textDelta) {
+            if (receivedTokensCount === 0) {
+              setLiveAnnouncement('AI interviewer is streaming the response.');
+            }
             assistantText += textDelta;
             receivedTokensCount++;
             setStatus('streaming');
@@ -350,13 +355,16 @@ export default function InterviewChat() {
           ],
         });
         setStatus('error');
+        setLiveAnnouncement('The AI interviewer did not produce an answer for this prompt.');
       } else {
         setStatus('idle');
+        setLiveAnnouncement('AI response complete. You can type your next technical answer.');
       }
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') {
         // User clicked Stop
         setStatus('idle');
+        setLiveAnnouncement('AI response generation stopped by candidate.');
       } else {
         // Step 7: Mid-Stream Interruption Handling
         const isMidStream = assistantText.length > 0;
@@ -384,11 +392,13 @@ export default function InterviewChat() {
             type: 'interrupted',
             message: 'Streaming connection was interrupted. Partial response preserved.',
           });
+          setLiveAnnouncement('Streaming connection was interrupted. Partial response preserved.');
         } else {
           setActiveError({
             type: err instanceof TypeError ? 'network' : 'server-error',
             message: errMsg,
           });
+          setLiveAnnouncement(`Error occurred: ${errMsg}`);
         }
         setStatus('error');
       }
@@ -418,6 +428,7 @@ export default function InterviewChat() {
       abortControllerRef.current = null;
     }
     setStatus('idle');
+    setLiveAnnouncement('AI response generation stopped by candidate.');
     textareaRef.current?.focus();
   };
 
@@ -444,6 +455,11 @@ export default function InterviewChat() {
 
   return (
     <div className="flex flex-col h-[calc(100dvh-4rem)] max-w-5xl mx-auto w-full bg-brand-bg relative overflow-hidden">
+      {/* Accessible Screen Reader Status Announcer */}
+      <div role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {liveAnnouncement}
+      </div>
+
       {/* 1. Header Toolbar */}
       <div className="flex-shrink-0 px-4 py-3 bg-brand-card/70 border-b border-brand-border flex items-center justify-between backdrop-blur-md z-20">
         <div className="flex items-center gap-3">
@@ -675,7 +691,7 @@ export default function InterviewChat() {
                   type="button"
                   onClick={handleStop}
                   aria-label="Stop generating response"
-                  className="flex items-center gap-1.5 px-3.5 py-2 bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold rounded-xl shadow-md transition-all active:scale-95 cursor-pointer animate-pulse"
+                  className="flex items-center gap-1.5 px-3.5 py-2 bg-destructive text-destructive-foreground hover:bg-destructive/90 text-xs font-bold rounded-xl shadow-md transition-all active:scale-95 cursor-pointer animate-pulse focus:outline-none focus-visible:ring-2 focus-visible:ring-destructive focus-visible:ring-offset-2"
                 >
                   <Square className="w-3.5 h-3.5 fill-current" aria-hidden="true" />
                   <span>Stop</span>

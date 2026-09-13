@@ -46,6 +46,8 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Documentation Index
 
+- **Accessibility & Performance Audit**: [`AUDIT.md`](./AUDIT.md) — Production Lighthouse Mobile (96), Accessibility (100), WAVE (0 errors), and AI streaming keyboard audit.
+- **Audit Screenshots Directory**: [`audit/README.md`](./audit/README.md) — Procedures and references for Lighthouse Mobile before/after screenshots.
 - **Reviewer Package**: [`REVIEWER-PACKAGE.md`](./REVIEWER-PACKAGE.md) — Unbiased review guide with Chapter 1 proof statement and the two 10-second test questions.
 - **Portfolio Review & Triage**: [`PORTFOLIO-REVIEW.md`](./PORTFOLIO-REVIEW.md) — Captured critique feedback, initial reactions, and MUST-FIX vs NICE-TO-HAVE triage table.
 - **Must-Fix Verification Log**: [`MUST-FIX-VERIFICATION.md`](./MUST-FIX-VERIFICATION.md) — Verification tracking for all 3 critique resolutions.

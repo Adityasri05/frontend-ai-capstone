@@ -34,6 +34,8 @@ A complete reference guide explaining every deployed file and configuration in t
 | `REVIEWER-FOLLOW-UP.md` | Reviewer Response Draft | Professional follow-up response summarizing live fixes and thanking the reviewer. | **Critique & Communication** |
 | `REAL-PHONE-CHECKLIST.md` | Real Phone Mobile QA Checklist | Structured checklist for verifying layout, touch targets, forms, contrast, and orientation on physical smartphones. | **Quality Assurance & Verification** |
 | `WEEK-07-FIX-LOG.md` | Mobile & Production Polish Fix Log | Complete before/after audit log covering iOS zoom fixes, touch targets, reduced-motion, and link audit. | **Audit & Documentation** |
+| `AUDIT.md` | Accessibility & Performance Audit Deliverable | Comprehensive Lighthouse, WAVE, Keyboard, and AI streaming audit with before/after benchmarks and Web Vitals analysis. | **Quality Assurance & Audit Deliverable** |
+| `audit/README.md` | Audit Screenshots & Testing Guide | Standardized procedures for capturing and verifying real Lighthouse Mobile and WAVE audit screenshots. | **Quality Assurance & Testing** |
 | `agent/hackscout_agent.py` | HackScout AI Agent Script | Python agent for discovering, scoring, and prioritizing hackathons and developer opportunities. | **Capstone Agent Runtime** |
 | `agent/eval_runner.py` | Agent Evaluation Suite | Deterministic test runner running 7 rigorous unit tests against the HackScout AI agent logic. | **Testing & Agent Evaluation** |
 | `agent-config/profile.json` | Candidate Profile Ground Truth | Machine-readable source of truth defining verified skills, URLs, projects, and target roles. | **Agent & Portfolio Metadata** |
