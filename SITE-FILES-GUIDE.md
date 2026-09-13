@@ -43,7 +43,14 @@ A complete reference guide explaining every deployed file and configuration in t
 | `HARDENING-REVIEW.md` | External Hardening Review Record | Captured peer reviewer findings, triage table, must-fixes applied, and production verification checklist. | **Review & Quality Assurance** |
 | `src/app/robots.ts` | Robots.txt Route Handler | Generates dynamic `/robots.txt` allowing crawler discovery across all public pages. | **SEO & Discovery** |
 | `src/app/sitemap.ts` | XML Sitemap Route Handler | Generates dynamic `/sitemap.xml` indexing all 7 core portfolio routes. | **SEO & Discovery** |
-| `public/og-image.svg` | Social Open Graph Card Asset | High-resolution 1200×630 vector preview banner for rich social sharing cards. | **SEO & Social Preview** |
+| `src/components/common/FlyRankCredential.tsx` | FlyRank Verified Credential Component | Official FlyRank AI Internship verified credential embed (`FR-D1-T668H-R789R`) linked to `internship.flyrank.ai`. | **Credential & UI Component** |
+| `src/components/common/Footer.tsx` | Site Footer Component | Unified site footer integrating the verified FlyRank credential, social channels, and copyright statement. | **Runtime & Layout Component** |
+| `src/components/analytics/Analytics.tsx` | Asynchronous Analytics Loader | Next.js asynchronous script loader for Google Analytics 4 (`NEXT_PUBLIC_GA_ID`). | **Analytics & Telemetry** |
+| `DOMAIN-SETUP-GUIDE.md` | Custom Domain DNS Setup Guide | Step-by-step registrar, A-record (`75.2.60.5`), and CNAME guide for apex domain connection. | **Infrastructure & DNS Guide** |
+| `DOMAIN-DECISION.md` | Domain Decision Record | Official record documenting production domain, Netlify Edge CDN, and TLS 1.3 encryption. | **Infrastructure Decision** |
+| `ANALYTICS-SETUP-GUIDE.md` | Analytics Configuration Guide | Setup instructions for Google Analytics 4 property, measurement stream, and realtime verification. | **Analytics & Documentation** |
+| `LAUNCH-CHECKLIST.md` | Final Launch Verification Checklist | Comprehensive pre-flight and post-launch verification checklist. | **Quality Assurance & Launch** |
+| `LAUNCH-REPORT.md` | Final Launch & Handoff Report | Complete executive launch report covering domain, HTTPS, analytics, SEO, and FlyRank credential. | **Launch Report & Deliverable** |
 | `agent/hackscout_agent.py` | HackScout AI Agent Script | Python agent for discovering, scoring, and prioritizing hackathons and developer opportunities. | **Capstone Agent Runtime** |
 | `agent/eval_runner.py` | Agent Evaluation Suite | Deterministic test runner running 7 rigorous unit tests against the HackScout AI agent logic. | **Testing & Agent Evaluation** |
 | `agent-config/profile.json` | Candidate Profile Ground Truth | Machine-readable source of truth defining verified skills, URLs, projects, and target roles. | **Agent & Portfolio Metadata** |

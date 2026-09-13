@@ -3,6 +3,8 @@ import "./globals.css";
 import { AuthProvider } from "../features/auth/AuthContext";
 import { FavoritesProvider } from "../features/favourites/FavoritesContext";
 import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
+import Analytics from "../components/analytics/Analytics";
 import { Space_Grotesk, Inter, Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -94,13 +96,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" />
       </head>
       <body className="flex flex-col min-h-screen bg-brand-bg text-brand-text font-sans antialiased selection:bg-brand-primary/30">
+        <Analytics />
         <AuthProvider>
           <FavoritesProvider>
             <Header />
             <main className="flex-grow w-full">{children}</main>
-            <footer className="w-full py-8 text-center text-xs font-mono text-brand-muted border-t border-brand-border bg-brand-card/40">
-              Aditya Srivastav © 2026 • Frontend AI Engineer • Building AI-powered products
-            </footer>
+            <Footer />
           </FavoritesProvider>
         </AuthProvider>
       </body>

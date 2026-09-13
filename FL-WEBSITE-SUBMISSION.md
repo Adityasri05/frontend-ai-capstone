@@ -25,6 +25,20 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ---
 
+## Official FlyRank AI Internship Credential
+- **Credential ID**: `FR-D1-T668H-R789R`
+- **Verification URL**: `https://internship.flyrank.ai/verify?id=FR-D1-T668H-R789R&first_name=Aditya`
+- **Verification Status**: Verified & Integrated into site footer ([`src/components/common/FlyRankCredential.tsx`](./src/components/common/FlyRankCredential.tsx))
+
+---
+
+## Analytics & Telemetry
+- **Provider**: Google Analytics 4 (GA4) / Non-blocking async loader
+- **Configuration Variable**: `NEXT_PUBLIC_GA_ID`
+- **Status**: Loader integrated via [`src/components/analytics/Analytics.tsx`](./src/components/analytics/Analytics.tsx)
+
+---
+
 ## Required Links
 
 - **LinkedIn**: `https://www.linkedin.com/in/aditya-srivastav-64906927a/`
@@ -46,6 +60,11 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Documentation Index
 
+- **Launch Report**: [`LAUNCH-REPORT.md`](./LAUNCH-REPORT.md) — Comprehensive public launch & verification report.
+- **Launch Checklist**: [`LAUNCH-CHECKLIST.md`](./LAUNCH-CHECKLIST.md) — Pre-flight and post-launch checklist.
+- **Domain Setup Guide**: [`DOMAIN-SETUP-GUIDE.md`](./DOMAIN-SETUP-GUIDE.md) — Custom apex domain DNS and registrar setup instructions.
+- **Domain Decision Record**: [`DOMAIN-DECISION.md`](./DOMAIN-DECISION.md) — Official domain architecture and SSL/TLS verification.
+- **Analytics Setup Guide**: [`ANALYTICS-SETUP-GUIDE.md`](./ANALYTICS-SETUP-GUIDE.md) — GA4 property creation, stream setup, and realtime verification.
 - **Break Test Plan**: [`BREAK-TEST-PLAN.md`](./BREAK-TEST-PLAN.md) — Comprehensive edge-case testing matrix covering forms, navigation, AI streaming, and viewports.
 - **Where It Breaks**: [`WHERE-IT-BREAKS.md`](./WHERE-IT-BREAKS.md) — Real failure modes, FIX-NOW items, and honest known limitations.
 - **Hardening Fixes Log**: [`HARDENING-FIXES.md`](./HARDENING-FIXES.md) — Architectural details of double-submit locks, server deduplication, and SEO metadata.
