@@ -128,12 +128,12 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="w-full max-w-xl mx-auto bg-brand-card/70 border border-brand-border rounded-2xl p-6 sm:p-8 backdrop-blur-md shadow-brand-shadow-lg text-left">
+    <div className="w-full max-w-xl mx-auto bg-brand-card/70 border border-brand-border rounded-2xl p-5 sm:p-8 backdrop-blur-md shadow-brand-shadow-lg text-left">
       <div className="mb-6">
         <h3 className="text-xl font-bold text-brand-text mb-1 font-display">
           Send a Direct Message
         </h3>
-        <p className="text-xs text-brand-muted">
+        <p className="text-xs text-brand-muted leading-relaxed">
           Fill out this form to connect about junior Frontend AI roles, project collaborations, or technical questions.
         </p>
       </div>
@@ -157,7 +157,7 @@ export default function ContactForm() {
           <button
             type="button"
             onClick={handleReset}
-            className="px-4 py-2 bg-brand-bg hover:bg-brand-border border border-brand-border text-xs font-semibold text-brand-text rounded-lg transition-colors cursor-pointer"
+            className="min-h-[44px] px-5 py-2.5 bg-brand-bg hover:bg-brand-border border border-brand-border text-xs font-semibold text-brand-text rounded-lg transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
           >
             Send Another Message
           </button>
@@ -196,7 +196,7 @@ export default function ContactForm() {
               aria-live="assertive"
               className="p-3.5 bg-red-950/40 border border-red-500/40 rounded-xl text-xs text-red-300 flex items-start gap-2"
             >
-              <span className="font-bold text-red-400">✕</span>
+              <span className="font-bold text-red-400" aria-hidden="true">✕</span>
               <span>{errors.general}</span>
             </div>
           )}
@@ -223,7 +223,7 @@ export default function ContactForm() {
               aria-required="true"
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? 'name-error' : undefined}
-              className={`w-full px-4 py-2.5 bg-brand-bg border rounded-xl text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all ${
+              className={`w-full px-4 py-3 sm:py-2.5 bg-brand-bg border rounded-xl text-base sm:text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all ${
                 errors.name
                   ? 'border-red-500/80 focus:ring-red-500'
                   : 'border-brand-border hover:border-brand-border/80'
@@ -258,7 +258,7 @@ export default function ContactForm() {
               aria-required="true"
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? 'email-error' : undefined}
-              className={`w-full px-4 py-2.5 bg-brand-bg border rounded-xl text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all ${
+              className={`w-full px-4 py-3 sm:py-2.5 bg-brand-bg border rounded-xl text-base sm:text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all ${
                 errors.email
                   ? 'border-red-500/80 focus:ring-red-500'
                   : 'border-brand-border hover:border-brand-border/80'
@@ -287,7 +287,7 @@ export default function ContactForm() {
               onChange={handleChange}
               disabled={status === 'submitting'}
               placeholder="e.g. Frontend AI Engineering Role / Project"
-              className="w-full px-4 py-2.5 bg-brand-bg border border-brand-border hover:border-brand-border/80 rounded-xl text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all"
+              className="w-full px-4 py-3 sm:py-2.5 bg-brand-bg border border-brand-border hover:border-brand-border/80 rounded-xl text-base sm:text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all"
             />
           </div>
 
@@ -312,7 +312,7 @@ export default function ContactForm() {
               aria-required="true"
               aria-invalid={!!errors.message}
               aria-describedby={errors.message ? 'message-error' : undefined}
-              className={`w-full px-4 py-2.5 bg-brand-bg border rounded-xl text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all resize-none ${
+              className={`w-full px-4 py-3 sm:py-2.5 bg-brand-bg border rounded-xl text-base sm:text-xs text-brand-text placeholder:text-brand-muted/50 focus:outline-none focus:ring-2 focus:ring-brand-accent transition-all resize-none ${
                 errors.message
                   ? 'border-red-500/80 focus:ring-red-500'
                   : 'border-brand-border hover:border-brand-border/80'
@@ -325,13 +325,13 @@ export default function ContactForm() {
             )}
           </div>
 
-          {/* Submit Button */}
+          {/* Submit Button (Min 44px height for mobile touch ergonomics) */}
           <div className="pt-2">
             <button
               type="submit"
               disabled={status === 'submitting'}
               aria-busy={status === 'submitting'}
-              className="w-full py-3 px-6 bg-brand-accent hover:bg-brand-primary-hover disabled:bg-brand-muted/40 disabled:cursor-not-allowed text-slate-100 font-bold text-xs rounded-xl transition-all duration-300 active:scale-[0.98] shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="min-h-[44px] w-full py-3 px-6 bg-brand-accent hover:bg-brand-primary-hover disabled:bg-brand-muted/40 disabled:cursor-not-allowed text-slate-100 font-bold text-xs rounded-xl transition-all duration-300 active:scale-[0.98] shadow-md flex items-center justify-center gap-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
             >
               {status === 'submitting' ? (
                 <>

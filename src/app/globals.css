@@ -14,7 +14,7 @@
   --color-brand-primary-hover: #1d4ed8;
   --color-brand-border: #e2e8f0;
   --color-brand-text: #0f172a;
-  --color-brand-muted: #64748b;
+  --color-brand-muted: #475569;
 
   --radius-brand-rounded-lg: 0.75rem;
   --radius-brand-rounded-xl: 1rem;
@@ -25,16 +25,36 @@
   --shadow-brand-shadow-2xl: 0 25px 50px -12px rgba(15, 23, 42, 0.1);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--background);
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Headings utilize the technical display font (Space Grotesk) */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-space-grotesk), sans-serif;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @theme inline {
@@ -92,7 +112,7 @@ h1, h2, h3, h4, h5, h6 {
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.45 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);

@@ -1,4 +1,4 @@
-# Personal Website & Dynamic Feature — Submission
+# Personal Website & Production Polish — Submission
 
 ## Live URL
 `https://aditya-srivastav.netlify.app` *(or custom Netlify deploy domain connected to repository)*
@@ -20,6 +20,7 @@ Netlify (Static + Next.js App Router Edge Integration)
 - **Destination**: `adityasri1205@gmail.com`
 - **Validation**: Client & server schema validation (name, email, message bounds).
 - **Abuse Prevention**: Invisible honeypot spam trap (`bot-field`) and sliding-window IP rate limiter.
+- **Mobile Ergonomics**: `text-base sm:text-xs` to prevent iOS Safari auto-zoom, and min-h-[44px] touch targets.
 - **States Handled**: Idle, editing, submitting (disabled + spinner), success confirmation, field validation error, server error.
 
 ---
@@ -45,6 +46,8 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Documentation Index
 
+- **Real Phone QA Checklist**: [`REAL-PHONE-CHECKLIST.md`](./REAL-PHONE-CHECKLIST.md) — Physical phone testing instructions covering layout, interaction, contrast, and orientation.
+- **Week 07 Fix Log**: [`WEEK-07-FIX-LOG.md`](./WEEK-07-FIX-LOG.md) — Comprehensive Before/After audit log, mobile findings, a11y improvements, and link audit table.
 - **Contact Form Walkthrough**: [`CONTACT-FORM-WALKTHROUGH.md`](./CONTACT-FORM-WALKTHROUGH.md) — Architectural overview, end-to-end data flow, UX states, accessibility, and security review.
 - **DNS Walkthrough**: [`DNS-WALKTHROUGH.md`](./DNS-WALKTHROUGH.md) — Explains DNS database mapping, CNAME hostname aliasing, 10-step recursive resolution flow, caching, and HTTPS/TLS encryption.
 - **Site Files Guide**: [`SITE-FILES-GUIDE.md`](./SITE-FILES-GUIDE.md) — Exhaustive directory table and architectural breakdown of every deployed component, asset, and config file.
@@ -55,13 +58,14 @@ Netlify (Static + Next.js App Router Edge Integration)
 
 ## Verification & QA Checklist
 
+- [x] **Mobile Touch Targets**: All CTAs, navigation links, and form triggers adhere to WCAG 2.1 AA (≥ 44x44px).
+- [x] **iOS Safari Zoom Prevention**: Form inputs configured with `text-base sm:text-xs` to eliminate viewport zoom on focus.
+- [x] **Accessibility & Reduced Motion**: `@media (prefers-reduced-motion: reduce)` implemented in CSS; high-contrast tokens verified.
 - [x] **Dynamic Contact Feature**: Full submission cycle verified with automated tests and API serverless endpoint.
 - [x] **Site Build**: Compiles cleanly with 0 TypeScript and 0 App Router syntax errors (`npm run build`).
 - [x] **Test Suite**: 31/31 automated unit and component tests passing across 7 test suites (`npm run test:run`).
-- [x] **Visual Identity**: Implements Space Grotesk + Inter typography, `#0f172a` slate palette, and high-contrast accessible tokens.
 - [x] **Desktop Viewport**: Tested layout on 1440px desktop breakpoint (structured grid, sticky navigation, clear hero hierarchy).
 - [x] **Tablet Viewport**: Tested on 768px viewport (2-column cards, fluid spacing).
-- [x] **Mobile Viewport**: Tested on 390px mobile viewport (collapsible hamburger menu, touch targets > 44px, no horizontal scroll).
-- [x] **Accessibility (a11y)**: Semantic HTML (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`, `<nav>`, `<form>`, `<label>`), aria labels, keyboard focus outlines.
+- [x] **Mobile Viewport**: Tested on 320px–414px mobile viewports (collapsible hamburger menu, no horizontal scroll).
 - [x] **Security & Secrets**: 0 exposed client-side API keys; all model operations and form submissions routed via backend proxy designs.
 - [x] **Authenticity**: 0 fabricated metrics, 0 fake awards, 0 exaggerated senior titles.
