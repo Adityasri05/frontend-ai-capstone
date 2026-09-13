@@ -21,8 +21,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "CineTrack — Discover Movies & Catalog Favourites",
-  description: "AI-assisted movie search and catalog application for the FlyRank AI Capstone.",
+  title: "Aditya Srivastav — Frontend AI Engineer",
+  description: "Portfolio of Aditya Srivastav — B.Tech CSE student focused on practical AI product development, resilient frontend interfaces, and LLM workflows.",
 };
 
 export default function RootLayout({

@@ -35,7 +35,7 @@ export default function Header() {
                 AS
               </div>
               <span className="text-sm font-bold tracking-wider text-brand-text group-hover:text-brand-primary transition-colors uppercase">
-                CineTrack
+                Aditya Srivastav
               </span>
             </Link>
           </div>

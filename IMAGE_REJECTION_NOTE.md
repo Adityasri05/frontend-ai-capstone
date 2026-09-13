@@ -1,23 +1,40 @@
-# Image Rejection Note — CineTrack
+# Aditya Srivastav — Portfolio Image Rejection Log
 
-This document details the visual review and rejection of a generated design asset to preserve the portfolio's core positioning of **calm technical craftsmanship**.
+This document details the critical visual review and rejection of candidate AI-generated assets to maintain the portfolio's core positioning of **calm technical craftsmanship**.
 
 ---
 
-## Rejected Asset: Neural Network Glow Graphic
+## 1. Rejected Asset: Neural Network Glow Graphic
 - **Type**: AI-Generated Hero Banner Background
-- **Filename**: `rejected-hero-neural-glow.png`
+- **Identifier**: `rejected-hero-neural-glow.png`
 
-### Description of the Rejected Asset
-The image consisted of a dense, dark mesh representing a neural network node map. It featured vibrant glowing neon indigo and cyan trails with binary numbers (`0` and `1`) floating in the background, complete with a glassmorphic blurred card floating in the center.
+### Description
+A dark, dense mesh network depicting neon indigo and cyan glowing nodes, floating binary digits, and high-contrast glowing trails surrounding a generic glassmorphic card.
 
-### Rationale for Initial Consideration
-As a "Frontend AI Engineer," displaying a neural network mesh map felt like a direct visual indicator of AI capabilities. It was visually striking and matched typical stock graphics seen on tech startup templates.
+### Two-Sentence Rejection Summary
+> *"The image was visually aggressive with neon cyberpunk glows that competed directly with the headline typography, weakening the calm technical hierarchy.*  
+> *It looked like a generic AI template graphic and provided zero tangible evidence of real frontend engineering or practical LLM routing."*
 
-### Why It Was Wrong
-1. **AI Cliché**: It immediately violated the design constraint: *"Avoid purple/blue AI clichés, neon overload, and glowing networks."* It looked like a generic AI landing page instead of a personal developer portfolio.
-2. **Visual Clutter**: The high contrast of the neon lines distracted the eye, pulling attention away from the headline, primary call-to-actions, and main project links.
-3. **Credibility Reduction**: Startup hiring managers value clean, functional engineering layout interfaces. A loud stock graphic makes the site look generic, reducing the credibility of the custom work.
+### Detailed Rejection Reasons
+1. **AI Cliché**: Violates the rule against neon cyberpunk aesthetics, glowing brains, and over-saturated palettes.
+2. **Visual Noise**: Drew the visitor's eyes away from the value proposition and primary LinkedIn CTA.
+3. **Credibility Loss**: Hiring managers look for real UI engineering, not generic stock sci-fi visuals.
 
-### Decided Alternative
-I rejected this graphic in favor of a quiet, vector-based geometric grid background (`public/hero-texture.svg`). The grid provides structural reference lines (like blueprint paper), matching the Cobalt accent (`#2563eb`) at an extremely low opacity (3%). This aligns with the **Calm Technical** visual direction, framing the text without creating visual noise.
+### Chosen Replacement
+Replaced with a lightweight, vector-based geometric grid (`public/hero-texture.svg`) rendering subtle blueprint guidelines in Tech Cobalt (`#2563eb`) at 3% opacity.
+
+---
+
+## 2. Rejected Asset: 3D Mascot Robot with Dashboard
+- **Type**: AI-Generated About / Profile Illustration
+- **Identifier**: `rejected-about-ai-robot.png`
+
+### Description
+A glossy, 3D clay-render style robot hovering while holding an abstract floating tablet displaying pie charts and glowing badges.
+
+### Two-Sentence Rejection Summary
+> *"The visual introduced a cartoonish 3D render language that broke the minimal 2D typographic system of Space Grotesk and Inter.*  
+> *It trivialized AI product development into a decorative toy rather than demonstrating serious software engineering discipline."*
+
+### Chosen Replacement
+Strictly designated for a **Real Human Photograph** of Aditya Srivastav (`public/assets/profile-photo.webp`). While awaiting the final photo upload, an explicit non-deceptive placeholder is maintained.

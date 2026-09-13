@@ -20,6 +20,11 @@ The `frontend-ai-capstone` is a premium, AI-assisted frontend application design
 ## 2. General AI Assistant Instructions
 
 - **Understand First**: Always check existing components and patterns before proposing or writing code. Reference `CLAUDE.md` guidelines at the start of tasks.
+- **Visual Identity & Style Note**:
+  ```text
+  Fonts: Space Grotesk for headings, Inter for body. Palette: #0f172a, #fcfcfd, #334155, #2563eb.
+  Mood: Calm, precise, and technical — the interface stays quiet so the engineering work remains the focus.
+  ```
 - **Provide Actionable & Dry Code**: Avoid generic or incomplete placeholders. Write clean, complete, typed code.
 - **Maintain Documentation Integrity**: Preserve file headers, markdown structures, and existing docstrings unless instructed to delete them.
 - **Explain Intent, Not Code**: Explain *why* a design pattern was used rather than reciting what the code does line-by-line.
