@@ -1,111 +1,94 @@
-# How to Add My Next Case Study
+# How to Add My Next Case Study (`NEXT-CASE-STUDY-GUIDE.md`)
 
-This document details the exact, step-by-step process for adding a new project case study to the portfolio without rebuilding site architecture or losing visual identity.
-
----
-
-## Step 1 — Create the Case Study Content
-
-Target file location for static route:
-```text
-src/app/projects/fragment-shader-hero/page.tsx
-```
-Or for dynamic route lookup:
-```text
-src/app/projects/[slug]/page.tsx
-```
-
-The new file should export a standard Next.js App Router React page component utilizing the brand visual system (`Space Grotesk` headings, `Inter` body, slate card tokens).
+This guide provides exact, step-by-step instructions for adding a new project case study to the portfolio without breaking the existing Next.js 15 App Router architecture, visual identity, or accessibility standards.
 
 ---
 
-## Step 2 — Use the Three-Beat Story
+## A. Where the Next Case Study Goes
 
-Every case study must follow the strict three-beat narrative structure:
+Based on the actual repository architecture (`d:\Hackathon\frontend-ai-capstone`):
+
+- **Portfolio Section:** Projects / Work section (`/projects`)
+- **Project Listing:** `src/app/projects/page.tsx` (`PROJECTS` data array)
+- **Individual Case-Study Route:** `src/app/projects/[slug]/page.tsx` (e.g. `src/app/projects/hackscout-ai/page.tsx`)
+- **Content Source:** Static React / TSX page component utilizing standard layout components & `portfolio-context/` metadata
+- **Main Reusable Component:** Standard Card / Hero / Section containers formatted with Space Grotesk (`font-display`) and Inter (`font-sans`)
+- **Supporting Assets:** `public/images/` or `public/screenshots/` (PNG / SVG asset files)
+- **CTA Location:** Bottom of case study page pointing to GitHub repository, Live Demo / Netlify URL, and contact form (`/contact`)
+
+---
+
+## B. Exact Steps to Add a New Case
+
+Follow this ordered checklist based on the real repository implementation:
+
+1. **Prepare Content & Evidence:** Draft the 3-beat narrative (Problem → What I Did → What Came of It) and gather repository links, evaluation results, and screenshots.
+2. **Create the Case Study Page:** Create a new page file at `src/app/projects/<slug>/page.tsx` (e.g. `src/app/projects/hackscout-ai/page.tsx`).
+3. **Set Up Page Layout & Metadata:** Export page metadata (`title`, `description`, `openGraph`) and build the page header with project category badges.
+4. **Implement Beat 1 — Problem:** Add 2–4 concise paragraphs explaining the specific user problem, technical difficulty, and why it mattered.
+5. **Implement Beat 2 — What I Did:** Add 3–5 detailed bullet points highlighting personal architectural decisions, code contributions, tech stack choices, and safety guardrails.
+6. **Implement Beat 3 — What Came of It:** Add concrete, empirical outcomes (e.g. 7/7 eval pass rate, 60 FPS GLSL performance, 0KB extra bundle size, Lighthouse score 96/100).
+7. **Add Architecture Diagram & Code Snippets:** Insert Mermaid diagram or syntax-highlighted code blocks illustrating key logic.
+8. **Add Supporting Visuals:** Place screenshots or SVG visual diagrams in `public/screenshots/` and render with Next.js `<Image />` components.
+9. **Update Project Index Entry:** Add the project object to the `projects` array in `src/app/projects/page.tsx` with title, category, description, tech tags, and slug link.
+10. **Register in Portfolio Context:** Update `portfolio-context/PROJECTS.md` with the new project metadata, live link, and status.
+11. **Run Local Validation:**
+    ```bash
+    npx tsc --noEmit
+    npm run test:run
+    npm run build
+    ```
+12. **Test Responsive Layout:** Test page layout on desktop (1440px), tablet (768px), and mobile (375px) using browser devtools.
+13. **Deploy & Verify:** Push changes to GitHub `main` branch to trigger Netlify build; verify live page URL.
+
+---
+
+## C. Three-Beat Case-Study Structure
+
+Every portfolio case study must adhere strictly to the Week 2 three-beat narrative:
 
 ### 1. Problem
-* **Who had the problem?**: Visitors and recruiters browsing developer portfolios often see generic dark "cyberpunk" themes or heavy 3D canvas templates that cause GPU throttling, sluggish page loads, and poor text contrast.
-* **What was difficult?**: Creating a distinctive visual background signature using WebGL without importing 600KB+ of Three.js libraries, while guaranteeing WCAG AAA text readability and tab visibility pausing.
-* **Why did it matter?**: The hero section is the first 5-second impression; it must communicate engineering depth and design restraint without compromising accessibility.
+- **Who experienced the problem?** (Specific user audience or developer workflow bottleneck).
+- **What was difficult?** (Technical, UX, or architecture challenge).
+- **Why did it matter?** (Product impact, latency risk, credential safety, or readability).
 
 ### 2. What I Did
-* **Implemented** a raw HTML5 WebGL canvas component (`src/components/hero/FragmentShaderHero.tsx`) rendering a personalized GLSL fragment shader (`src/shaders/heroShader.ts`).
-* **Engineered** multi-frequency sine wave synthesis and 2D domain rotation to simulate an "AI Intelligence Field".
-* **Built** exponential decay magnetic cursor attraction (`exp(-dist * 3.2)`).
-* **Enforced** hardware constraints: DPR cap at `Math.min(devicePixelRatio, 2)`, `document.visibilityState` tab pause listener, `@media (prefers-reduced-motion: reduce)` static frame fallback, and dark vignette overlay (> 15:1 contrast ratio).
+- **Personal Contribution:** What I personally built, decided, tested, or contributed.
+- **Key Technical Decisions:** Explicit choice of frameworks, scoring formulas, state management, or guardrails.
+- **Honest Attribution:** Clear distinction between individual build work and open-source packages or third-party APIs used.
 
-### 3. What Came Of It
-* **60 FPS Graphics Performance**: 0KB external 3D dependency overhead, keeping first-load JS under 112KB.
-* **Lighthouse Mobile Score**: Achieved 96/100 performance and 100/100 accessibility.
-* **100% Production Tested**: Live and operational at `https://frontend-ai-capstone-aditya.netlify.app/`.
-
----
-
-## Step 3 — Add Evidence
-
-Gather and reference the following concrete evidence artifacts:
-- **Live Production URL**: `https://frontend-ai-capstone-aditya.netlify.app/`
-- **GitHub Repository**: `https://github.com/Adityasri05/frontend-ai-capstone`
-- **GLSL Source Code**: `src/shaders/heroShader.ts`
-- **Technical Documentation**: `SHADER-NOTES.md` & `SHADER-WALKTHROUGH.md`
-- **Screenshot Evidence**: `docs/screenshots/hero-shader.svg`
+### 3. What Came of It
+- **Empirical Results:** Benchmark scores, pass rates (e.g. 7/7 eval cases), bundle size impacts, or page load metrics.
+- **Technical Outcome:** Verifiable performance improvement, security hardening, or accessibility compliance.
+- **Deployment Status:** Live URL and open-source GitHub repository proof.
 
 ---
 
-## Step 4 — Add the Case to the Portfolio
+## D. Evidence Checklist
 
-To surface the new case study in the portfolio UI, update these exact repository files:
+Before writing the case study, collect and verify the following evidence artifacts:
 
-1. **Projects Index Page**:
-   - File: `src/app/projects/page.tsx`
-   - Action: Add the project metadata object to the `PROJECTS` array (title, category, tags, case study link `/projects/fragment-shader-hero`).
-2. **Homepage Selected Work (Optional)**:
-   - File: `src/app/page.tsx`
-   - Action: Add a featured project `<article>` card under `#work`.
-3. **Portfolio Context Master Registry**:
-   - File: `portfolio-context/PROJECTS.md`
-   - Action: Register project name, stack, live link, and status.
+- [ ] **Live URL:** Verified production URL (e.g. `https://frontend-ai-capstone-aditya.netlify.app/`)
+- [ ] **GitHub Repository:** Absolute URL to repository (e.g. `https://github.com/Adityasri05/frontend-ai-capstone`)
+- [ ] **Source Code Files:** Absolute file paths to core implementation (e.g. `agent/hackscout_agent.py`)
+- [ ] **Test / Eval Evidence:** Log files or test output demonstrating 100% pass score (e.g. `agent/eval_runner.py`)
+- [ ] **Screenshots / Diagrams:** Clear visual assets of user interface or architectural data flow
+- [ ] **Measurable Outcomes:** Verifiable numbers (Lighthouse 96/100, 60 FPS, 0 KB extra bundle, 7/7 eval cases)
 
 ---
 
-## Step 5 — Check Visual Consistency
+## E. Final Publishing Checklist
 
-Ensure the new case study aligns with `IDENTITY_KIT.md`:
-- **Typography**: Headings use Space Grotesk (`font-display`), body uses Inter (`font-sans`).
-- **Color Tokens**: Background `#fcfcfd`, cards `#f1f5f9`, Slate Navy text `#0f172a`, Tech Cobalt accent `#2563eb`, Slate Border `#e2e8f0`.
-- **Layout & Spacing**: Padding `p-5 sm:p-8`, border radius `rounded-2xl`, subtle shadow `shadow-sm`.
-- **Touch Targets**: All CTA buttons maintain `min-h-[44px]` with visible focus rings (`focus-visible:ring-2 focus-visible:ring-brand-accent`).
+Run this quick audit prior to committing the new case study:
 
----
-
-## Step 6 — Update the Through-Line
-
-Ensure the project narrative reinforces Aditya's core positioning statement:
-> *"Frontend engineer building AI-powered products with practical understanding of LLMs, prompt design, secure API routing, and AI-driven interfaces."*
-
----
-
-## Step 7 — Test the New Case
-
-Run this pre-publish regression checklist:
-- [ ] Case study route `/projects/fragment-shader-hero` loads cleanly.
-- [ ] Project card links work on `/projects` and `/`.
-- [ ] GitHub repository link points to `https://github.com/Adityasri05/frontend-ai-capstone`.
-- [ ] Images/SVGs load without broken asset icons.
-- [ ] Tested responsive layout on mobile (375px) and desktop (1440px).
-- [ ] TypeScript check passes (`npx tsc --noEmit`).
-- [ ] Vitest test suite passes (`npm run test:run`).
-- [ ] Production build succeeds (`npm run build`).
-
----
-
-## Step 8 — Publish
-
-Deploy updates using the standard git push workflow:
-
-```bash
-git add .
-git commit -m "feat(projects): add Fragment Shader Hero case study"
-git push origin main
-```
-Netlify Edge CDN will automatically trigger a production deployment.
+- [ ] **Problem is clear:** Explicitly stated in first 5 seconds of reading
+- [ ] **My contribution is clear:** Personal ownership and design choices highlighted
+- [ ] **Outcome is supported by evidence:** Supported by empirical metrics, no fabricated scores
+- [ ] **Screenshots are real:** Assets exist in `public/` and render clearly
+- [ ] **Links work:** All internal routes (`/projects`) and external links (GitHub/Live) resolve
+- [ ] **Mobile layout works:** Verified on 375px mobile viewport without horizontal overflow
+- [ ] **Accessibility intact:** Headings follow `h1` → `h2` → `h3` hierarchy; contrast > 15:1
+- [ ] **SEO metadata updated:** Page `title` and `description` defined
+- [ ] **Build passes:** `npx tsc --noEmit` and `npm run build` complete with zero errors
+- [ ] **Live page verified:** Netlify production URL verified after git push
+- [ ] **Portfolio index updated:** `src/app/projects/page.tsx` displays the new card

@@ -1,34 +1,65 @@
+# Next Case Study Template (`NEXT-CASE-STUDY-TEMPLATE.md`)
+
+Use this blank 3-beat template when drafting new case studies for the portfolio.
+
+---
+
 # [Project Name]
 
 ## One-line description
-[What it does and for whom.]
+> [What the project does + who it is for in 1 sentence]
 
-## Problem
-[What real problem existed? Who had it, and why was it difficult?]
+---
 
-## What I Did
-[What I personally built and engineered.]
+## 1. Problem
+- **Who had the problem?** [Explain target user or developer workflow bottleneck]
+- **What was difficult?** [Explain technical, latency, or architectural challenge]
+- **Why did it matter?** [Explain product impact, safety risk, or performance requirement]
 
-## Key Decision
-[One important technical decision, alternative considered, and trade-off.]
+---
 
-## What Came Of It
-[Actual outcome, performance score, test coverage, or user impact.]
+## 2. What I Did
+- **Personal Contribution:** [Describe exact components, algorithms, or features you personally engineered]
+- **Implementation Strategy:** [Explain frameworks, state managers, scoring formulas, or proxy APIs used]
+- **Honest Attribution:** [Clarify open-source packages or third-party APIs used vs individual ownership]
 
-## AI Contribution
-[Where AI tools assisted and what I personally verified.]
+### Key Technical Decisions
+- **Decision 1:** [Name decision]
+  - *Why:* [Rationale]
+  - *Trade-off:* [Trade-off accepted]
+- **Decision 2:** [Name decision]
+  - *Why:* [Rationale]
+  - *Trade-off:* [Trade-off accepted]
 
-## Limitation
-[One honest limitation.]
+---
+
+## 3. What Came of It
+- **Empirical Results:** [List verifiable metrics: e.g., 7/7 eval pass rate, 60 FPS, 0KB extra bundle size]
+- **Technical Outcome:** [Describe security hardening, accessibility rating, or architectural stability]
+- **User / Reviewer Feedback:** [Quote reviewer feedback or audit findings if available]
+
+---
 
 ## Evidence
-- **Live Demo**: [URL]
-- **GitHub Repository**: [URL]
-- **Source Code**: [Path]
-- **Screenshots**: [Path]
+
+- **Live Production URL:** [https://...]
+- **GitHub Repository:** [https://github.com/...]
+- **Screenshots / Diagrams:** [`public/screenshots/...`]
+- **Automated Tests / Evals:** [Test suite execution log or file path]
+- **Key Metrics:** [Verifiable benchmark numbers]
+
+---
 
 ## What I Learned
-[Specific technical or architectural lesson.]
+- [Key engineering insight or architectural lesson learned during development]
 
-## Next Step
-[What I would improve in the next iteration.]
+---
+
+## What I Would Improve Next
+- [Realistic future enhancement based on current limitations]
+
+---
+
+## Final CTA
+- [View GitHub Code](https://github.com/...)
+- [Try Live Demo](https://...)
