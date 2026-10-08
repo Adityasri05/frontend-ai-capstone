@@ -1,18 +1,17 @@
 # Next Case Study Calendar Reminder (`NEXT-CASE-REMINDER.md`)
 
-This document provides exact details for setting a manual reminder to publish the **HackScout AI** case study.
+This document provides exact parameters and manual setup instructions for setting a calendar reminder to publish the **HackScout AI** case study.
 
 ---
 
-## Reminder Details
+## Reminder Parameters
 
-- **Reminder Title:** `"Add the next portfolio case study: HackScout AI"`
-- **Recommended Reminder Date:** October 15, 2026
-- **Recommended Reminder Time:** 10:00 AM IST
-- **Recurrence:** Monthly / After completing major AI engineering projects
-- **Reminder Notification Text:**
-  > *"Time to update the portfolio! Follow `NEXT-CASE-STUDY-GUIDE.md` to add the HackScout AI case study to `src/app/projects/hackscout-ai/page.tsx`."*
-- **Where to Set Manually:** Google Calendar / Apple Reminders / Phone Calendar App
+- **Title:** `Add HackScout AI case study to portfolio`
+- **Recommended Date:** October 15, 2026
+- **Recommended Time:** 10:00 AM IST
+- **Recurrence:** Monthly / After major project completions
+- **Reminder Text:**
+  > `Use NEXT-CASE-STUDY-GUIDE.md. Write the case using Problem → What I Did → What Came of It, verify evidence, add it to the portfolio, test, deploy, and update portfolio context.`
 - **Target Guide Document:** [`NEXT-CASE-STUDY-GUIDE.md`](file:///d:/Hackathon/frontend-ai-capstone/NEXT-CASE-STUDY-GUIDE.md)
 
 ---
@@ -20,17 +19,18 @@ This document provides exact details for setting a manual reminder to publish th
 ## Reminder Status
 
 ```text
-MANUAL — Reminder instructions prepared for Google Calendar / Mobile Reminders
+MANUAL — reminder has not been created by Antigravity.
 ```
 
-*(Note: The repository environment does not have direct write access to your personal phone or external calendar service. Please copy the details above into your calendar app).*
+*(Note: The current environment does not possess direct write access to your personal phone or external calendar account. Please manually create this event in your calendar system).*
 
 ---
 
-## Manual Setup Verification Checklist
+## Manual Creation Checklist
 
-- [ ] Open Google Calendar / Apple Reminders on your device.
-- [ ] Create event: `"Add the next portfolio case study: HackScout AI"`.
-- [ ] Set date to **October 15, 2026 @ 10:00 AM**.
-- [ ] Add description link pointing to [`NEXT-CASE-STUDY-GUIDE.md`](file:///d:/Hackathon/frontend-ai-capstone/NEXT-CASE-STUDY-GUIDE.md).
-- [ ] Save event with 15-minute advance notification.
+Please create this reminder manually in your preferred calendar system:
+
+- [ ] **Google Calendar / Apple Reminders:** Create event titled `"Add HackScout AI case study to portfolio"`.
+- [ ] **Date & Time:** Set for **October 15, 2026 @ 10:00 AM IST**.
+- [ ] **Description:** Paste the reminder text and link to [`NEXT-CASE-STUDY-GUIDE.md`](file:///d:/Hackathon/frontend-ai-capstone/NEXT-CASE-STUDY-GUIDE.md).
+- [ ] **Notification:** Enable a 15-minute advance alert.
