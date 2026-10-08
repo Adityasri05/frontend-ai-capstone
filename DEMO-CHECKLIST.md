@@ -1,28 +1,27 @@
-# FL-09 — Demo Recording & Quality Checklist
+# FL-09 AGENT DEMO RECORDING CHECKLIST
 
-Use this checklist before, during, and after recording the 3–5 minute video demo.
+Use this checklist prior to recording and uploading the live agent demo video.
 
----
+```text
+FL-09 AGENT DEMO
 
-## Pre-Recording Setup
-- [x] Application opens successfully at `https://frontend-ai-capstone-aditya.netlify.app/`.
-- [x] Production environment and fallback demo stream tested and verified.
-- [x] Browser notifications, popups, and bookmarks bar hidden.
-- [x] API keys and sensitive environment files verified hidden.
-- [x] Screen recording resolution set to `1920x1080` (1080p).
-- [x] Microphone audio level and clarity tested.
-
-## Recording Verification (3–5 Minutes)
-- [x] Duration: Script timed for 3:30 – 4:00 minutes.
-- [x] Real Application: Showed actual live site (no PowerPoint slides).
-- [x] End-to-End Flow: Demonstrated homepage hero shader → HIREVIUM AI streaming → `scoreCandidate` tool execution.
-- [x] Design Decision Explained: Mentioned native WebGL canvas vs Three.js bundle trade-off (~600KB saved).
-- [x] Honest Limitation Explained: Mentioned in-memory rate-limiting limitations across serverless cold starts.
-- [x] AI Transparency: Clarified server-side API proxying and `ANTHROPIC_API_KEY` protection.
-- [x] Final Result Shown: Exhibited Candidate Qualification Score Card and live deployment links.
-
-## Post-Recording Verification (Manual Actions)
-- [ ] Video recorded (3–5 min duration).
-- [ ] Video uploaded to YouTube (Unlisted) / Loom / Vimeo.
-- [ ] Video link added to `SHOWCASE-POST.md` and `INDEX.md`.
-- [ ] Video playback verified in incognito window.
+[ ] Duration between 3 and 5 minutes
+[ ] Real application shown (Python agent CLI & VS Code / Terminal)
+[ ] No slide deck
+[ ] Real end-to-end run executed live
+[ ] Input query shown clearly in terminal
+[ ] Agent evaluation behavior & scoring shown
+[ ] Tool/data interaction shown (search_opportunities & profile.json)
+[ ] Final Markdown output table & top recommendation shown
+[ ] Clear voice narration recorded via microphone
+[ ] One design decision explained on camera (Deterministic 5-tier scoring vs LLM prompt)
+[ ] One guardrail or limitation explained on camera (Automated registration interception block)
+[ ] AI involvement accurately described in README and script
+[ ] No API keys visible during terminal recording
+[ ] No personal secrets or environment credentials visible
+[ ] Browser notifications/popups disabled
+[ ] Recording quality readable (1080p resolution recommended)
+[ ] Final video uploaded to YouTube
+[ ] YouTube video visibility set to Unlisted
+[ ] Video URL verified in Incognito/Private browser window
+```

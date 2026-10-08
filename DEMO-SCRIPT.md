@@ -1,63 +1,84 @@
-# FL-09 — 4-Minute Demo Video Script
+# HackScout AI — Live Demo Video Script & Narration (FL-09)
 
-**Target Duration**: 3:30 – 4:00 minutes  
-**Format**: Live application screen recording + developer voice narration (No PowerPoint slides)  
-**Presenter**: Aditya Srivastav (Frontend AI Engineer)
-
----
-
-## 0:00 – 0:20 | Introduction (18 seconds)
-
-> *"Hi everyone, I'm Aditya Srivastav. This is my Frontend AI Engineering Capstone—a production developer portfolio and AI product showcase.
-> 
-> It's built for technical recruiters and engineering leads to evaluate how I build resilient human-AI interfaces, secure API proxies, and accessible WebGL graphics using Next.js 15, React 19, TypeScript, and the Vercel AI SDK."*
+**Target Video Duration:** ~4 Minutes (Acceptable range: 3–5 minutes)
+**Format:** Live screen capture of terminal & code execution (No slides)
+**Presenter:** Aditya Srivastav
 
 ---
 
-## 0:20 – 1:00 | Starting State & Hero Signature (35 seconds)
+## Timeline & Script Breakdown
 
-> *"Let's open the live application at frontend-ai-capstone-aditya.netlify.app.
-> 
-> Right away in the hero section, you're looking at my personalized Fragment Shader Hero signature. I call this the 'AI Intelligence Field'.
-> 
-> Notice how as I move my cursor across the hero, the GLSL wave field magnetically distorts towards the pointer. This isn't a pre-rendered video—it's pure WebGL compiling custom fragment GLSL shaders in real time. It's capped at Device Pixel Ratio 2, pauses automatically if I switch browser tabs to save battery, and has a dark contrast overlay ensuring text contrast exceeds 15-to-1."*
+### 0:00–0:20 — What is this?
 
----
+**Visual:** Terminal showing repository root `frontend-ai-capstone` and VS Code split screen with `agent/hackscout_agent.py`.
 
-## 1:00 – 2:15 | Live End-to-End AI Run — HIREVIUM Workspace (75 seconds)
-
-> *"Now let's jump into the core AI integration: HIREVIUM, my dual-sided AI Technical Qualification Interviewer.
-> 
-> I'll type a technical answer about Next.js 15 streaming architecture and press Send.
-> 
-> Notice how response tokens stream in real time. All Anthropic Claude calls route securely through my backend API endpoint at `/api/chat`. My server proxy validates payload schemas, enforces a 10 request-per-minute IP rate limit, and strictly protects the `ANTHROPIC_API_KEY` server-side so keys never leak to client JavaScript.
-> 
-> Now, I'll type 'Evaluate my performance and generate my scorecard.' Watch what happens:
-> 
-> Claude invokes a server-side tool called `scoreCandidate`. The server streams tool execution events directly to the UI—first showing `input-streaming`, then executing the assessment, and rendering this structured Candidate Qualification Score Card with score metrics and technical strengths."*
+**Spoken Narration:**
+> "Hi everyone, I'm Aditya Srivastav, a Computer Science student and Frontend AI Engineer. Today I'm demonstrating **HackScout AI**, an autonomous decision-support agent I built to discover, evaluate, score, and rank live hackathons and AI opportunities specifically tailored to my profile and tech stack, while keeping external registration actions safely under human control."
 
 ---
 
-## 2:15 – 2:50 | Key Technical & Architectural Decision (35 seconds)
+### 0:20–0:45 — What I'm About to Demonstrate
 
-> *"One technical decision I made here was to use a native HTML5 WebGL canvas context for the fragment shader rather than importing Three.js or React Three Fiber.
-> 
-> By writing raw GLSL shader code in `src/shaders/heroShader.ts`, I eliminated over 600KB of 3D engine bundle bloat. This allowed the homepage first-load JS to remain under 112KB while achieving 60 FPS animation performance and instant reduced-motion fallback."*
+**Visual:** Terminal ready to execute `python agent/hackscout_agent.py`.
 
----
-
-## 2:50 – 3:30 | Real Honest Limitation (40 seconds)
-
-> *"One real limitation I want to be clear about is my IP rate limiting implementation.
-> 
-> Right now, the sliding-window rate limiter in `/api/chat` uses an in-memory JavaScript Map on the serverless handler. While this effectively blocks single-client script spam, in a multi-region serverless environment where cold starts spin up separate instances, state isn't shared across regions. 
-> 
-> In a V2 production upgrade, I would back this rate limiter with a centralized Redis instance using Upstash."*
+**Spoken Narration:**
+> "In this demo, I'm going to give HackScout AI a realistic query: 'Find the best AI hackathons for me that I could realistically participate in, and prioritize the top opportunities based on eligibility, deadline lead time, and project synergy.' I'll show how it fetches live listings, runs a multi-criteria scoring algorithm, filters out ineligible programs, and generates an actionable report."
 
 ---
 
-## 3:30 – 4:00 | Conclusion & Wrap-Up (25 seconds)
+### 0:45–2:20 — Live End-to-End Agent Run
 
-> *"To summarize: I've shipped a fully hardened portfolio featuring WebGL graphics, verifiable AI tool outputs, 31 automated Vitest unit tests, and 100% WCAG AA accessibility.
+**Visual:** Run `python agent/hackscout_agent.py` in terminal. The formatted Markdown report streams into the console.
+
+**Spoken Narration:**
+> *(Executing command)* "Let's run `python agent/hackscout_agent.py`.
 > 
-> You can clone the repository, follow the setup guide in the README, or test the live deployment link directly. Thank you for watching!"*
+> As you can see, the agent immediately ingests my ground-truth profile from `agent-config/profile.json` — which includes my skills in React 19, Next.js, FastAPI, and Gemini, alongside my portfolio projects like StackScout and INDRA AI.
+> 
+> Next, it queries `search_opportunities()` across active competition listings from LabLab.ai, Devpost, Kaggle, and Unstop.
+> 
+> For each competition, it calculates a 5-tier Personal Fit Score out of 100 points:
+> - Skill Fit (30%)
+> - Eligibility Fit (25%)
+> - Deadline Feasibility (20%)
+> - Project Synergy (15%)
+> - Value and Effort (10%)
+> 
+> Notice how it ranked the **Gemini AI Agents Challenge** #1 with a Fit Score of 90/100, because it directly matches my Next.js and FastAPI stack, has 24 days of remaining lead time, and synergizes with my agent portfolio work.
+> 
+> Beneath the ranking table, the agent provides a deep dive on why it fits, eligibility verification, and actionable next steps."
+
+---
+
+### 2:20–2:55 — Key Design Decision Explained
+
+**Visual:** Scroll to `score_opportunity()` in `agent/hackscout_agent.py` (line 162).
+
+**Spoken Narration:**
+> "One key design decision I made here was implementing a **deterministic 5-tier mathematical scoring formula** rather than relying purely on LLM prompt evaluations.
+> 
+> In early tests with pure LLM scoring, scores fluctuated non-deterministically across runs. By grounding the evaluation in explicit weights — such as 25% for eligibility and 20% for deadline lead-time calculation — the agent's evaluation results become 100% reproducible and verifiable, which was critical for automated testing in `agent/eval_runner.py`."
+
+---
+
+### 2:55–3:30 — Guardrail / Limitation Demonstrated
+
+**Visual:** Run `python agent/hackscout_agent.py "Register me for the top hackathon right now"`. Show safety response. Also run `python agent/eval_runner.py`.
+
+**Spoken Narration:**
+> "One explicit guardrail I built in is the **Automated Registration Interception**.
+> 
+> If I ask the agent: 'Register me for the top hackathon right now', it immediately triggers a safety intercept: `⚠️ Guardrail Notice: Automated Registration Blocked`.
+> 
+> HackScout AI operates strictly as a decision-support scout and refuses to submit forms, handle personal credentials, or accept terms on external sites automatically. It preserves official portal links so I retain complete human control over actual applications.
+> 
+> Here in `agent/eval_runner.py`, you can see all 7 automated evaluation test cases — including this guardrail and PhD program disqualification — passing with a 100% pass score."
+
+---
+
+### 3:30–4:00 — Result and Close
+
+**Visual:** Switch to browser showing the deployed web app `https://frontend-ai-capstone-aditya.netlify.app/`.
+
+**Spoken Narration:**
+> "To wrap up, HackScout AI successfully automates the tedious research of opportunity scouting without taking risky external actions. The code, test suite, and portfolio web application are fully open-sourced on GitHub. Thank you for watching!"
