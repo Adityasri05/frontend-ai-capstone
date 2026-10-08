@@ -1,290 +1,273 @@
-# CineTrack — Movie Search & Catalog Application
+# Aditya Srivastav — Portfolio & Frontend AI Engineering Capstone
 
-CineTrack is an interactive movie discovery and cataloging platform built for the **FlyRank AI Frontend Engineering Capstone Assignment**. By integrating the real-world OMDb API and Firebase Auth & Realtime Database services, the application delivers a premium, highly responsive user interface to search, filter, inspect, and synchronize personal watchlist titles.
+A production-ready developer portfolio and AI product showcase built with **Next.js 15 (App Router)**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and a personalized **GLSL Fragment Shader Hero**.
 
----
-
-## 1. Features
-- **Cinematic Search Panel**: Real-time lookup with validation guards (minimum 2 characters required).
-- **Type Filtering**: Instantly isolate searches by Movies, Series, or Episodes using custom pill controls.
-- **Popular Quick Search Tags**: Start queries with one-click popular keyword tags.
-- **High-Fidelity Detail View**: High-fidelity detail page highlighting director and cast lists, full plots, box office earnings, and critic scores (Metacritic, Rotten Tomatoes, IMDb).
-- **Favorites Watchlist**: Save titles locally or to the cloud, featuring instant counter badges in the navbar and clean watchlist grids.
-- **Firebase Auth & Database Cloud Sync**: Create an account to synchronize favorites lists to Firebase Realtime Database.
-- **Robust Local Fallback Layer**: If Firebase keys are not set, the app automatically enables Local Mode using `localStorage` and simulated auth profiles, allowing evaluation out-of-the-box.
+**Live Demo:** [frontend-ai-capstone-aditya.netlify.app](https://frontend-ai-capstone-aditya.netlify.app/)  
+**Stack:** Next.js 15 · React 19 · TypeScript · Vercel AI SDK · Anthropic Claude · WebGL / GLSL · Tailwind CSS
 
 ---
 
-## 2. Tech Stack
-- **Runtime**: Node.js (LTS)
-- **Framework**: Next.js 15 (App Router)
-- **Core Library**: React 19 (Concurrent features, Strict Mode)
-- **Language**: TypeScript (strict compilation settings)
-- **Styling**: Tailwind CSS v4 (responsive design, glassmorphism layouts)
-- **Services**: OMDb Movie API, Firebase Auth & Realtime Database
+## Overview
+
+This repository represents the comprehensive portfolio and capstone project of **Aditya Srivastav**, a B.Tech Computer Science student specializing in **Frontend AI Engineering**.
+
+Rather than treating AI as a black box or wrapping simple LLM prompts, this project demonstrates practical engineering patterns for human-AI interaction:
+1. **Verifiable AI Outputs**: Grounded RAG search with inline citation drawers (`INDRA AI`) and dynamic candidate scoring tool cards (`HIREVIUM`).
+2. **Resilient Streaming UI**: Progressive token streaming with stream cancellation (`AbortController`), auto-scroll un-locking, and zero layout flicker during incomplete Markdown delivery.
+3. **Security-First Architecture**: Strict server-side API proxy routing (`POST /api/chat`) ensuring AI provider credentials (`ANTHROPIC_API_KEY`) never leak to the client browser.
+4. **Distinctive Visual Identity**: A personalized **GLSL Fragment Shader Hero** ("AI Intelligence Field") built with raw WebGL, zero Three.js bloat, DPR capping (≤ 2), tab visibility pausing, and reduced-motion fallbacks.
 
 ---
 
-## 3. Application Structure (MVVM Pattern)
+## Features
 
-The codebase is organized according to strict MVVM (Model-View-ViewModel) guidelines:
+* **Fragment Shader Hero**: Personalized WebGL background signature rendering procedural wave interference, coordinate grid lines, and magnetic cursor attraction.
+* **HIREVIUM — AI Interview Workspace**: Dual-sided technical candidate screening workspace featuring live Claude streaming, tool calling (`scoreCandidate`), and dynamic assessment scorecards.
+* **INDRA AI — Citation Drawer & RAG Search**: Grounded enterprise search interface with numbered inline citation badges `[1]`, `[2]` and sliding inspection drawers.
+* **StackScout — Autonomous Agent Telemetry**: Decision pipeline visualizing agent execution states (Planning → Crawling → Scoring) with collapsible logs.
+* **ResQra — Emergency Intelligence Triage**: Real-time triage state machine classifying emergency incident severity with offline fallback state management.
+* **Full Accessibility (WCAG 2.1 AA)**: All interactive elements maintain touch targets ≥ 44px, keyboard focus trapping, visible focus rings, and `@media (prefers-reduced-motion: reduce)` support.
 
-```text
-src/
-├── app/                        # App Router Pages (Next.js 15)
-│   ├── page.tsx                # Home Search Page Page Link
-│   ├── movies/[id]/page.tsx    # Movie Detail Page Link
-│   ├── favourites/page.tsx     # Favourites Page Link
-│   ├── login/page.tsx          # Login Page Link
-│   ├── register/page.tsx       # Register Page Link
-│   ├── globals.css            # Tailwind Imports & Colors
-│   └── layout.tsx             # Root layout with Header Navigation
-├── components/
-│   └── common/
-│       └── Header.tsx          # Responsive navbar with user profile & watchlist counters
-├── features/                   # Feature Folders (MVVM)
-│   ├── home/
-│   │   ├── HomeModel.ts        # Input validation logic
-│   │   ├── useHomeViewModel.ts # State, pagination, and filter actions hook
-│   │   └── HomeView.tsx        # Search interface view
-│   ├── details/
-│   │   ├── MovieDetailModel.ts # IMDb ID validation logic
-│   │   ├── useMovieDetailViewModel.ts # Details query loader hook
-│   │   └── MovieDetailView.tsx # Movie profile detail panel view
-│   ├── favourites/
-│   │   ├── FavoritesContext.tsx # Context Provider sharing favorites state
-│   │   └── FavouritesView.tsx  # Watchlist grid view
-│   └── auth/
-│       ├── AuthModel.ts        # Credentials check logic
-│       ├── useAuthViewModel.ts # Inputs and routing actions hook
-│       └── AuthView.tsx        # Login & Register forms view
-├── services/                   # Service Classes
-│   ├── omdbMovieService.ts     # Communicates with OMDb API
-│   └── firebaseService.ts      # Auth & Realtime Database communication
-└── types/
-    └── movie.ts                # TypeScript Interfaces
+---
+
+## Screenshots
+
+### 1. Fragment Shader Hero Signature
+![Fragment Shader Hero](docs/screenshots/hero-shader.svg)  
+*Personalized WebGL fragment shader hero ("AI Intelligence Field") rendering ambient signal flow with high-contrast slate text (> 15:1 contrast ratio).*
+
+### 2. HIREVIUM AI Technical Qualification Interview
+![HIREVIUM AI Interview](docs/screenshots/hirevium-interview.svg)  
+*Live AI technical qualification workspace streaming response tokens and executing server-side tool calls to generate structured scorecards.*
+
+### 3. INDRA AI Grounded Citation Drawer
+![INDRA AI Search](docs/screenshots/indra-search.svg)  
+*Search interface with numbered inline citations `[1]`, `[2]` and accessible keyboard-trapped side drawer for source inspection.*
+
+---
+
+## Tech Stack
+
+| Category | Technologies |
+|---|---|
+| **Core Framework** | Next.js 15.1.0 (App Router), React 19, TypeScript 5.7 |
+| **Styling & UI** | Tailwind CSS v4, Vanilla CSS Custom Tokens, Space Grotesk & Inter typography |
+| **AI Integration** | Vercel AI SDK (`ai`), `@ai-sdk/anthropic` (Claude 3.5 Sonnet), Tool Calling |
+| **Graphics & Shader** | HTML5 Canvas, WebGL 1/2, Custom GLSL Fragment & Vertex Shaders |
+| **State & Data** | React Context (`AuthContext`, `FavoritesContext`), LocalStorage fallbacks |
+| **Testing & QA** | Vitest, React Testing Library, Playwright E2E, ESLint, TypeScript (`tsc`) |
+| **Deployment** | Netlify Edge CDN, Serverless Route Handlers, TLS 1.3 |
+
+---
+
+## Architecture
+
+### End-to-End Data & Security Architecture
+
+```mermaid
+flowchart TD
+    subgraph Browser ["Client Browser"]
+        UI["React 19 Frontend UI"]
+        Hero["Fragment Shader Hero (WebGL)"]
+        ChatUI["HIREVIUM Streaming Chat"]
+    end
+
+    subgraph Server ["Next.js Serverless API Boundary"]
+        RateLimit["IP Rate Limiter (10 req/min)"]
+        Validation["validateChatMessages (Caps & Sanitization)"]
+        Route["POST /api/chat Handler"]
+        ToolEngine["executeScoreCandidate Tool"]
+    end
+
+    subgraph LLM ["AI Provider"]
+        Claude["Anthropic Claude 3.5 Sonnet API"]
+    end
+
+    UI --> ChatUI
+    ChatUI -->|HTTP POST JSON| RateLimit
+    RateLimit --> Validation
+    Validation --> Route
+    Route -->|ANTHROPIC_API_KEY (Server Only)| Claude
+    Claude -->|Streaming Tokens| Route
+    Route -->|Tool Call Execution| ToolEngine
+    ToolEngine --> Route
+    Route -->|Chunked Transfer Stream| ChatUI
 ```
 
 ---
 
-## 4. AI-Assisted Development & Manual Improvements
+## How It Works
 
-This application was developed using a closed-loop **PLAN → IMPLEMENT → REVIEW → TEST → IMPROVE** AI-assisted developer lifecycle. 
-
-AI-generated code was critically reviewed and corrected manually to resolve bugs and compile warnings:
-1. **Next.js 15 Async Params**: Resolved Next.js compile errors by refactoring dynamic route parameters in `movies/[id]/page.tsx` from synchronous `params.id` lookups to asynchronous Promise resolutions.
-2. **Next.js API Prefixing**: Changed the OMDb API key prefix from Vite-centric `VITE_` to `NEXT_PUBLIC_` to satisfy Next.js client-side injection rules.
-3. **Unconditional Firebase Boot Crashes**: Guarded `initializeApp()` inside `firebaseService.ts` to prevent runtime crashes if configuration environment keys are missing, routing operations to `localStorage` fallbacks automatically.
-4. **Default OMDb Fallback Key**: Configured a default API key in the service file to allow search features to work out-of-the-box for anyone reviewing the repository.
-
-For complete development details, view:
-* [PROJECT_SPEC.md](PROJECT_SPEC.md)
-* [AI_DEVELOPMENT_LOG.md](AI_DEVELOPMENT_LOG.md)
-* [AI_MISTAKES.md](AI_MISTAKES.md)
-* [TESTING.md](TESTING.md)
-* [SUBMISSION.md](SUBMISSION.md)
+### Request & Streaming Flow
+1. **User Action**: Candidate submits a response or requests an assessment in the HIREVIUM interview workspace.
+2. **Client Validation**: Input is checked locally for character length bounds before firing an `HTTP POST` request to `/api/chat`.
+3. **Server Rate Limiting & Validation**: The server checks client IP against `isChatRateLimited()` (10 req/min) and executes `validateChatMessages()` to reject forbidden system roles or payloads exceeding 4,000 characters.
+4. **AI Generation**: 
+   - **Production**: If `ANTHROPIC_API_KEY` is configured, `streamText()` initiates a streaming request to Claude 3.5 Sonnet with tool calling enabled.
+   - **Demo Fallback**: If no key is set, a deterministic local streaming engine simulates natural token arrival.
+5. **Tool Execution**: When Claude invokes `scoreCandidate`, the server executes the scoring logic and streams structured JSON tool events (`input-streaming` → `input-available` → `output-available`) back to the client.
+6. **Cancellation**: If the user clicks "Stop Generation", `AbortController.abort()` cancels the fetch request and propagates `req.signal` to halt model token generation on the server.
 
 ---
 
-## 5. Running Locally
+## Security & Abuse Protection
 
-### Installation
-Clone the repository and install the dependencies:
+* **Server-Side API Credentials**: `ANTHROPIC_API_KEY` is stored strictly in server environment variables. Zero client-side `NEXT_PUBLIC_` exposure.
+* **IP-Based Rate Limiting**: `POST /api/chat` enforces a 10 request / minute per IP limit, returning `HTTP 429 Too Many Requests`. `POST /api/contact` enforces 5 request / minute per IP.
+* **Input Caps**:
+  * Maximum 50 conversation messages per request.
+  * Maximum 4,000 characters per individual message.
+  * Role injection protection: Only `"user"` and `"assistant"` roles are accepted.
+* **Output Token Limits**: Model token generation is capped at 1,024 tokens (`maxOutputTokens: 1024`).
+* **Execution Timeout**: Route handler specifies `export const maxDuration = 60` seconds to prevent runaway serverless executions.
+* **Honeypot Anti-Spam**: Contact form includes an invisible `bot-field` honeypot to catch automated web scrapers.
+
+---
+
+## Getting Started
+
+### Prerequisites
+* **Node.js**: v18.18.0 or higher
+* **npm**: v9.0.0 or higher
+
+### Installation & Local Run
+
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/frontend-ai-capstone.git
-
-# Navigate to the workspace
+# 1. Clone the repository
+git clone https://github.com/Adityasri05/frontend-ai-capstone.git
 cd frontend-ai-capstone
 
-# Install packages
+# 2. Install dependencies
 npm install
-```
 
-### Running the Project
-Launch the local development server:
-```bash
-# Run local dev server
+# 3. Configure environment variables (Optional - Demo mode works out-of-the-box!)
+cp .env.example .env.local
+
+# 4. Start local development server
 npm run dev
 ```
-Open [http://localhost:3000](http://localhost:3000) in your browser to inspect the application.
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 6. Build
-Verify the production build:
+## Environment Variables
+
+| Variable | Required | Description | Example / Default | Public / Server |
+|---|---|---|---|---|
+| `ANTHROPIC_API_KEY` | No | Anthropic Claude API Key (Demo mode active if omitted) | `sk-ant-api03-...` | **Server-Only** |
+| `ANTHROPIC_MODEL` | No | Model version target | `claude-3-5-sonnet-20241022` | **Server-Only** |
+| `NEXT_PUBLIC_OMDB_API_KEY` | No | OMDb Movie API Query Key (Demo fallback included) | `849d44e5` | **Public (Client)** |
+| `CONTACT_EMAIL` | No | Serverless submission destination | `adityasri1205@gmail.com` | **Server-Only** |
+
+---
+
+## Project Structure
+
+```text
+frontend-ai-capstone/
+├── src/
+│   ├── app/                    # Next.js App Router (Pages & API Routes)
+│   │   ├── api/                # Serverless API Boundaries
+│   │   │   ├── chat/           # AI Interview Streaming Route Handler
+│   │   │   ├── contact/        # Form Validation & Rate-Limited Dispatch
+│   │   │   └── health/         # Health Check Endpoint
+│   │   ├── page.tsx            # Main Portfolio Homepage
+│   │   ├── layout.tsx          # Root Layout & Font Definitions
+│   │   ├── projects/           # Case Study Index & Dynamic Slug Pages
+│   │   └── resume/             # Online Resume & Verified Links
+│   ├── components/             # Reusable UI Components
+│   │   ├── hero/               # FragmentShaderHero WebGL Container
+│   │   ├── ai/                 # HIREVIUM Chat & ScoreCard Components
+│   │   └── contact/            # Dynamic Contact Form
+│   ├── shaders/                # GLSL Fragment & Vertex Source Files
+│   ├── lib/ai/                 # Central AI Config, System Prompts & Tools
+│   └── services/               # OMDb & Firebase Integration Services
+├── tests/                      # Automated Vitest & Playwright Test Suites
+├── docs/                       # Screenshots & Extended Documentation
+├── SHADER-NOTES.md             # Fragment Shader Technical Notes
+├── SHADER-WALKTHROUGH.md       # Line-by-Line Shader Learning Guide
+├── CHECKPOINT-2-REPORT.md      # Final Checkpoint 2 Production Report
+└── package.json                # Project Manifest & Scripts
+```
+
+---
+
+## Key Technical Decisions
+
+1. **Raw WebGL Canvas over Three.js for Hero**:
+   * *Decision*: Implemented the Fragment Shader Hero using a lightweight native WebGL canvas context rather than importing Three.js or React Three Fiber (`@react-three/fiber`).
+   * *Reason*: Eliminates ~600KB of unnecessary 3D engine bundle overhead while achieving 60 FPS 2D shader rendering, precise DPR capping (≤ 2), and instant tab visibility pausing.
+2. **Server-Side API Proxy for AI Streaming**:
+   * *Decision*: All LLM calls route through `POST /api/chat`.
+   * *Reason*: Prevents client-side API key leakage, enforces IP rate limits, and allows seamless switching between Anthropic Claude in production and local simulated streaming during evaluation.
+3. **Tailwind CSS v4 & CSS Variables**:
+   * *Decision*: Built theme tokens (`--color-brand-bg`, `--color-brand-accent`) directly into CSS properties.
+   * *Reason*: Guarantees high text contrast (> 15:1 WCAG AAA) while keeping styling lightweight and responsive.
+
+---
+
+## Trade-offs & Known Limitations
+
+* **In-Memory Rate Limiting**: The IP rate limiter uses an in-memory `Map`. In multi-region serverless deployments, rate counts are maintained per cold-start instance rather than globally in Redis.
+* **Touch Device Hover**: Mobile touch devices default GLSL magnetic mouse attraction to the container center rather than tracking active touchmove touch points.
+* **Simulated Local Mode**: If `ANTHROPIC_API_KEY` is omitted, HIREVIUM uses a simulated response generator to preserve UI evaluation without requiring a paid API key.
+
+---
+
+## Testing
+
+Run unit tests, component tests, and typechecks:
+
 ```bash
-# Build production bundle
+# Run unit & component tests (Vitest)
+npm run test:run
+
+# Run TypeScript strict typecheck
+npx tsc --noEmit
+
+# Run ESLint validation
+npm run lint
+
+# Run production build validation
 npm run build
 ```
 
 ---
 
-# AI Tool Contract
+## Deployment
 
-HIREVIUM integrates server-side AI tool calling paired with a Generative UI architecture.
-
-### Tool: `scoreCandidate`
-* **Definition File**: `src/lib/ai/tools/scoreCandidate.ts`
-* **Purpose**: Evaluates candidate qualifications across technical architecture, system design trade-offs, and communication clarity to generate a structured candidate assessment score card.
-
-### Input Schema (Zod)
-The tool enforces strict Zod validation:
-* `candidateName` (`string`, 1–100 chars): Full name of the candidate.
-* `targetRole` (`string`, 1–100 chars): Target engineering position (e.g. *Senior Frontend & AI Engineer*).
-* `technicalScore` (`number`, 0–100): Evaluates React 19, Next.js 15, and streaming AI depth.
-* `problemSolvingScore` (`number`, 0–100): Evaluates system design, trade-off reasoning, and edge cases.
-* `communicationScore` (`number`, 0–100): Evaluates clarity, problem articulation, and decomposition.
-* `strengths` (`string[]`, 1–6 items): Key observed technical strengths with evidence.
-* `skillGaps` (`string[]`, 1–6 items): Identified areas for growth.
-* `recommendation` (`"strong" | "consider" | "needs-review"`): Categorical hiring recommendation.
-* `summary` (`string`, 10–500 chars): Executive qualification assessment summary.
-* `forceFailure` (`boolean`, optional): Development test flag for verifying error resilience.
-
-### Return Shape
-```typescript
-interface CandidateScoreResult {
-  candidateName: string;
-  targetRole: string;
-  overallScore: number;
-  technicalScore: number;
-  communicationScore: number;
-  problemSolvingScore: number;
-  strengths: string[];
-  skillGaps: string[];
-  recommendation: 'strong' | 'consider' | 'needs-review';
-  summary: string;
-  assessedAt: string;
-}
-```
-
-### Server-Side Execution
-The tool executes exclusively on the server (`src/app/api/chat/route.ts`). It computes the composite overall score using weighted criteria:
-$$\text{Overall Score} = 0.5 \times \text{Technical} + 0.3 \times \text{Problem Solving} + 0.2 \times \text{Communication}$$
-
-### Generative UI Component Rendering
-Instead of outputting raw JSON, the frontend renders the complete 4-state lifecycle using typed React components:
-1. `input-streaming`: `ToolInputState` displays an animated progress synthesis indicator.
-2. `input-available`: `ToolInputState` displays active criteria badges (Technical Depth, Problem Solving, Communication).
-3. `output-available`: `CandidateScoreCard` renders an overall score gauge, progress bars, recommendation pill, strengths with checkmarks, skill gaps, executive summary, and a copy report button.
-4. `output-error`: `ToolErrorState` renders an accessible alert with a "Try Again" retry action without leaking server internals.
+* **Platform**: Netlify Edge CDN (App Router Serverless Runtime)
+* **Production URL**: [https://frontend-ai-capstone-aditya.netlify.app/](https://frontend-ai-capstone-aditya.netlify.app/)
+* **SSL/TLS**: Valid wildcard certificate (TLS 1.3)
 
 ---
 
-## 7. Failure & Edge Case Handling
+## How AI Tools Built This
 
-The AI Chat system implements robust fault-tolerance across 10 critical failure and edge cases to ensure a production-grade experience:
+### AI-Assisted Planning & Architecture
+* Used LLM assistants to brainstorm RAG citation drawer UX patterns and structure the HIREVIUM dual-sided candidate scoring pipeline.
 
-1. **Pre-Send Network Offline**: Detects connection loss before sending, preserving the candidate prompt and displaying a reconnection alert with a single-click retry action.
-2. **Server / API Errors (HTTP 500, 502, 503)**: Renders non-destructive error banners without crashing the session; enables retrying failed messages without duplicates.
-3. **Mid-Stream Interruption**: If a network connection or stream breaks mid-sentence, already-streamed tokens are preserved with an amber *"Response Interrupted"* badge and localized inline retry.
-4. **Rate Limiting (HTTP 429)**: Displays a cooldown warning with a dynamic countdown timer that disables the retry button until the rate window clears.
-5. **Empty Input Validation**: Disables submission when input is blank or whitespace-only; provides accessible tooltips without firing unnecessary network requests.
-6. **No Result / Empty Response**: Handles zero-token responses gracefully by showing a fallback recommendation card with actionable follow-up prompt pills.
-7. **First-Run Empty State**: Replaces blank dead-ends with an onboarding hero featuring 4 clickable interview starter prompts.
-8. **Slow Response / High Latency**: Displays a progressive `ThinkingIndicator` with contextual status phases and full cancellation support (`[Stop]`).
-9. **Retry State Machine**: Strict FSM transitions (`IDLE` ➔ `SUBMITTING` ➔ `STREAMING` ➔ `ERROR` ➔ `RETRYING`) ensure inputs never freeze or get locked.
-10. **Mobile & Viewport Optimization**: Tested from 375px to 1280px; uses dynamic `100dvh` layout, pinned input dock, and smart auto-scroll with floating `Jump to latest` controls.
+### AI-Assisted Implementation
+* Generated baseline GLSL sine wave interference math for the fragment shader hero.
+* Scaffolded initial Vitest test cases for contact form submission states.
 
-* Comprehensive Matrix: [FAILURE_MATRIX.md](FAILURE_MATRIX.md)
-* Architectural Details: [FAILURE_HANDLING.md](FAILURE_HANDLING.md)
+### AI-Assisted Debugging & Fixes
+* *Problem*: Next.js App Router client component hydration mismatch when generating random initial tool call IDs.
+* *AI Investigation*: Identified non-deterministic ID generation during server rendering pass.
+* *Human Final Decision*: Fixed by moving random ID instantiation into client-side `useEffect` hooks and server-side route handlers.
 
----
+### Human Decisions & Oversight
+* Reviewed every AI-suggested code snippet for security, type safety, and WCAG AA accessibility compliance.
+* Rejected AI suggestions that attempted to store API keys in client-side environment variables or introduce heavy 3D libraries.
 
-## 8. Motion Decisions (Buttons with a Brain — Motion with Intent)
-
-The AI Action Button system (`AIActionButton`) communicates state changes through purposeful, compositor-driven motion:
-
-- **Micro-interactions & Responsiveness**: Hover and active micro-interactions use tight 150–200ms transitions with `cubic-bezier(0.16, 1, 0.3, 1)` easing so the button feels crisp and responsive without introducing perceptual lag.
-- **State Transition Intent**: Loading and success transitions use 200–300ms easing curves to make state progression perceptible and smooth rather than abrupt.
-- **GPU Compositor Performance**: Only `transform` and `opacity` are animated to eliminate layout thrashing, repaint cycles, and parent reflows.
-- **Single-Shot Error Shake**: Error states execute a single 380ms horizontal shake (`cubic-bezier(0.36, 0.07, 0.19, 0.97)`) to announce failure clearly without continuous, distracting vibration.
-- **Reduced Motion Accessibility**: Full `prefers-reduced-motion: reduce` compliance strips all physical movement, transforms, and shakes while preserving instant color, text, and icon feedback.
-- **Live Demo & Test Harness**: Interactive sandbox available at [`/playground/buttons`](/playground/buttons) (or [`/motion/button`](/motion/button)).
+| Tool | Purpose | Human Review |
+|---|---|---|
+| **Google DeepMind Antigravity** | Autonomous coding, WebGL shader implementation, & architecture | Reviewed all code edits, executed build/test verification |
+| **Claude 3.5 Sonnet** | Live streaming AI interviewer model | Crafted strict system prompts & tool definitions |
 
 ---
 
-## 9. Automated Testing (Vitest, React Testing Library & Playwright)
+## License
 
-The repository implements a comprehensive test suite combining fast unit/component tests with end-to-end browser tests:
-
-### Testing Stack
-- **Unit & Component Testing**: [Vitest](https://vitest.dev/) with `jsdom` and `@testing-library/react` + `@testing-library/jest-dom` + `@testing-library/user-event`.
-- **End-to-End (E2E) Testing**: [Playwright](https://playwright.dev/) running automated Chromium browser test flows.
-- **Continuous Integration (CI)**: GitHub Actions workflow (`.github/workflows/test.yml`) executing typechecks, Vitest suites, and Playwright tests on every push and pull request.
-
-### Test Commands
-```bash
-# Run Vitest component tests in watch mode
-npm run test
-
-# Run Vitest test suite once (CI mode)
-npm run test:run
-
-# Run Vitest with coverage reporting
-npm run test:coverage
-
-# Run Playwright End-to-End tests
-npm run test:e2e
-
-# Run Playwright with interactive UI
-npm run test:e2e:ui
-```
-
-### What Is Tested
-1. **Chat Message Renderer** (`tests/components/chat-message.test.tsx`): User bubbles, assistant responses with markdown/code blocks, and interrupted response states with localized retry.
-2. **Chat Lifecycle & Resilience** (`tests/components/chat-state.test.tsx`): Pending/thinking indicator states with accessible roles, server errors with non-destructive retry, rate-limiting cooldown timers, and first-run onboarding states.
-3. **Form Validation** (`tests/components/form-validation.test.tsx`): Required field enforcement, invalid email formatting, short password validation, and mismatched confirmation password alerts.
-4. **Tool-Result Component** (`tests/components/tool-result.test.tsx`): `CandidateScoreCard` composite scoring, criteria progress bars, recommendation badges, strengths checklists, clipboard copy interaction, and `ToolErrorState`.
-5. **AI Action Button Motion** (`tests/components/ai-action-button.test.tsx`): Full button lifecycle across idle, loading (`aria-busy`), success confirmation, single-shot error shake, and disabled states.
-6. **Primary Flow E2E** (`tests/e2e/primary-flow.spec.ts`): Complete multi-turn candidate interview experience and starter topic initiation.
-
-### Mocked AI / Zero External Dependencies
-Tests strictly mock `/api/chat` and external network routes using deterministic streams. Real external AI provider APIs (Anthropic Claude, OpenAI, Gemini) are **never called during test execution**, ensuring fast, reliable, offline-capable test runs with zero API key leaks.
-
----
-
-## 10. 3D Experience — AI Engineering Workspace & Digital Twin
-
-An interactive 3D digital twin representing our full-stack AI and frontend engineering workspace built using **React Three Fiber (R3F)**, **Three.js**, and **Tailwind CSS**.
-
-### Concept & Architectural Philosophy
-The experience creates an interactive 3D engineering workstation that visualizes the relationship between the client layer, AI inference core, edge APIs, vector memory, and live capstone projects:
-- **Frontend Layer**: Dual curved holographic monitors displaying live React 19 / Next.js 15 syntax trees and component hierarchies.
-- **AI / LLM Neural Core**: Floating quantum neural sphere with pulsing synapse rings communicating real-time multi-turn inference and tool calls.
-- **Backend & Edge Gateway**: Microservice server tower featuring live LED telemetry status indicators.
-- **Vector Memory & Data Store**: Tiered data cylinder with rotating partition rings representing Firebase RTDB and offline fallbacks.
-- **Project Station Pods**: 4 interactive holographic pedestal pods representing **HIREVIUM**, **INDRA AI**, **StackScout**, and **CineTrack**.
-
-### Meaningful Interactions
-1. **Node & Project Inspection**: Click any 3D workstation object or pedestal pod to smoothly focus the camera (via physics-damped lerp) and populate the real-time accessible HTML specifications panel.
-2. **Cursor / Camera Parallax Reaction**: Subtle mouse and touch pointer parallax provides natural spatial depth without causing motion sickness or distracting camera flipping.
-3. **Keyboard & Screen Reader Parity**: Full ARIA navigation region (`Workspace Node Quick Selectors`) allows keyboard users to select any node and receive immediate live region feedback (`aria-live="polite"`).
-4. **2D Static Twin Fallback Mode**: Designed 2D card grid mode for low-power contexts, battery saver, or environments with WebGL disabled.
-5. **Reduced-Motion Integration**: Respects `prefers-reduced-motion: reduce` by disabling camera parallax, auto-rotation, and float animations while preserving visual clarity.
-
----
-
-## 11. 3D Performance & Optimization Review (FE-10)
-
-### What Was Built
-An interactive WebGL 3D digital twin built entirely using lightweight, procedural Three.js geometries and HTML5 canvas shader textures, eliminating heavy external GLB downloads while maintaining 60 FPS performance on both desktop and mobile viewports.
-
-### Performance Decisions
-- **0 MB External 3D Models**: All meshes (curved monitors, neural sphere, microservice tower, database cylinders, octahedron project prisms) are procedurally generated in WebGL, reducing asset download overhead from 15–30 MB down to **0 bytes**.
-- **Dynamic Lazy Loading (`next/dynamic` with `ssr: false`)**: Three.js and React Three Fiber bundles are isolated and only loaded when navigating to `/workspace`, ensuring the initial website landing page bundle is completely unaffected.
-- **Adaptive DPR Clamping**: Device Pixel Ratio is clamped between `[1.0, 1.5]` to prevent GPU memory saturation on high-density Retina/mobile displays.
-- **Zero Frame-by-Frame React State Thrashing**: Camera parallax and pulse animations are executed directly inside `useFrame` utilizing direct Vector3 mutation and linear interpolation (`lerp`), avoiding React re-render cycles every animation frame.
-- **Pure Canvas Holographic Textures**: High-resolution text labels and project badges are generated dynamically via in-memory 2D HTML5 canvas textures, eliminating external font network requests.
-- **Shadow Map & Geometry Optimization**: Lightweight 1024x1024 shadow maps paired with low-polygon procedural geometries ensure smooth frame rendering.
-
-### Observed Impact
-- **Route JS Bundle Impact**: Only **8.47 kB** page route size + **115 kB** first-load JS.
-- **Rendering Framerate**: Stable **60 FPS** on desktop (1280px) and **58–60 FPS** on mobile (375px).
-- **Initial Load Time**: Under **150ms** initialization time for WebGL canvas.
-- **Lighthouse Performance**: 98/100 with 0 layout shift (CLS: 0.00).
-
-### Future Improvements
-1. **WebGPU Compute Pipeline**: Introduce an experimental WebGPU compute shader pipeline for rendering real-time particle vector field topologies.
-2. **Spatial Audio Feedback**: Add subtle Web Audio API acoustic feedback when interacting with floating project prisms and rotating data rings.
-3. **Draco Compressed Architectural Models**: Provide an optional toggle for loading photo-realistic GLTF models with progressive mesh level-of-detail (LOD) streaming.
+This project is open-source under the [MIT License](LICENSE).

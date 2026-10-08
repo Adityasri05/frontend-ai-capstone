@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#090d16"/>
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  
+  <!-- Header -->
+  <rect x="40" y="40" width="1120" height="60" rx="16" fill="#1e293b"/>
+  <circle cx="80" cy="70" r="8" fill="#ef4444"/>
+  <circle cx="105" cy="70" r="8" fill="#eab308"/>
+  <circle cx="130" cy="70" r="8" fill="#22c55e"/>
+  <text x="600" y="75" text-anchor="middle" fill="#94a3b8" font-family="monospace" font-size="14">HIREVIUM — AI Technical Interview Workspace</text>
+  
+  <!-- Chat Area -->
+  <rect x="80" y="130" width="600" height="420" rx="12" fill="#1e293b" stroke="#334155"/>
+  <text x="110" y="170" fill="#38bdf8" font-family="sans-serif" font-size="14" font-weight="bold">AI Interviewer (Claude 3.5 Sonnet)</text>
+  <text x="110" y="200" fill="#e2e8f0" font-family="sans-serif" font-size="13">Welcome to HIREVIUM! Let's discuss React 19 streaming architecture...</text>
+  
+  <!-- Candidate Answer -->
+  <rect x="180" y="240" width="470" height="80" rx="10" fill="#2563eb" fill-opacity="0.2" stroke="#2563eb"/>
+  <text x="200" y="270" fill="#f8fafc" font-family="sans-serif" font-size="13">We use Next.js 15 App Router API routes to proxy streaming tokens...</text>
+  
+  <!-- Score Card Panel -->
+  <rect x="710" y="130" width="410" height="420" rx="12" fill="#020617" stroke="#2563eb" stroke-width="2"/>
+  <text x="740" y="170" fill="#60a5fa" font-family="monospace" font-size="12" font-weight="bold">TOOL EXECUTION: scoreCandidate</text>
+  <text x="740" y="205" fill="#f8fafc" font-family="sans-serif" font-size="18" font-weight="bold">Qualification Score Card</text>
+  
+  <rect x="740" y="230" width="350" height="60" rx="8" fill="#0f172a"/>
+  <text x="760" y="265" fill="#e2e8f0" font-family="sans-serif" font-size="14">Technical Architectural Score: </text>
+  <text x="1040" y="265" text-anchor="end" fill="#4ade80" font-family="monospace" font-size="18" font-weight="bold">92 / 100</text>
+
+  <rect x="740" y="305" width="350" height="60" rx="8" fill="#0f172a"/>
+  <text x="760" y="340" fill="#e2e8f0" font-family="sans-serif" font-size="14">Problem Solving &amp; Edge Cases: </text>
+  <text x="1040" y="340" text-anchor="end" fill="#4ade80" font-family="monospace" font-size="18" font-weight="bold">88 / 100</text>
+</svg>

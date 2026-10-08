@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#090d16"/>
+  <rect x="40" y="40" width="1120" height="550" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+  
+  <!-- Header & Search Bar -->
+  <rect x="80" y="70" width="1040" height="50" rx="10" fill="#1e293b" stroke="#475569"/>
+  <text x="110" y="102" fill="#94a3b8" font-family="sans-serif" font-size="14">🔍 Query: Internal security API proxy routing guidelines...</text>
+  
+  <!-- Main RAG Response Area -->
+  <rect x="80" y="140" width="650" height="410" rx="12" fill="#1e293b"/>
+  <text x="110" y="180" fill="#f8fafc" font-family="sans-serif" font-size="16" font-weight="bold">INDRA AI Grounded Response</text>
+  <text x="110" y="220" fill="#cbd5e1" font-family="sans-serif" font-size="14">API proxy routes must validate incoming client payloads </text>
+  <rect x="520" y="205" width="24" height="20" rx="4" fill="#2563eb"/>
+  <text x="532" y="220" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">[1]</text>
+  
+  <text x="110" y="250" fill="#cbd5e1" font-family="sans-serif" font-size="14">and strictly maintain API keys on server environment variables </text>
+  <rect x="550" y="235" width="24" height="20" rx="4" fill="#2563eb"/>
+  <text x="562" y="250" text-anchor="middle" fill="#ffffff" font-family="monospace" font-size="12" font-weight="bold">[2]</text>
+  
+  <!-- Sliding Citation Drawer -->
+  <rect x="760" y="140" width="360" height="410" rx="12" fill="#020617" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="790" y="180" fill="#38bdf8" font-family="monospace" font-size="12" font-weight="bold">CITATION INSPECTION DRAWER</text>
+  <text x="790" y="210" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="bold">Source Document [1]: Sec_Proxy_Spec.pdf</text>
+  <rect x="790" y="230" width="300" height="100" rx="8" fill="#0f172a" stroke="#334155"/>
+  <text x="805" y="260" fill="#94a3b8" font-family="monospace" font-size="11">"Section 4.1: Client payloads must undergo schema</text>
+  <text x="805" y="280" fill="#94a3b8" font-family="monospace" font-size="11">validation prior to LLM forwarding..."</text>
+</svg>

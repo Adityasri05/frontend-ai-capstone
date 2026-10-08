@@ -38,8 +38,43 @@ function getSimulatedInterviewResponse(lastUserMessage: string, turnCount: numbe
   return `Thank you for sharing those technical details. You've demonstrated a strong grasp of modern frontend engineering and AI systems integration. Whenever you're ready, you can request an assessment scorecard to review your qualification metrics!`;
 }
 
+// Simple in-memory rate limiting tracker for /api/chat abuse mitigation
+const chatRateLimitMap = new Map<string, { count: number; lastReset: number }>();
+const CHAT_RATE_LIMIT_WINDOW_MS = 60 * 1000; // 1 minute
+const MAX_CHAT_REQUESTS_PER_WINDOW = 10;
+
+function isChatRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const record = chatRateLimitMap.get(ip) || { count: 0, lastReset: now };
+
+  if (now - record.lastReset > CHAT_RATE_LIMIT_WINDOW_MS) {
+    record.count = 1;
+    record.lastReset = now;
+    chatRateLimitMap.set(ip, record);
+    return false;
+  }
+
+  record.count += 1;
+  chatRateLimitMap.set(ip, record);
+  return record.count > MAX_CHAT_REQUESTS_PER_WINDOW;
+}
+
 export async function POST(req: NextRequest) {
   try {
+    // 1. IP Rate Limiting Check
+    const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'localhost';
+    if (isChatRateLimited(ip)) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. You have made too many AI requests. Please wait a minute before trying again.' },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': '60',
+          },
+        }
+      );
+    }
+
     const body = await req.json().catch(() => null);
 
     if (!body || typeof body !== 'object') {
