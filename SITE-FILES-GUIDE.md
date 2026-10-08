@@ -8,7 +8,9 @@ A complete reference guide explaining every deployed file and configuration in t
 
 | File / Path | Purpose | Why It Exists | Impact Layer |
 | :--- | :--- | :--- | :--- |
-| `src/app/page.tsx` | Main Portfolio Homepage | Renders the primary single-page portfolio layout including Hero, Selected Work (HIREVIUM, INDRA AI, StackScout, ResQra), Approach, Tech Stack, Resume, and Contact Form with mobile-first responsive scaling. | **Runtime & Build** (Next.js App Router Page) |
+| `src/app/page.tsx` | Main Portfolio Homepage | Renders the primary single-page portfolio layout including Hero (with FragmentShaderHero signature), Selected Work, Approach, Tech Stack, Resume, and Contact Form. | **Runtime & Build** (Next.js App Router Page) |
+| `src/components/hero/FragmentShaderHero.tsx` | Fragment Shader Hero Canvas | Client component initializing WebGL context, quad rendering, DPR cap (≤2), resize observer, tab visibility pause, reduced motion detection, and CSS gradient fallback. | **Runtime & WebGL Client Layer** (`'use client'`) |
+| `src/shaders/heroShader.ts` | GLSL Vertex & Fragment Source | Contains VERT_SHADER quad program and FRAG_SHADER personalized "AI Intelligence Field" algorithm with u_time, u_resolution, u_mouse, palette mapping, grid overlay, vignette, and grain. | **Shader Source & GLSL Definitions** |
 | `src/components/contact/ContactForm.tsx` | Dynamic Contact Form Component | Interactive client component managing form states, honeypot anti-spam, iOS zoom prevention (`text-base sm:text-xs`), and WCAG touch targets (≥ 44px). | **Runtime & Client Interaction** (`'use client'`) |
 | `src/app/api/contact/route.ts` | Contact Submission Serverless Route | Validates payload, checks honeypot field, enforces IP rate limits, and forwards message dispatch to `adityasri1205@gmail.com`. | **Serverless API Runtime** (HTTP POST Handler) |
 | `public/__forms.html` | Netlify Build Crawler Discovery | Static HTML form definition for Netlify's crawler to register the form in Netlify Forms dashboard. | **Deployment & Form Automation** |

@@ -1,66 +1,68 @@
 import React from 'react';
 import Link from 'next/link';
 import ContactForm from '../components/contact/ContactForm';
+import FragmentShaderHero from '../components/hero/FragmentShaderHero';
 
 export default function Home() {
   return (
     <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-16 space-y-16 sm:space-y-24 overflow-x-hidden">
-      {/* 1. HERO SECTION */}
-      <section className="relative text-center py-10 sm:py-16 md:py-20 bg-brand-card/60 backdrop-blur-md border border-brand-border rounded-2xl sm:rounded-3xl p-5 sm:p-10 md:p-12 shadow-brand-shadow-lg overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/hero-texture.svg')] bg-repeat -z-10 opacity-70" />
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-accent/10 via-transparent to-transparent -z-10" />
+      {/* 1. HERO SECTION WITH FRAGMENT SHADER BACKGROUND */}
+      <section className="scroll-mt-20">
+        <FragmentShaderHero className="py-10 sm:py-16 md:py-20 p-5 sm:p-10 md:p-12 text-center">
+          <div className="max-w-4xl mx-auto">
+            {/* Identity & Current Status Badge */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-accent/20 border border-brand-accent/40 backdrop-blur-md rounded-full text-xs font-mono font-semibold text-blue-200 mb-6 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              <span>Available for Junior Frontend AI Roles • 2026</span>
+            </div>
 
-        {/* Identity & Current Status Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-brand-accent/10 border border-brand-accent/25 rounded-full text-xs font-mono font-semibold text-brand-accent mb-6">
-          <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-          <span>Available for Junior Frontend AI Roles • 2026</span>
-        </div>
+            {/* Name & Positioning */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-slate-100 mb-4 font-display break-words drop-shadow-sm">
+              Aditya Srivastav
+            </h1>
+            <p className="text-base sm:text-xl md:text-2xl text-slate-200 max-w-3xl mx-auto mb-4 font-semibold leading-snug sm:leading-relaxed">
+              Frontend engineer building AI-powered products with practical understanding of LLMs, prompt design, secure API routing, and AI-driven interfaces.
+            </p>
+            <p className="text-xs sm:text-sm md:text-base text-slate-300/90 max-w-2xl mx-auto mb-8 leading-normal font-sans">
+              B.Tech Computer Science student focused on resilient client architectures, verifiable AI outputs (citations, confidence scores), and secure proxy boundaries between frontends and foundation models.
+            </p>
 
-        {/* Name & Positioning */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-brand-text mb-4 font-display break-words">
-          Aditya Srivastav
-        </h1>
-        <p className="text-base sm:text-xl md:text-2xl text-brand-text/90 max-w-3xl mx-auto mb-4 font-semibold leading-snug sm:leading-relaxed">
-          Frontend engineer building AI-powered products with practical understanding of LLMs, prompt design, secure API routing, and AI-driven interfaces.
-        </p>
-        <p className="text-xs sm:text-sm md:text-base text-brand-muted max-w-2xl mx-auto mb-8 leading-normal font-sans">
-          B.Tech Computer Science student focused on resilient client architectures, verifiable AI outputs (citations, confidence scores), and secure proxy boundaries between frontends and foundation models.
-        </p>
+            {/* Primary & Secondary CTAs (Accessible Touch Targets >= 44px) */}
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 items-center">
+              <a
+                href="https://www.linkedin.com/in/aditya-srivastav-64906927a/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="min-h-[44px] min-w-[140px] px-6 py-3 bg-brand-accent hover:bg-brand-primary-hover text-slate-100 font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 active:scale-95 shadow-md flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              >
+                <span>Connect on LinkedIn</span>
+                <span aria-hidden="true">↗</span>
+              </a>
 
-        {/* Primary & Secondary CTAs (Accessible Touch Targets >= 44px) */}
-        <div className="flex flex-wrap justify-center gap-3 sm:gap-4 items-center">
-          <a
-            href="https://www.linkedin.com/in/aditya-srivastav-64906927a/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="min-h-[44px] min-w-[140px] px-6 py-3 bg-brand-accent hover:bg-brand-primary-hover text-slate-100 font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 active:scale-95 shadow-md flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
-          >
-            <span>Connect on LinkedIn</span>
-            <span aria-hidden="true">↗</span>
-          </a>
+              <a
+                href="#work"
+                className="min-h-[44px] min-w-[140px] px-6 py-3 bg-slate-900/80 hover:bg-slate-800 text-slate-100 border border-slate-700 font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 backdrop-blur-sm"
+              >
+                <span>View Selected Work</span>
+                <span aria-hidden="true">↓</span>
+              </a>
 
-          <a
-            href="#work"
-            className="min-h-[44px] min-w-[140px] px-6 py-3 bg-brand-card hover:bg-brand-border text-brand-text border border-brand-border font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
-          >
-            <span>View Selected Work</span>
-            <span aria-hidden="true">↓</span>
-          </a>
+              <a
+                href="#contact"
+                className="min-h-[44px] px-5 py-3 bg-slate-900/60 hover:bg-slate-800/80 text-slate-200 border border-slate-700/80 font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 backdrop-blur-sm"
+              >
+                Send Message
+              </a>
 
-          <a
-            href="#contact"
-            className="min-h-[44px] px-5 py-3 bg-brand-bg hover:bg-brand-card text-brand-text border border-brand-border font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 active:scale-95 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
-          >
-            Send Message
-          </a>
-
-          <a
-            href="#cv"
-            className="min-h-[44px] px-5 py-3 bg-transparent hover:bg-brand-card text-brand-muted hover:text-brand-text border border-transparent hover:border-brand-border font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-accent"
-          >
-            CV / Resume
-          </a>
-        </div>
+              <a
+                href="#cv"
+                className="min-h-[44px] px-5 py-3 bg-transparent hover:bg-slate-800/40 text-slate-300 hover:text-slate-100 border border-transparent hover:border-slate-700 font-semibold text-xs sm:text-sm rounded-xl transition-all duration-300 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+              >
+                CV / Resume
+              </a>
+            </div>
+          </div>
+        </FragmentShaderHero>
       </section>
 
       {/* 2. SELECTED WORK SECTION */}

@@ -9,7 +9,7 @@ This document tracks all missing evidence, screenshots, external links, performa
 | Target Screen | Project | Priority | Status |
 | --- | --- | --- | --- |
 | **HIREVIUM Recruiter Dashboard** | HIREVIUM | **BLOCKER** | Screenshot needs capture from latest local dev build. |
-| **HIREVIUM Live Interview Panel** | HIREVIUM | **BLOCKER** | Screenshot needs capture from candidate flow. |
+| **HIREVIUM Live Interview Panel** | HIREVIUM | **BLOCKER** | Screenshot needs capture from candidate uiflow. |
 | **INDRA AI Grounded RAG Chat** | INDRA AI | **IMPORTANT** | Needs capture showing the citation tag highlights. |
 | **INDRA AI Document Intell Drawer** | INDRA AI | **IMPORTANT** | Needs capture with drawer active beside the chat. |
 | **StackScout Comparison Matrix** | StackScout | **IMPORTANT** | Needs capture of vendor grid table. |
