@@ -30,6 +30,13 @@
 | **FL-10** | 5-Minute Recruiter Test | [`FIVE-MINUTE-RECRUITER-TEST.md`](./FIVE-MINUTE-RECRUITER-TEST.md) | **Complete** | 10/10 PASS score on recruiter evaluation test |
 | **FL-10** | Build-in-Public Post | [`BUILD-IN-PUBLIC-POST.md`](./BUILD-IN-PUBLIC-POST.md) | **Complete** | Public post telling the story of the build |
 | **FL-10** | Final Checkpoint Report | [`FINAL-SUBMISSION-REPORT.md`](./FINAL-SUBMISSION-REPORT.md) | **Complete** | Final submission report and READY status |
+| **FL-EXT** | Next Case Study Guide | [`NEXT-CASE-STUDY-GUIDE.md`](./NEXT-CASE-STUDY-GUIDE.md) | **Complete** | Step-by-step guide for adding the next case study |
+| **FL-EXT** | Next Case Study Template | [`NEXT-CASE-STUDY-TEMPLATE.md`](./NEXT-CASE-STUDY-TEMPLATE.md) | **Complete** | Reusable three-beat case study template |
+| **FL-EXT** | Next Case Study Plan | [`NEXT-CASE-STUDY-PLAN.md`](./NEXT-CASE-STUDY-PLAN.md) | **Complete** | Selected project: Fragment Shader Hero GLSL Signature |
+| **FL-EXT** | Reminder Setup & Evidence | [`REMINDER-SETUP.md`](./REMINDER-SETUP.md) & [`REMINDER-EVIDENCE.md`](./REMINDER-EVIDENCE.md) | **Pending Entry** | Manual calendar reminder definition & verification |
+| **FL-EXT** | Portfolio Context Pack | [`portfolio-context/`](./portfolio-context/) | **Complete** | Preserved AI context pack (Identity, Voice, Stack, Format, Projects) |
+| **FL-EXT** | Future AI Workflow | [`FUTURE-CASE-AI-WORKFLOW.md`](./FUTURE-CASE-AI-WORKFLOW.md) | **Complete** | 10-step repeatable AI interview & case update workflow |
+| **FL-EXT** | Plan Report & Checklist | [`PLAN-TO-KEEP-BUILDING-REPORT.md`](./PLAN-TO-KEEP-BUILDING-REPORT.md) | **Complete** | Final assignment report & READY status |
 
 ---
 
